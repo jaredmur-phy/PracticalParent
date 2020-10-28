@@ -4,7 +4,8 @@ public enum TimerStatus {
 
     SET_TIMER("Set Timer"),
     PAUSE("Pause"),
-    RESUME("Resume");
+    RESUME("Resume"),
+    TIMEOUT("Time out");
 
     private String msg;
     TimerStatus(String msg){

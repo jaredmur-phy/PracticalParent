@@ -1,11 +1,11 @@
 package com.example.practicalparent.receiver;
 
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
-import android.util.Log;
+
+
+import com.example.practicalparent.timer.Alarmer;
 
 
 public class TimeoutReceiver extends BroadcastReceiver {
@@ -16,10 +16,7 @@ public class TimeoutReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if(TIMEOUT_ACTION.equals(action)) {
-            // TODO: add timeout call back
-            Log.i("test", "test_clock");
-            Vibrator vibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
-
+            Alarmer.getInstance().alarm();
         }
     }
 
