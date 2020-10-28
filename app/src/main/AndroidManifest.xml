@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.practicalparent.project.ui.MainActivity">
+        <activity
+            android:name=".project.ui.CoinFlipActivity"
+            android:label="@string/title_activity_coin_flip"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".project.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
