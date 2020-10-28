@@ -26,8 +26,11 @@ public class TimerActivity extends AppCompatActivity {
     private PendingIntent callback = null;
     private AlarmTimer timer = null;
     private Alarmer alarmer = null;
+
     private TimerStatus status = TimerStatus.SET_TIMER;
 
+    private Handler handler = new Handler();
+    private Runnable refreshCallBack = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,14 +99,16 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void setPeriodRefresh(){
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
+
+        refreshCallBack = new Runnable() {
             @Override
             public void run() {
                 showRestTimes();
                 handler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
             }
-        });
+        };
+
+        handler.post(refreshCallBack);
     }
 
     private void stopAlarming(){
@@ -129,6 +134,7 @@ public class TimerActivity extends AppCompatActivity {
         if(!timer.isPaused()){
             timerManager.cancel(callback);
         }
+        alarmer.stop();
         status = TimerStatus.PAUSE;
         timer.reset();
         timerManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), callback);
@@ -155,5 +161,9 @@ public class TimerActivity extends AppCompatActivity {
         return getIntent(c);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacks(refreshCallBack);
+        super.onDestroy();
+    }
 }
