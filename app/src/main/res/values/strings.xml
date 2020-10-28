@@ -18,4 +18,7 @@
     <string name="heads">Heads</string>
     <string name="tails">Tails</string>
     <string name="or">or</string>
+    <string name="title_activity_flip_results">FlipResultsActivity</string>
+    <string name="your_coin_is">Your coin is:</string>
+    <string name="flip">Flip!</string>
 </resources>

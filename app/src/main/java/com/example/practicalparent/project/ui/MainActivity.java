@@ -63,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     private void launchConfigurations() {
-        /*Intent intent = ?.makeIntent(MainActivity.this);
+        /*Intent intent = ?.makeLaunchIntent(MainActivity.this);
         StartActivity(intent);*/
     }
 
     private void launchSetTimeOut() {
-       /* Intent intent = ?.makeIntent(MainActivity.this);
+       /* Intent intent = ?.makeLaunchIntent(MainActivity.this);
         StartActivity(intent);*/
     }
 }
