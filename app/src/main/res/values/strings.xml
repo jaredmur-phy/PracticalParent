@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PracticalParent</string>
+    <string name="practical_parent">Practical Parent</string>
+    <string name="configuration">Configuration</string>
+    <string name="flip_a_coin">Flip a coin</string>
+    <string name="time_out">Time Out</string>
+    <string name="by_sabri_isik_jared_murphy_jiatang_zhou_denys_dymnich">By: Sabri Isik, Jared Murphy, Jiatang Zhou, Denys Dymnich</string>
 </resources>
