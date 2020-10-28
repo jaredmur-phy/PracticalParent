@@ -8,11 +8,13 @@ import android.widget.Button;
 
 import com.example.practicalparent.R;
 
+// Main menu which leads to other activities
 public class MainActivity extends AppCompatActivity {
 
     Button buttonTimeOut;
     Button buttonConfig;
     Button buttonCoinFlip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setConfigurations();
         setTimeOut();
     }
-
-
-
-
-
-
-
-
 
     private void setCoinFlip() {
         buttonCoinFlip = findViewById(R.id.idFlip);
@@ -43,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private void setConfigurations() {
         buttonConfig = findViewById(R.id.idConfigure);
 
@@ -70,11 +65,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchConfigurations() {
-
         /*Intent intent = ?.getIntent(MainActivity.this);
         StartActivity(intent);*/
-
     }
+
     private void launchCoinFlip() {
        /* Intent intent = ?.getIntent(MainActivity.this);
         StartActivity(intent);*/
