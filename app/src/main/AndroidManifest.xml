@@ -12,7 +12,8 @@
         <activity
             android:name=".project.ui.CoinFlipActivity"
             android:label="@string/title_activity_coin_flip"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".project.ui.TimerActivity"/>
         <activity android:name=".project.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
