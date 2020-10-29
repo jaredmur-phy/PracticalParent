@@ -6,5 +6,23 @@
     <string name="set_timer">Set Timer\n</string>
     <string name="pause_timer">Pause</string>
     <string name="resume_timer">Resume</string>
-    <string name="time_out">Time out\n Stop It!</string>
+
+    <string name="practical_parent">Practical Parent</string>
+    <string name="configuration">Configuration</string>
+    <string name="flip_a_coin">Flip a coin</string>
+    <string name="time_out">Time Out</string>
+    <string name="by_sabri_isik_jared_murphy_jiatang_zhou_denys_dymnich">By: Sabri Isik, Jared Murphy, Jiatang Zhou, Denys Dymnich</string>
+    <string name="title_activity_coin_flip">CoinFlipActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="would_you_like_to_choose_heads_or_tails">Would you like to choose Heads or Tails?</string>
+    <string name="heads">Heads</string>
+    <string name="tails">Tails</string>
+    <string name="or">or</string>
 </resources>

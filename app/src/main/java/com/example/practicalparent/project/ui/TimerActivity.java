@@ -1,4 +1,4 @@
-package com.example.practicalparent;
+package com.example.practicalparent.project.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.practicalparent.R;
 import com.example.practicalparent.listener.CustomizeChangedListener;
 import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
