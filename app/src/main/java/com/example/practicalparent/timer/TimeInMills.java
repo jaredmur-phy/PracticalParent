@@ -1,5 +1,8 @@
 package com.example.practicalparent.timer;
 
+/**
+ * conversion to microsecond
+ */
 public enum TimeInMills {
 
     HALF_SECOND(500),

@@ -6,39 +6,46 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.practicalparent.listener.CustomizeChangedListener;
 import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
 import com.example.practicalparent.timer.TimerStatus;
 
-
+/**
+ * Timer page
+ */
 public class TimerActivity extends AppCompatActivity {
 
-    private AlarmManager timerManager = null;
-    private PendingIntent timeoutCallback = null;
-    private AlarmTimer timer = null;
-    private Alarmer alarmer = null;
+    private AlarmManager alarmManager;
+    private PendingIntent timeoutCallback;
+    private AlarmTimer timer;
+    private Alarmer alarmer;
+
     private int[] timerOptions;
-    private int countDownMinutes = 1;
+    private int countDownMinutes;
+    private TextView customizeTimerUnitTextView;
+    private TextView customizeTimerPlainTextView;
 
-    private TimerStatus timerStatus = TimerStatus.SET_TIMER;
 
-    private Handler refreshCallbackHandler = new Handler();
-    private Runnable refreshCallback = null;
+    private TimerStatus timerStatus;
 
-    private TextView customizeTimerTextView;
+    // refresh clock
+    private Handler refreshCallbackHandler;
+    private Runnable refreshCallback;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +54,46 @@ public class TimerActivity extends AppCompatActivity {
         setupTimerOptions();
 
         initAttributes();
-        setPeriodRefresh();
-        bindOnClickListener();
+
+        setupTextChangeListener();
+        setupBtnOnClickListener();
+        setupPeriodRefresh();
     }
 
     private void initAttributes(){
-        customizeTimerTextView = findViewById(R.id.id_customize_timer);
-        timerOptions = getResources().getIntArray(R.array.timer_options_array_value);
-        timerManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        timerStatus = TimerStatus.SET_TIMER;
+        customizeTimerUnitTextView = findViewById(R.id.id_customize_timer);
+        customizeTimerPlainTextView = findViewById(R.id.id_customize_plain_text);
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         timeoutCallback = PendingIntent.getBroadcast(this, TimeoutReceiver.class.hashCode(),
                 TimeoutReceiver.getIntent(this), 0);
-        alarmer = Alarmer.getInstance(this, MediaPlayer.create(this, R.raw.ring));
+        alarmer = Alarmer.getInstance(this);
+        timer = new AlarmTimer(0);
+
+        timerOptions = getResources().getIntArray(R.array.timer_options_array_value);
+        countDownMinutes = timerOptions[0];
+
+        refreshCallbackHandler = new Handler();
+        refreshCallback = new Runnable() {
+            @Override
+            public void run() {
+                showRemainingTimes();
+                refreshCallbackHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
+            }
+        };
+    }
+
+    private void setupTextChangeListener(){
+        customizeTimerPlainTextView.addTextChangedListener(new CustomizeChangedListener() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                String str = s.toString();
+                if(!str.isEmpty()) {
+                    countDownMinutes = Integer.parseInt(str);
+                }
+            }
+        });
     }
 
     private void setupTimerOptions(){
@@ -71,24 +107,23 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int minutes = timerOptions[position];
+                customizeTimerPlainTextView.setText("");
                 if(minutes > 0){
-                    customizeTimerTextView.setVisibility(View.INVISIBLE);
+                    customizeTimerUnitTextView.setVisibility(View.INVISIBLE);
+                    customizeTimerPlainTextView.setVisibility(View.INVISIBLE);
                     countDownMinutes = minutes;
                 } else {
-                    customizeTimerTextView.setVisibility(View.VISIBLE);
-                    customizeTimerTextView.setText("9 min");
-                    countDownMinutes = 9;
-                    Toast.makeText(TimerActivity.this, "-1", Toast.LENGTH_SHORT).show();
+                    customizeTimerUnitTextView.setVisibility(View.VISIBLE);
+                    customizeTimerPlainTextView.setVisibility(View.VISIBLE);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
 
-    private void bindOnClickListener(){
+    private void setupBtnOnClickListener(){
         TextView setTimerBtn = findViewById(R.id.id_set_timer);
         TextView resetBtn = findViewById(R.id.id_reset_btn);
 
@@ -114,42 +149,32 @@ public class TimerActivity extends AppCompatActivity {
 
         });
 
-        resetBtn.setOnClickListener((View v)->{
-            resetTimer();
-        });
+        resetBtn.setOnClickListener((View v)-> resetTimer());
 
     }
 
     private void showRemainingTimes(){
-        TextView view = findViewById(R.id.id_set_timer);
-        if( timer != null && !timer.isTimeout() ){
-            view.setText(getShowTime() + "\n" + timerStatus.getMsg(this));
-        } else if(timerStatus == TimerStatus.SET_TIMER){
-            view.setText(timerStatus.getMsg(this));
+        TextView timerView = findViewById(R.id.id_set_timer);
+        if( !timer.isTimeout() ){
+            timerView.setText(getShowTime() + "\n" + timerStatus.getMsg(this));
+        } else if( timerStatus == TimerStatus.SET_TIMER ){
+            timerView.setText(timerStatus.getMsg(this));
         } else { // time out
             timerStatus = TimerStatus.TIMEOUT;
-            view.setText(timerStatus.getMsg(this));
+            timerView.setText(timerStatus.getMsg(this));
         }
     }
 
     private void setTimer(int minutes){
         long triggerTime = getTriggerTime(minutes);
-        timerManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
-        timer = new AlarmTimer(minutes * TimeInMills.MINUTE.getValue());
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
+        timer.reset(minutes * TimeInMills.MINUTE.getValue());
     }
-
 
     /**
      * every half second it will refresh the clock
      */
-    private void setPeriodRefresh(){
-        refreshCallback = new Runnable() {
-            @Override
-            public void run() {
-                showRemainingTimes();
-                refreshCallbackHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
-            }
-        };
+    private void setupPeriodRefresh(){
         refreshCallbackHandler.post(refreshCallback);
     }
 
@@ -160,7 +185,7 @@ public class TimerActivity extends AppCompatActivity {
     private void pauseTimer(){
         if(!timer.isPaused()) {
             timer.pause();
-            timerManager.cancel(timeoutCallback);
+            alarmManager.cancel(timeoutCallback);
         }
     }
 
@@ -169,19 +194,15 @@ public class TimerActivity extends AppCompatActivity {
             return;
         }
         timer.resume();
-        timerManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
     private void resetTimer(){
-        timerStatus = TimerStatus.PAUSE;
-        if(timer == null){
-            setTimer(countDownMinutes);
-            return;
-        }
         alarmer.stop();
         pauseTimer();
+        timerStatus = TimerStatus.PAUSE;
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
-        timerManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
     private long getTriggerTime(int minutes){

@@ -7,7 +7,9 @@ import android.content.Intent;
 
 import com.example.practicalparent.timer.Alarmer;
 
-
+/**
+ * receive the broadcast when time out and do the alarming
+ */
 public class TimeoutReceiver extends BroadcastReceiver {
 
     private static final String TIMEOUT_ACTION = "TIMEOUT_ACTION";
@@ -16,7 +18,7 @@ public class TimeoutReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if(TIMEOUT_ACTION.equals(action)) {
-            Alarmer.getInstance().alarm();
+            Alarmer.getInstance(context).alarm();
         }
     }
 

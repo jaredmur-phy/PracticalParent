@@ -10,29 +10,36 @@ import android.os.Vibrator;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.practicalparent.R;
+
 import java.sql.Time;
 
 /**
  * Singleton class
+ * this class do the alarming or stop alarming
  */
 public class Alarmer{
 
-    private Vibrator vibrator;
     private static Alarmer alarmer;
-    private Handler handler = new Handler();
-    private boolean isAlarming = false;
-    private MediaPlayer player;
-    private Runnable callback;
 
-    private Alarmer(Context c, MediaPlayer player){
-        vibrator = (Vibrator) c.getSystemService(Service.VIBRATOR_SERVICE);
-        this.player = player;
+    private Vibrator vibrator;
+    private Handler vibrateHandler;
+    private boolean isAlarming;
+    private MediaPlayer player;
+    private Runnable vibrateCallback;
+
+    private Alarmer(Context c){
+        this.vibrator = (Vibrator) c.getSystemService(Service.VIBRATOR_SERVICE);
+        this.player = MediaPlayer.create(c, R.raw.ring);
+        this.vibrateHandler = new Handler();
+        this.isAlarming = false;
+
         player.setOnCompletionListener(mp -> {
             if(isAlarming){
                 player.start();
             }
         });
-        callback = new Runnable(){
+        vibrateCallback = new Runnable(){
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void run() {
@@ -40,7 +47,7 @@ public class Alarmer{
                         .setUsage(AudioAttributes.USAGE_ALARM)
                         .build();
                 vibrator.vibrate(TimeInMills.HALF_SECOND.getValue(), attributes);
-                handler.postDelayed(this, TimeInMills.SECOND.getValue());
+                vibrateHandler.postDelayed(this, TimeInMills.SECOND.getValue());
             }
         };
     }
@@ -49,7 +56,7 @@ public class Alarmer{
         if(!isAlarming){
             isAlarming = true;
             player.start();
-            handler.post(callback);
+            vibrateHandler.post(vibrateCallback);
         }
     }
 
@@ -58,21 +65,15 @@ public class Alarmer{
             isAlarming = false;
             player.seekTo(0);
             player.pause();
-            handler.removeCallbacks(callback);
+            vibrateHandler.removeCallbacks(vibrateCallback);
         }
     }
 
-    public static Alarmer getInstance(Context c, MediaPlayer player){
+    public static Alarmer getInstance(Context c){
         if(alarmer == null){
-            alarmer = new Alarmer(c.getApplicationContext(), player);
+            alarmer = new Alarmer(c.getApplicationContext());
         }
         return alarmer;
     }
 
-    public static Alarmer getInstance(){
-        if(alarmer == null){
-            throw new IllegalArgumentException("should call getInstance(Context, MediaPlayer) first");
-        }
-        return alarmer;
-    }
 }

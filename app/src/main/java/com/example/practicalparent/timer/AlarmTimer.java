@@ -2,6 +2,10 @@ package com.example.practicalparent.timer;
 
 import android.os.SystemClock;
 
+/**
+ * Help to calculate the timer information
+ * also can pause, reset, resume the timer
+ */
 public class AlarmTimer {
 
     private long startTime;

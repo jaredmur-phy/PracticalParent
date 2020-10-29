@@ -5,9 +5,12 @@ import android.content.Context;
 
 import com.example.practicalparent.R;
 
+/**
+ * Save the the different status that Timer might have
+ */
 public enum TimerStatus {
 
-    SET_TIMER(R.string.reset_timer),
+    SET_TIMER(R.string.set_timer),
     PAUSE(R.string.pause_timer),
     RESUME(R.string.resume_timer),
     TIMEOUT(R.string.time_out);

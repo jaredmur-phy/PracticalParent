@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">PracticalParent</string>
+
     <string name="reset_timer">Reset Timer</string>
-    <string name="example_1_min_hold_place">1 min</string>
+    <string name="minutes"> minutes</string>
     <string name="set_timer">Set Timer\n</string>
     <string name="pause_timer">Pause</string>
     <string name="resume_timer">Resume</string>
-    <string name="time_out">Time out</string>
+    <string name="time_out">Time out\n Stop It!</string>
 </resources>
