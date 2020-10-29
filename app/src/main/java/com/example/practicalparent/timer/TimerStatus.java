@@ -1,18 +1,24 @@
 package com.example.practicalparent.timer;
 
+
+import android.content.Context;
+
+import com.example.practicalparent.R;
+
 public enum TimerStatus {
 
-    SET_TIMER("Set Timer"),
-    PAUSE("Pause"),
-    RESUME("Resume"),
-    TIMEOUT("Time out");
+    SET_TIMER(R.string.reset_timer),
+    PAUSE(R.string.pause_timer),
+    RESUME(R.string.resume_timer),
+    TIMEOUT(R.string.time_out);
 
-    private String msg;
-    TimerStatus(String msg){
-        this.msg = msg;
+    private int msgId;
+    TimerStatus(int msgId){
+        this.msgId = msgId;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMsg(Context c) {
+        return c.getString(msgId);
     }
+
 }

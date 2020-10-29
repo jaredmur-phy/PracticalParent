@@ -7,7 +7,11 @@ public class AlarmTimer {
     private long startTime;
     private long endTime;
     private long duration;
-    private long pausedPoint;   // it stores after how many seconds timeout
+
+    // it stores after how many seconds timeout
+    // for example if startTime = 1000, endTime = 9000, pausedPoint = 2000
+    // that means after 2s (2000 Mills), we will reach the endTime, so we are in 7000 right now
+    private long pausedPoint;
 
     /**
      * @param duration ms
@@ -15,12 +19,11 @@ public class AlarmTimer {
     public AlarmTimer(long duration){
         if(duration < 0)
             throw new IllegalArgumentException("duration should not be negative");
-        this.duration = duration;
-        reset();
+        reset(duration);
     }
 
     public void pause(){
-        pausedPoint = getRestTime();
+        pausedPoint = getRemainingTime();
     }
 
     public void resume(){
@@ -31,7 +34,7 @@ public class AlarmTimer {
     }
 
     // return after how many second times out
-    public long getRestTime(){
+    public long getRemainingTime(){
         if(isPaused()){
             return pausedPoint;
         }
@@ -48,7 +51,8 @@ public class AlarmTimer {
         return SystemClock.elapsedRealtime() >= endTime;
     }
 
-    public void reset(){
+    public void reset(long duration){
+        this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
         pausedPoint = -1;
