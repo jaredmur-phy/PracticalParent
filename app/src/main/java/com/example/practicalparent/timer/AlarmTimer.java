@@ -2,11 +2,16 @@ package com.example.practicalparent.timer;
 
 import android.os.SystemClock;
 
+
 /**
+ * Singleton class
+ *
  * Help to calculate the timer information
  * also can pause, reset, resume the timer
  */
 public class AlarmTimer {
+
+    private static AlarmTimer timer = new AlarmTimer(0);
 
     private long startTime;
     private long endTime;
@@ -20,7 +25,7 @@ public class AlarmTimer {
     /**
      * @param duration ms
      */
-    public AlarmTimer(long duration){
+    private AlarmTimer(long duration){
         if(duration < 0)
             throw new IllegalArgumentException("duration should not be negative");
         reset(duration);
@@ -83,5 +88,9 @@ public class AlarmTimer {
         if(isPaused()){
             throw new IllegalArgumentException("can't get end time when timer is paused.");
         }
+    }
+
+    public static AlarmTimer getInstance(){
+        return timer;
     }
 }

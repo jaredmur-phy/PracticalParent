@@ -69,7 +69,7 @@ public class TimerActivity extends AppCompatActivity {
         timeoutCallback = PendingIntent.getBroadcast(this, TimeoutReceiver.class.hashCode(),
                 TimeoutReceiver.getIntent(this), 0);
         alarmer = Alarmer.getInstance(this);
-        timer = new AlarmTimer(0);
+        timer = AlarmTimer.getInstance();
 
         timerOptions = getResources().getIntArray(R.array.timer_options_array_value);
         countDownMinutes = timerOptions[0];
