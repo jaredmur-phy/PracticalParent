@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">PracticalParent</string>
+
+    <string name="reset_timer">Reset Timer</string>
+    <string name="minutes"> minutes</string>
+    <string name="set_timer">Set Timer\n</string>
+    <string name="pause_timer">Pause</string>
+    <string name="resume_timer">Resume</string>
+
     <string name="practical_parent">Practical Parent</string>
     <string name="configuration">Configuration</string>
     <string name="flip_a_coin">Flip a coin</string>

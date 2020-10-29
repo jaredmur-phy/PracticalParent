@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchSetTimeOut() {
-       /* Intent intent = ?.makeIntent(MainActivity.this);
-        StartActivity(intent);*/
+        Intent intent = TimerActivity.makeLaunchIntent(MainActivity.this);
+        startActivity(intent);
     }
 }
