@@ -22,7 +22,6 @@ import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
-import com.example.practicalparent.timer.TimerStatus;
 
 /**
  * Timer page
@@ -39,14 +38,9 @@ public class TimerActivity extends AppCompatActivity {
     private TextView customizeTimerUnitTextView;
     private TextView customizeTimerPlainTextView;
 
-
-    private TimerStatus timerStatus;
-
     // refresh clock
     private Handler refreshCallbackHandler;
     private Runnable refreshCallback;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +56,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void initAttributes(){
-        timerStatus = TimerStatus.SET_TIMER;
+
         customizeTimerUnitTextView = findViewById(R.id.id_customize_timer);
         customizeTimerPlainTextView = findViewById(R.id.id_customize_plain_text);
 
@@ -129,45 +123,40 @@ public class TimerActivity extends AppCompatActivity {
         TextView resetBtn = findViewById(R.id.id_reset_btn);
 
         setTimerBtn.setOnClickListener((View v)->{
-            switch (timerStatus){
+            switch (timer.getStatus()){
                 case SET_TIMER:
                     setTimer(countDownMinutes);
-                    timerStatus = TimerStatus.PAUSE;
                     break;
                 case PAUSE:
                     pauseTimer();
-                    timerStatus = TimerStatus.RESUME;
                     break;
                 case RESUME:
                     resumeTimer();
-                    timerStatus = TimerStatus.PAUSE;
                     break;
                 case TIMEOUT:
                     stopAlarming();
-                    timerStatus = TimerStatus.SET_TIMER;
                     break;
             }
-
+            timer.changeStatus();
         });
-
         resetBtn.setOnClickListener((View v)-> resetTimer());
 
     }
 
     private void showRemainingTimes(){
         TextView timerView = findViewById(R.id.id_set_timer);
-        if( !timer.isTimeout() ){
-            timerView.setText(getShowTime() + "\n" + timerStatus.getMsg(this));
-        } else if( timerStatus == TimerStatus.SET_TIMER ){
-            timerView.setText(timerStatus.getMsg(this));
-        } else { // time out
-            timerStatus = TimerStatus.TIMEOUT;
-            timerView.setText(timerStatus.getMsg(this));
+        StringBuilder sb = new StringBuilder();
+        if(!timer.isTimeout()){
+            sb.append(getShowTime()).append("\n");
+        } else {
+            timer.setTimeoutStatus();
         }
+        sb.append(timer.getStatusDesc(this));
+        timerView.setText(sb);
     }
 
     private void setTimer(int minutes){
-        long triggerTime = getTriggerTime(minutes);
+        long triggerTime = SystemClock.elapsedRealtime() + minutes * TimeInMills.MINUTE.getValue();
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
         timer.reset(minutes * TimeInMills.MINUTE.getValue());
     }
@@ -201,13 +190,8 @@ public class TimerActivity extends AppCompatActivity {
     private void resetTimer(){
         alarmer.stop();
         pauseTimer();
-        timerStatus = TimerStatus.PAUSE;
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
-    }
-
-    private long getTriggerTime(int minutes){
-         return SystemClock.elapsedRealtime() + minutes * TimeInMills.MINUTE.getValue();
     }
 
     private String getShowTime(){
