@@ -2,6 +2,7 @@ package com.example.practicalparent.project.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -10,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,11 +35,12 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     private void flipCoin() {
         Button buttonFlip = (Button) findViewById(R.id.idFlip);
+        final MediaPlayer soundEffect = MediaPlayer.create(this, R.raw.coinflipsound);
         buttonFlip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 headsOrTails = generator.nextInt(2);
-
+                soundEffect.start();
                 if(headsOrTails == HEADS) {
                     coinFlipped(R.drawable.heads, "Heads");
                 } else{
