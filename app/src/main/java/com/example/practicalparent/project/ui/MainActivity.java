@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.practicalparent.ConfigureChild;
 import com.example.practicalparent.R;
 
 // Main menu which leads to other activities
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 launchCoinFlip();
             }
         });
+
     }
 
     private void setConfigurations() {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 launchConfigurations();
             }
         });
+
     }
 
     private void setTimeOut() {
@@ -73,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchConfigurations() {
-        /*Intent intent = ?.makeLaunchIntent(MainActivity.this);
-        startActivity(intent);*/
+        Intent intent = ConfigureChild.createLaunchIntent(MainActivity.this);
+        startActivity(intent);
     }
 
     private void launchSetTimeOut() {
-       /* Intent intent = ?.makeLaunchIntent(MainActivity.this);
-        startActivity(intent);*/
+        Intent intent = TimerActivity.makeLaunchIntent(MainActivity.this);
+        startActivity(intent);
     }
 
     private void launchHelp() {

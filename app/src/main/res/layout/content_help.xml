@@ -127,7 +127,7 @@
 
     <TextView
         android:id="@+id/idURLUser"
-        android:layout_width="206dp"
+        android:layout_width="180dp"
         android:layout_height="74dp"
         android:autoLink="all"
         android:clickable="true"

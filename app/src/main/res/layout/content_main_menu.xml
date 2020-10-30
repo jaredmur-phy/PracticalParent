@@ -139,7 +139,7 @@
         android:layout_height="21dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:text="@string/by_sabri_isik_jared_murphy_jiatang_zhou_denys_dymnich"
         android:textColor="#FFFFFF"
