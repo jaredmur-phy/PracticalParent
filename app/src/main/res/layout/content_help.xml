@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@drawable/sunset">
+
+
+    <TextView
+        android:id="@+id/idSourcesTitle"
+        android:layout_width="243dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/sources"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/idSourceCoinFlip"
+        android:layout_width="222dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="coinflip.xml:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourcesTitle" />
+
+    <TextView
+        android:id="@+id/idURLCoinFlip"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/bnxR2"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceCoinFlip"
+        app:layout_constraintTop_toTopOf="@+id/idSourceCoinFlip" />
+
+    <TextView
+        android:id="@+id/idURLHead"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/dFU05"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceHeads"
+        app:layout_constraintTop_toBottomOf="@+id/idURLCoinFlip" />
+
+    <TextView
+        android:id="@+id/idURLHelp"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/pDGNU"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceHelp"
+        app:layout_constraintTop_toBottomOf="@+id/idURLHead" />
+
+    <TextView
+        android:id="@+id/idURLSunset"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/kwzL2"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceSunset"
+        app:layout_constraintTop_toBottomOf="@+id/idURLHelp" />
+
+    <TextView
+        android:id="@+id/idURLTail"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/dFU05"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceTail"
+        app:layout_constraintTop_toBottomOf="@+id/idURLSunset" />
+
+    <TextView
+        android:id="@+id/idURLTimer"
+        android:layout_width="195dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/fxD16"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceTimer"
+        app:layout_constraintTop_toBottomOf="@+id/idURLTail" />
+
+    <TextView
+        android:id="@+id/idURLUser"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="shorturl.at/bfjvJ"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceUser"
+        app:layout_constraintTop_toBottomOf="@+id/idURLTimer" />
+
+    <TextView
+        android:id="@+id/idSourceHeads"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="heads.png:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceCoinFlip" />
+
+    <TextView
+        android:id="@+id/idSourceHelp"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="help.png:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceHeads" />
+
+    <TextView
+        android:id="@+id/idSourceSunset"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="sunset.jpg:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceHelp" />
+
+    <TextView
+        android:id="@+id/idSourceTail"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="tail.png:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceSunset" />
+
+    <TextView
+        android:id="@+id/idSourceTimer"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="timer.jpg:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceTail" />
+
+    <TextView
+        android:id="@+id/idSourceUser"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="user.png:"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceTimer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setCoinFlip();
         setConfigurations();
         setTimeOut();
+        setHelp();
     }
 
     private void setCoinFlip() {
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 launchCoinFlip();
             }
         });
-
     }
 
     private void setConfigurations() {
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 launchConfigurations();
             }
         });
-
     }
 
     private void setTimeOut() {
@@ -55,20 +54,36 @@ public class MainActivity extends AppCompatActivity {
                 launchSetTimeOut();
             }
         });
+    }
 
+    private void setHelp() {
+        Button buttonHelp = (Button) findViewById(R.id.idHelp);
+
+        buttonHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchHelp();
+            }
+        });
     }
 
     private void launchCoinFlip() {
         Intent intent = CoinFlipActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
+
     private void launchConfigurations() {
         /*Intent intent = ?.makeLaunchIntent(MainActivity.this);
-        StartActivity(intent);*/
+        startActivity(intent);*/
     }
 
     private void launchSetTimeOut() {
        /* Intent intent = ?.makeLaunchIntent(MainActivity.this);
-        StartActivity(intent);*/
+        startActivity(intent);*/
+    }
+
+    private void launchHelp() {
+        Intent intent = HelpActivity.makeLaunchIntent(MainActivity.this);
+        startActivity(intent);
     }
 }

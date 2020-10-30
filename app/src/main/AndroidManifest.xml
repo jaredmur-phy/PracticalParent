@@ -10,13 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".project.ui.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
+        <activity
             android:name=".project.ui.FlipResultsActivity"
             android:label="@string/title_activity_flip_results"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".project.ui.CoinFlipActivity"
             android:label="@string/title_activity_coin_flip"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity android:name=".project.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -21,4 +21,7 @@
     <string name="title_activity_flip_results">FlipResultsActivity</string>
     <string name="your_coin_is">Your coin is:</string>
     <string name="flip">Flip!</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="sources">Sources</string>
 </resources>
