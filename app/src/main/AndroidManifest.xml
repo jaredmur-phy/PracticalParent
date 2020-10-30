@@ -3,6 +3,7 @@
     package="com.example.practicalparent">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ConfigureChild"></activity>
         <activity
             android:name=".project.ui.CoinFlipActivity"
             android:label="@string/title_activity_coin_flip"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".project.ui.TimerActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".project.ui.TimerActivity" />
         <activity android:name=".project.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +25,11 @@
             </intent-filter>
         </activity>
 
-
         <receiver android:name=".receiver.TimeoutReceiver">
             <intent-filter>
-                <action android:name="TIMEOUT_ACTION"/>
+                <action android:name="TIMEOUT_ACTION" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
