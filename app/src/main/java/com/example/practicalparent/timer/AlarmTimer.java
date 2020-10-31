@@ -1,6 +1,9 @@
 package com.example.practicalparent.timer;
 
+import android.content.Context;
 import android.os.SystemClock;
+
+import com.example.practicalparent.R;
 
 
 /**
@@ -12,6 +15,8 @@ import android.os.SystemClock;
 public class AlarmTimer {
 
     private static AlarmTimer timer = new AlarmTimer(0);
+
+    private TimerStatus status = TimerStatus.SET_TIMER;
 
     private long startTime;
     private long endTime;
@@ -28,7 +33,10 @@ public class AlarmTimer {
     private AlarmTimer(long duration){
         if(duration < 0)
             throw new IllegalArgumentException("duration should not be negative");
-        reset(duration);
+        this.duration = duration;
+        startTime = SystemClock.elapsedRealtime();
+        endTime = startTime + duration;
+        pausedPoint = -1;
     }
 
     public void pause(){
@@ -56,11 +64,12 @@ public class AlarmTimer {
     }
 
     public boolean isTimeout(){
-        if(isPaused()) return false;
+        if(isPaused() || status == TimerStatus.SET_TIMER) return false;
         return SystemClock.elapsedRealtime() >= endTime;
     }
 
     public void reset(long duration){
+        status = TimerStatus.PAUSE;
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
@@ -93,4 +102,52 @@ public class AlarmTimer {
     public static AlarmTimer getInstance(){
         return timer;
     }
+
+    /**
+     * Save the the different status that Timer might have
+     */
+    public enum TimerStatus {
+
+        SET_TIMER(R.string.set_timer),
+        PAUSE(R.string.pause_timer),
+        RESUME(R.string.resume_timer),
+        TIMEOUT(R.string.time_out);
+
+        private int msgId;
+        TimerStatus(int msgId){
+            this.msgId = msgId;
+        }
+
+        public String getMsg(Context c) {
+            return c.getString(msgId);
+        }
+    }
+
+    public TimerStatus getStatus(){
+        return status;
+    }
+
+    public String getStatusDesc(Context c){
+        return status.getMsg(c);
+    }
+
+    public void setTimeoutStatus(){
+        status = TimerStatus.TIMEOUT;
+    }
+
+    public void changeStatus(){
+        switch (status){
+            case SET_TIMER:
+            case RESUME:
+                status = TimerStatus.PAUSE;
+                break;
+            case PAUSE:
+                status = TimerStatus.RESUME;
+                break;
+            case TIMEOUT:
+                status = TimerStatus.SET_TIMER;
+                break;
+        }
+    }
+
 }
