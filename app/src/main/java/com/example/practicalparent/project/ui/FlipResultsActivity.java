@@ -25,6 +25,7 @@ import java.util.Random;
 
 public class FlipResultsActivity extends AppCompatActivity {
 
+    Button buttonFlip;
     Random generator = new Random();
     int headsOrTails;
     private final int HEADS = 0;
@@ -46,7 +47,7 @@ public class FlipResultsActivity extends AppCompatActivity {
     }
 
     private void flipCoin() {
-        Button buttonFlip = (Button) findViewById(R.id.idFlip);
+        buttonFlip = (Button) findViewById(R.id.idFlip);
         final MediaPlayer soundEffect = MediaPlayer.create(this, R.raw.coinflipsound);
         buttonFlip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +75,12 @@ public class FlipResultsActivity extends AppCompatActivity {
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                buttonFlip.setClickable(false);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
                 imageCoin.setImageResource(imageId);
                 Animation fadeIn = new AlphaAnimation(0,1);
 
@@ -87,6 +89,9 @@ public class FlipResultsActivity extends AppCompatActivity {
                 fadeIn.setFillAfter(true);
 
                 imageCoin.startAnimation(fadeIn);
+                buttonFlip.setClickable(true);
+                // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
+                StyleableToast.makeText(FlipResultsActivity.this,  results, R.style.resultToast).show();
             }
             @Override
             public void onAnimationRepeat(Animation animation) {
@@ -94,8 +99,7 @@ public class FlipResultsActivity extends AppCompatActivity {
             }
         });
         imageCoin.startAnimation(fadeOut);
-        // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
-        StyleableToast.makeText(this,  results, R.style.resultToast).show();
+
     }
 
     public static Intent  makeLaunchIntent(Context context){
