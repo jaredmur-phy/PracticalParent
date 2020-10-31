@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.practicalparent.project.ui.CoinFlipActivity;
-
 public class ConfigureChild extends AppCompatActivity {
 
     @Override

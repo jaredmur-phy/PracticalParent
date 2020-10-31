@@ -24,7 +24,7 @@
         android:text="@string/heads"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/idImgHead" />
 
     <Button
         android:id="@+id/idTails"
@@ -42,7 +42,7 @@
         android:text="@string/tails"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/idImgTail" />
 
     <TextView
         android:id="@+id/idOr"
@@ -65,9 +65,9 @@
         android:id="@+id/idAskQuestion"
         android:layout_width="387dp"
         android:layout_height="57dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:fontFamily="@font/happy_school"
         android:text="@string/would_you_like_to_choose_heads_or_tails"
         android:textColor="#FFFFFF"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/idImgHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="105dp"
@@ -85,11 +85,23 @@
         app:srcCompat="@drawable/heads" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/idImgTail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="105dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idAskQuestion"
         app:srcCompat="@drawable/tail" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/idToolBarChooseCoin"
+        android:layout_width="419dp"
+        android:layout_height="50dp"
+        android:background="#F0FF9800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Select your coin"
+        app:titleTextColor="#FFFFFF" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchCoinFlip() {
-        Intent intent = CoinFlipActivity.makeLaunchIntent(MainActivity.this);
+        Intent intent = ChooseCoinActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 

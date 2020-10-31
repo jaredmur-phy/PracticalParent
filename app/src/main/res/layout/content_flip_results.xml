@@ -7,11 +7,23 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@drawable/sunset">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/idToolBarFlipCoin"
+        android:layout_width="419dp"
+        android:layout_height="50dp"
+        android:background="#F0FF9800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Flip the coin"
+        app:titleTextColor="#FFFFFF" />
+
     <TextView
         android:id="@+id/idAnswer"
         android:layout_width="387dp"
         android:layout_height="57dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="@font/happy_school"
@@ -54,7 +66,7 @@
         android:layout_height="51dp"
         android:layout_marginStart="84dp"
         android:layout_marginLeft="84dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/textview"

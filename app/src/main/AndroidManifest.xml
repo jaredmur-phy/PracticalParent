@@ -26,7 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity
-            android:name=".project.ui.CoinFlipActivity"
+            android:name=".project.ui.ChooseCoinActivity"
             android:label="@string/title_activity_coin_flip"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
