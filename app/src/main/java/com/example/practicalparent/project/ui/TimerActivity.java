@@ -1,15 +1,18 @@
 package com.example.practicalparent.project.ui;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,13 +38,12 @@ public class TimerActivity extends AppCompatActivity {
 
     private int[] timerOptions;
     private int countDownMinutes;
-    private TextView customizeTimerUnitTextView;
-    private TextView customizeTimerPlainTextView;
 
     // refresh clock
     private Handler refreshCallbackHandler;
     private Runnable refreshCallback;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,19 +52,17 @@ public class TimerActivity extends AppCompatActivity {
 
         initAttributes();
 
-        setupTextChangeListener();
         setupBtnOnClickListener();
         setupPeriodRefresh();
     }
 
     private void initAttributes(){
 
-        customizeTimerUnitTextView = findViewById(R.id.id_customize_timer);
-        customizeTimerPlainTextView = findViewById(R.id.id_customize_plain_text);
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         timeoutCallback = PendingIntent.getBroadcast(this, TimeoutReceiver.class.hashCode(),
                 TimeoutReceiver.getIntent(this), 0);
+
         alarmer = Alarmer.getInstance(this);
         timer = AlarmTimer.getInstance();
 
@@ -79,7 +79,17 @@ public class TimerActivity extends AppCompatActivity {
         };
     }
 
-    private void setupTextChangeListener(){
+    private void setupTimerOptions(){
+        // setup Spinner
+        Spinner spinner = findViewById(R.id.id_timer_options);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.timer_options_array_str, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        TextView customizeTimerUnitTextView = findViewById(R.id.id_customize_timer);
+        TextView customizeTimerPlainTextView = findViewById(R.id.id_customize_plain_text);
+
         customizeTimerPlainTextView.addTextChangedListener(new CustomizeChangedListener() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -89,14 +99,6 @@ public class TimerActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void setupTimerOptions(){
-        Spinner spinner = (Spinner) findViewById(R.id.id_timer_options);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.timer_options_array_str, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -118,11 +120,14 @@ public class TimerActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setupBtnOnClickListener(){
         TextView setTimerBtn = findViewById(R.id.id_set_timer);
         TextView resetBtn = findViewById(R.id.id_reset_btn);
 
         setTimerBtn.setOnClickListener((View v)->{
+
+            stopAlarming();
             switch (timer.getStatus()){
                 case SET_TIMER:
                     setTimer(countDownMinutes);
@@ -132,9 +137,6 @@ public class TimerActivity extends AppCompatActivity {
                     break;
                 case RESUME:
                     resumeTimer();
-                    break;
-                case TIMEOUT:
-                    stopAlarming();
                     break;
             }
             timer.changeStatus();
@@ -155,9 +157,10 @@ public class TimerActivity extends AppCompatActivity {
         timerView.setText(sb);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setTimer(int minutes){
         long triggerTime = SystemClock.elapsedRealtime() + minutes * TimeInMills.MINUTE.getValue();
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
         timer.reset(minutes * TimeInMills.MINUTE.getValue());
     }
 
@@ -179,19 +182,21 @@ public class TimerActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void resumeTimer(){
         if(!timer.isPaused()) {
             return;
         }
         timer.resume();
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void resetTimer(){
         alarmer.stop();
         pauseTimer();
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
     private String getShowTime(){
