@@ -32,4 +32,17 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="sources">Sources</string>
     <string name="title_activity_configure_child">ConfigureChild</string>
+    <string name="shorturl_at_bfjvj">shorturl.at/bfjvJ</string>
+    <string name="coinflip_xml">coinflip.xml:</string>
+    <string name="shorturl_at_bnxr2">shorturl.at/bnxR2</string>
+    <string name="shorturl_at_pdgnu">shorturl.at/pDGNU</string>
+    <string name="shorturl_at_kwzl2">shorturl.at/kwzL2</string>
+    <string name="user_png">user.png:</string>
+    <string name="timer_jpg">timer.jpg:</string>
+    <string name="tail_png">tail.png:</string>
+    <string name="sunset_jpg">sunset.jpg:</string>
+    <string name="help_png">help.png:</string>
+    <string name="heads_png">heads.png:</string>
+    <string name="shorturl_at_fxd16">shorturl.at/fxD16</string>
+    <string name="shorturl_at_dfu05">shorturl.at/dFU05</string>
 </resources>
