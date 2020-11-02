@@ -1,4 +1,4 @@
-package childModel;
+package com.example.practicalparent.childModel;
 
 import java.util.ArrayList;
 import java.util.Iterator;

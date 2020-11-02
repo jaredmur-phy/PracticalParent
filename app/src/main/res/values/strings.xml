@@ -32,6 +32,9 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="sources">Sources</string>
     <string name="title_activity_configure_child">ConfigureChild</string>
+
+    <string name="enterchild">Child\'s Name:</string>
+    <string name="nameexample">e.g. Jacob</string>
     <string name="shorturl_at_bfjvj">shorturl.at/bfjvJ</string>
     <string name="coinflip_xml">coinflip.xml:</string>
     <string name="shorturl_at_bnxr2">shorturl.at/bnxR2</string>

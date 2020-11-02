@@ -1,4 +1,4 @@
-package childModel;
+package com.example.practicalparent.childModel;
 
 public class Child {
     private String firstName;
