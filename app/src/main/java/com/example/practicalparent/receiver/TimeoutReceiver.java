@@ -21,6 +21,7 @@ public class TimeoutReceiver extends BroadcastReceiver {
 
     private static final String TIMEOUT_ACTION = "TIMEOUT_ACTION";
     private static final int screenWakingUpTimeout = 5; // 5 min
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();

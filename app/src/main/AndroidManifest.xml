@@ -15,8 +15,7 @@
         android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
         <activity
             android:name=".project.ui.ConfigureChild"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
-            />
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".project.ui.HelpActivity"
             android:label="@string/title_activity_help"
