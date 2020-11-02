@@ -6,7 +6,9 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -46,9 +48,22 @@ public class Alarmer{
                 AudioAttributes attributes = new AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_ALARM)
                         .build();
-                vibrator.vibrate(TimeInMills.HALF_SECOND.getValue(), attributes);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(TimeInMills.HALF_SECOND.getValue(),
+                            VibrationEffect.DEFAULT_AMPLITUDE), attributes);
+                } else {
+                    //deprecated in API 26
+                    vibrator.vibrate(TimeInMills.HALF_SECOND.getValue());
+                }
                 vibrateHandler.postDelayed(this, TimeInMills.SECOND.getValue());
+                if (vibrator.hasVibrator()) {
+                    Log.v("Can Vibrate", "YES");
+                } else {
+                    Log.v("Can Vibrate", "NO");
+                }
             }
+
         };
     }
 

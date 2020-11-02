@@ -12,7 +12,7 @@ import com.example.practicalparent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import com.example.practicalparent.childModel.Child;
-import com.example.practicalparent.childModel.childManager;
+import com.example.practicalparent.childModel.ChildManager;
 
 public class ConfigureChild extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class ConfigureChild extends AppCompatActivity {
                 String firstName = ((EditText)findViewById(R.id.childname)).getText().toString();
 
                 Child child = new Child(firstName);
-                childManager.getInstance().addChild(child);
+                ChildManager.getInstance().addChild(child);
                 finish();
             }
         });
