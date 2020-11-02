@@ -14,26 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText">
-        <activity android:name=".ConfigureChild"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".project.ui.Help2Activity"
+            android:label="@string/title_activity_help2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ConfigureChild"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".project.ui.HelpActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".project.ui.FlipResultsActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_flip_results"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".project.ui.ChooseCoinActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_coin_flip"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".project.ui.TimerActivity"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".project.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".project.ui.TimerActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".project.ui.MainActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

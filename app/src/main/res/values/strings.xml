@@ -45,4 +45,8 @@
     <string name="heads_png">heads.png:</string>
     <string name="shorturl_at_fxd16">shorturl.at/fxD16</string>
     <string name="shorturl_at_dfu05">shorturl.at/dFU05</string>
+    <string name="title_activity_help2">Help2Activity</string>
+    <string name="coinflipsound_mp3">CoinFlipSound.mp3:</string>
+    <string name="ring_mp3">ring.mp3:</string>
+    <string name="shorturl_at_hnouk">shorturl.at/hnouK</string>
 </resources>
