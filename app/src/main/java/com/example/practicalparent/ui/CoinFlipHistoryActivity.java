@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.practicalparent.R;
-import com.example.practicalparent.childmodel.CoinFlipHistoryManager;
+import com.example.practicalparent.model.CoinFlipHistoryManager;
 
 import java.util.List;
 

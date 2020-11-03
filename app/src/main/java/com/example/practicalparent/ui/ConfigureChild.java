@@ -18,8 +18,8 @@ import android.widget.Switch;
 import com.example.practicalparent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.example.practicalparent.childmodel.Child;
-import com.example.practicalparent.childmodel.ChildManager;
+import com.example.practicalparent.model.Child;
+import com.example.practicalparent.model.ChildManager;
 
 // add,edit and delete a list of names given to children
 public class ConfigureChild extends AppCompatActivity {
