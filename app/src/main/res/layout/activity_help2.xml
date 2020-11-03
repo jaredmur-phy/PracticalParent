@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ChooseCoinActivity">
+    tools:context=".ui.Help2Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"/>
 
-    <include layout="@layout/content_choose_coin" />
+    <include layout="@layout/content_help2" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

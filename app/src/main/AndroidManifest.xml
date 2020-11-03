@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.practicalparent">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -12,28 +13,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
+        tools:ignore="ExtraText">
         <activity
-            android:name=".project.ui.ConfigureChild"
-            android:windowSoftInputMode="stateHidden"/>
+            android:name=".ui.Help2Activity"
+            android:label="@string/title_activity_help2"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".project.ui.HelpActivity"
-            android:label="@string/title_activity_help"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ui.ConfigureChild"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity
-            android:name=".project.ui.FlipResultsActivity"
+            android:name=".ui.HelpActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.FlipResultsActivity"
             android:label="@string/title_activity_flip_results"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity
-            android:name=".project.ui.ChooseCoinActivity"
+            android:name=".ui.ChooseCoinActivity"
             android:label="@string/title_activity_coin_flip"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".project.ui.TimerActivity"
+        <activity android:name=".ui.TimerActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".project.ui.MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.practicalparent.project.ui;
+package com.example.practicalparent.ui;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.practicalparent.project.ui.ConfigureChild;
 import com.example.practicalparent.R;
 
 // Main menu which leads to other activities
