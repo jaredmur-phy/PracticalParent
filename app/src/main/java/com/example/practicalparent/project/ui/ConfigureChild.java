@@ -87,9 +87,7 @@ public class ConfigureChild extends AppCompatActivity {
                 try {
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {
-
-                }
+                } catch (Exception e) {}
             }
         });
     }
