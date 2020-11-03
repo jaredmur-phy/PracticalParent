@@ -1,4 +1,4 @@
-package childModel;
+package com.example.practicalparent.childmodel;
 
 public class Child {
     private String firstName;
@@ -18,5 +18,9 @@ public class Child {
 
     public String getName() {
         return this.firstName;
+    }
+
+    public String toString() {
+        return "Name: " + firstName;
     }
 }

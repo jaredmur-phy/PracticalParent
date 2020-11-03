@@ -1,22 +1,22 @@
-package childModel;
+package com.example.practicalparent.childmodel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class childManager implements Iterable<Child>{
+public class ChildManager implements Iterable<Child>{
     public int size;
     private List<Child> children = new ArrayList<>();
 
     //Singleton support
-    private static childManager instance;
-    private childManager() {
+    private static ChildManager instance;
+    private ChildManager() {
 
     }
 
-    public static childManager getInstance() {
+    public static ChildManager getInstance() {
         if(instance == null) {
-            instance = new childManager();
+            instance = new ChildManager();
         }
 
         return instance;
@@ -38,6 +38,14 @@ public class childManager implements Iterable<Child>{
 
     public Child get(int i) {
         return children.get(i);
+    }
+
+    public void removeChild(int index) {
+        children.remove(index);
+    }
+
+    public void changeName(int index, String newName) {
+        children.get(index).setName(newName);
     }
 
     public int size() {
