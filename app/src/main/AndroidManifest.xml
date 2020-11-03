@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.Help2Activity"
             android:label="@string/title_activity_help2"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.ConfigureChild"
             android:windowSoftInputMode="stateHidden" />
