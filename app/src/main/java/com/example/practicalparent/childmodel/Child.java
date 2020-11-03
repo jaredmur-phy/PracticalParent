@@ -19,4 +19,8 @@ public class Child {
     public String getName() {
         return this.firstName;
     }
+
+    public String toString() {
+        return "Name: " + firstName;
+    }
 }
