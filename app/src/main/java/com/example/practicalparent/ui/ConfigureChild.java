@@ -13,8 +13,8 @@ import android.widget.ListView;
 import com.example.practicalparent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.example.practicalparent.childmodel.Child;
-import com.example.practicalparent.childmodel.ChildManager;
+import com.example.practicalparent.model.Child;
+import com.example.practicalparent.model.ChildManager;
 
 public class ConfigureChild extends AppCompatActivity {
 
