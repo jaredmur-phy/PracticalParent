@@ -1,4 +1,4 @@
-package com.example.practicalparent.project.ui;
+package com.example.practicalparent.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 

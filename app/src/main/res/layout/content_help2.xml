@@ -16,12 +16,27 @@
         android:clickable="true"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:text="@string/shorturl_at_bnxr2"
+        android:text="@string/https_bit_ly_3js29uv"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/idSourceHeads2"
         app:layout_constraintTop_toBottomOf="@+id/idURLCoinSound" />
+
+    <TextView
+        android:id="@+id/idURLRing3"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/https_bit_ly_3js29uv"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/idSourceFont"
+        app:layout_constraintTop_toBottomOf="@+id/idURLRing" />
 
     <TextView
         android:id="@+id/idURLCoinSound"
@@ -32,7 +47,7 @@
         android:clickable="true"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:text="@string/shorturl_at_hnouk"
+        android:text="@string/https_bit_ly_382a5m0"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
@@ -64,6 +79,18 @@
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idSourceCoinFlipSound" />
+
+    <TextView
+        android:id="@+id/idSourceFont"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/happy_school_ttf"
+        android:textColor="#B50E0E0E"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idSourceHeads2" />
 
     <TextView
         android:id="@+id/idSourceCoinFlipSound"

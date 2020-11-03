@@ -1,16 +1,12 @@
 package com.example.practicalparent.receiver;
 
 import android.annotation.SuppressLint;
-import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
-import android.util.Log;
-import android.view.WindowManager;
 
 
-import com.example.practicalparent.project.ui.TimerActivity;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
 
