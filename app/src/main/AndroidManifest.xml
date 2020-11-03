@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme"
         android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
         <activity
-            android:name=".project.ui.ConfigureChild" />
+            android:name=".project.ui.ConfigureChild"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".project.ui.HelpActivity"
             android:label="@string/title_activity_help"
