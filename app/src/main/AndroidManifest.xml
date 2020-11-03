@@ -17,12 +17,8 @@
         <activity
             android:name=".ui.Help2Activity"
             android:label="@string/title_activity_help2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ConfigureChild"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name=".project.ui.ConfigureChild" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.ConfigureChild"></activity>
         <activity
             android:name=".ui.HelpActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
