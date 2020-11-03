@@ -1,4 +1,4 @@
-package com.example.practicalparent.childmodel;
+package com.example.practicalparent.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
