@@ -7,7 +7,7 @@
     tools:context=".ui.ConfigureChild">
 
     <EditText
-        android:id="@+id/childname"
+        android:id="@+id/id_child_name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="24dp"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/id_current_list_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -29,17 +29,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/id_enter_child_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/enterchild"
-        app:layout_constraintBottom_toTopOf="@+id/childname"
+        app:layout_constraintBottom_toTopOf="@+id/id_child_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/saveChild"
+        android:id="@+id/id_save_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -53,24 +53,44 @@
         app:srcCompat="@drawable/savechild" />
 
     <ListView
-        android:id="@+id/childrenListView"
+        android:id="@+id/id_children_list_view"
         android:layout_width="405dp"
         android:layout_height="362dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/id_enter_child_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/id_current_list_text"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/id_change_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/changeTutorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/childrenListView" />
+        app:layout_constraintTop_toBottomOf="@+id/id_children_list_view" />
 
+    <Switch
+        android:id="@+id/id_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/deleteMode"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_delete_instructions" />
+
+    <TextView
+        android:id="@+id/id_delete_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/deleteTutorial"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_change_instructions" />
 </androidx.constraintlayout.widget.ConstraintLayout>

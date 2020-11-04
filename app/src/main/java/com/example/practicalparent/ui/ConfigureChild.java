@@ -58,16 +58,16 @@ public class ConfigureChild extends AppCompatActivity {
                 ConfigureChild.this,
                 R.layout.childrenitems,
                 manager.getList());
-        ListView list = findViewById(R.id.childrenListView);
+        ListView list = findViewById(R.id.id_children_list_view);
         list.setAdapter(adapter);
     }
 
     private void setupFAB() {
-        FloatingActionButton fab = findViewById(R.id.saveChild);
+        FloatingActionButton fab = findViewById(R.id.id_save_child);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstName = ((EditText)findViewById(R.id.childname)).getText().toString();
+                String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
 
                 Child child = new Child(firstName);
                 ChildManager.getInstance().addChild(child);
