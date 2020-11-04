@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCoinFlip() {
-        Button buttonCoinFlip = (Button) findViewById(R.id.idFlip);
+        Button buttonCoinFlip = (Button) findViewById(R.id.id_flip_button);
 
         buttonCoinFlip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setConfigurations() {
-        Button buttonConfig = (Button) findViewById(R.id.idConfigure);
+        Button buttonConfig = (Button) findViewById(R.id.id_configure_button);
 
         buttonConfig.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTimeOut() {
-        Button buttonTimeOut = (Button) findViewById(R.id.idTimeOut);
+        Button buttonTimeOut = (Button) findViewById(R.id.id_time_out_button);
 
         buttonTimeOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setHelp() {
-        Button buttonHelp = (Button) findViewById(R.id.idHelp);
+        Button buttonHelp = (Button) findViewById(R.id.id_help_button);
 
         buttonHelp.setOnClickListener(new View.OnClickListener() {
             @Override

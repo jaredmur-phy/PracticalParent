@@ -1,16 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Help2Activity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@drawable/sunset">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"/>
 
-    <include layout="@layout/content_help2" />
+    <TextView
+        android:id="@+id/id_url_ring"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/https_bit_ly_3js29uv"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/id_source_ring_text"
+        app:layout_constraintTop_toBottomOf="@+id/idURLCoinSound" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/id_url_font"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/https_bit_ly_3js29uv"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/id_source_font_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_ring" />
+
+    <TextView
+        android:id="@+id/idURLCoinSound"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="1dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/https_bit_ly_382a5m0"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/id_source_coin_sound_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_text2" />
+
+    <TextView
+        android:id="@+id/id_sources_text2"
+        android:layout_width="244dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/sources"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/id_source_ring_text"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/ring_mp3"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_coin_sound_text" />
+
+    <TextView
+        android:id="@+id/id_source_font_text"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/happy_school_ttf"
+        android:textColor="#B50E0E0E"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_ring_text" />
+
+    <TextView
+        android:id="@+id/id_source_coin_sound_text"
+        android:layout_width="222dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/coinflipsound_mp3"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_text2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

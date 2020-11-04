@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 
+// add,edit and delete a list of names given to children
 public class ConfigureChild extends AppCompatActivity {
 
     private ChildManager manager;
@@ -38,16 +39,16 @@ public class ConfigureChild extends AppCompatActivity {
                 ConfigureChild.this,
                 R.layout.childrenitems,
                 manager.getList());
-        ListView list = findViewById(R.id.childrenListView);
+        ListView list = findViewById(R.id.id_children_list_view);
         list.setAdapter(adapter);
     }
 
     private void setupFAB() {
-        FloatingActionButton fab = findViewById(R.id.saveChild);
+        FloatingActionButton fab = findViewById(R.id.id_save_child);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstName = ((EditText)findViewById(R.id.childname)).getText().toString();
+                String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
 
                 Child child = new Child(firstName);
                 ChildManager.getInstance().addChild(child);
@@ -56,7 +57,12 @@ public class ConfigureChild extends AppCompatActivity {
         });
     }
 
-    public static Intent makeLaunchIntent(Context context) {
-        return new Intent(context, ConfigureChild.class);
+    public static Intent getIntent(Context c){
+        return new Intent(c, ConfigureChild.class);
     }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
+    }
+
 }
