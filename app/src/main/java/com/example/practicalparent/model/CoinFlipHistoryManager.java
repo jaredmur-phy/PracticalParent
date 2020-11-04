@@ -45,6 +45,14 @@ public class CoinFlipHistoryManager {
         historyList.add(new CoinFlipHistory(new Child("aab"), true, false));
         historyList.add(new CoinFlipHistory(new Child("acc"), false, true));
         historyList.add(new CoinFlipHistory(new Child("cdd"), false, false));
+        historyList.add(new CoinFlipHistory(new Child("aaa"), true, true));
+        historyList.add(new CoinFlipHistory(new Child("aab"), true, false));
+        historyList.add(new CoinFlipHistory(new Child("acc"), false, true));
+        historyList.add(new CoinFlipHistory(new Child("cdd"), false, false));
+        historyList.add(new CoinFlipHistory(new Child("aaa"), true, true));
+        historyList.add(new CoinFlipHistory(new Child("aab"), true, false));
+        historyList.add(new CoinFlipHistory(new Child("acc"), false, true));
+        historyList.add(new CoinFlipHistory(new Child("cdd"), false, false));
     }
 
     public void add(CoinFlipHistory history){
@@ -79,27 +87,8 @@ public class CoinFlipHistoryManager {
         editor.apply();
     }
 
-    public List<String> getList(){
-        ArrayList<String> list = new ArrayList<>();
-        for(CoinFlipHistory history : historyList){
-            StringBuilder sb = new StringBuilder();
-            sb.append(history.getChild().getName());
-            sb.append(" choose ").append(parseBoolToHead(history.isPickedHead()));
-            sb.append(" get ").append(parseBoolToHead(history.isGotHead()));
-            if(history.isPickedHead() == history.isGotHead()){
-                sb.append(" WON!!");
-            }else{
-                sb.append(" LOOSE!!");
-            }
-            list.add(sb.toString());
-        }
-        return list;
-    }
-
-
-    private String parseBoolToHead(boolean isHead){
-        if(isHead) return "HEAD";
-        return "TAIL";
+    public ArrayList<CoinFlipHistory> getHistoryList() {
+        return historyList;
     }
 
     public static CoinFlipHistoryManager getInstance(Context c){

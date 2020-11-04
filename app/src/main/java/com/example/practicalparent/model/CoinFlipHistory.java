@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class CoinFlipHistory {
 
-    private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String FORMAT = "yyyy-MM-dd HH:mm";
 
     private Child child;
     private boolean pickedHead;
