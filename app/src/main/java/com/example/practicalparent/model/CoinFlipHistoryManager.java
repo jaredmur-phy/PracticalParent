@@ -69,6 +69,12 @@ public class CoinFlipHistoryManager {
         return historyList.size();
     }
 
+    // return which child is picked last
+    public Child getLastPickedChild(){
+        if(historyList.isEmpty()) return null;
+        return historyList.get(0).getChild();
+    }
+
     public CoinFlipHistory get(int index){
         return historyList.get(index);
     }
