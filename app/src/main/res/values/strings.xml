@@ -48,7 +48,7 @@
     <string name="user_png">user.png:</string>
     <string name="timer_jpg">timer.jpg:</string>
     <string name="tail_png">tail.png:</string>
-    <string name="sunset_jpg">sunset.jpg:</string>
+    <string name="sunset_jpg">sunset.jpg:</string> <!--new background url: https://www.setaswall.com/landscape-wallpapers/landscape-phone-wallpaper-002-1080x2340/-->
     <string name="help_png">help.png:</string>
     <string name="heads_png">heads.png:</string>
     <string name="title_activity_help2">Help2Activity</string>
