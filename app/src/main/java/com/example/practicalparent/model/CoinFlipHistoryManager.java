@@ -41,6 +41,7 @@ public class CoinFlipHistoryManager {
             historyList.add(new CoinFlipHistory(new Child(childName), pickedHead, gotHead, date));
         }
 
+        // TODO: delete code below, those data are only for testing
         historyList.add(new CoinFlipHistory(new Child("aaa"), true, true));
         historyList.add(new CoinFlipHistory(new Child("aab"), true, false));
         historyList.add(new CoinFlipHistory(new Child("acc"), false, true));

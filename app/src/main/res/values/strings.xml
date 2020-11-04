@@ -60,4 +60,7 @@
     <string name="https_bit_ly_3mqffpr">https://bit.ly/3mQFfpr</string>
     <string name="https_shutr_bz_322uy1p">https://shutr.bz/322uY1p</string>
     <string name="https_bit_ly_3ekbfac">https://bit.ly/3ekBFAC</string>
+    <string name="won_text"><![CDATA[<br><font color=\'#00ff00\'> WON!!</font>]]></string>
+    <string name="loose_text"><![CDATA[<br><font color=\'#ff0000\'> LOOSE!!</font>]]></string>
+    <string name="enter_child_name">enter child name</string>
 </resources>
