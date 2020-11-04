@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.practicalparent.R;
 
+// Select a coin; heads or tails
 public class ChooseCoinActivity extends AppCompatActivity {
 
 
@@ -25,7 +26,6 @@ public class ChooseCoinActivity extends AppCompatActivity {
         headsChosen();
         tailsChosen();
     }
-
 
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_choose_coin_toolbar);
@@ -59,10 +59,14 @@ public class ChooseCoinActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static Intent makeLaunchIntent(Context context) {
-        Intent intent = new Intent(context, ChooseCoinActivity.class);
-        return intent;
+    public static Intent getIntent(Context c){
+        return new Intent(c, ChooseCoinActivity.class);
     }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

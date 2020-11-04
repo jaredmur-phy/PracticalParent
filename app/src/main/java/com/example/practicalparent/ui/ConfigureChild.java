@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.practicalparent.childmodel.Child;
 import com.example.practicalparent.childmodel.ChildManager;
 
+// add,edit and delete a list of names given to children
 public class ConfigureChild extends AppCompatActivity {
 
     private AlertDialog.Builder dialogBuilder;
@@ -118,7 +119,12 @@ public class ConfigureChild extends AppCompatActivity {
         });
     }
 
-    public static Intent makeLaunchIntent(Context context) {
-        return new Intent(context, ConfigureChild.class);
+    public static Intent getIntent(Context c){
+        return new Intent(c, ConfigureChild.class);
     }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
+    }
+
 }
