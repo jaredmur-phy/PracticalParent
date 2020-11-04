@@ -8,7 +8,7 @@
     android:background="@drawable/sunset">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/idToolBarFlipCoin"
+        android:id="@+id/id_flip_coin_toolbar"
         android:layout_width="419dp"
         android:layout_height="50dp"
         android:background="#F0FF9800"
@@ -20,7 +20,7 @@
         app:titleTextColor="#FFFFFF" />
 
     <TextView
-        android:id="@+id/idAnswer"
+        android:id="@+id/id_answer_text"
         android:layout_width="387dp"
         android:layout_height="57dp"
         android:layout_marginTop="176dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/idFlip"
+        android:id="@+id/id_flip_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -48,10 +48,10 @@
         android:shadowRadius="1.6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idCoin" />
+        app:layout_constraintTop_toBottomOf="@+id/id_coin_image" />
 
     <ImageView
-        android:id="@+id/idCoin"
+        android:id="@+id/id_coin_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
@@ -61,7 +61,7 @@
         app:srcCompat="@drawable/heads" />
 
     <TextView
-        android:id="@+id/idCoinChosen"
+        android:id="@+id/id_coin_chosen_text"
         android:layout_width="238dp"
         android:layout_height="51dp"
         android:layout_marginStart="84dp"

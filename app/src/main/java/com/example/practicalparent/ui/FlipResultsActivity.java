@@ -40,14 +40,14 @@ public class FlipResultsActivity extends AppCompatActivity {
     }
 
     private void setToolBar() {
-        Toolbar toolbar = findViewById(R.id.idToolBarFlipCoin);
+        Toolbar toolbar = findViewById(R.id.id_flip_coin_toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
     private void flipCoin() {
-        buttonFlip = (Button) findViewById(R.id.idFlip);
+        buttonFlip = (Button) findViewById(R.id.id_flip_button);
         final MediaPlayer soundEffect = MediaPlayer.create(this, R.raw.coinflipsound);
         buttonFlip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     // Code taken from https://www.youtube.com/watch?v=eoPRhXoIOWA
     private void coinFlipped(final int imageId, String results) {
-        imageCoin = findViewById(R.id.idCoin);
+        imageCoin = findViewById(R.id.id_coin_image);
 
         Animation fadeOut = new AlphaAnimation(1,0);
         fadeOut.setInterpolator(new AccelerateInterpolator());

@@ -21,7 +21,7 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     private void setNextPage() {
-    Button buttonNextPage = (Button) findViewById(R.id.idNextPage);
+    Button buttonNextPage = (Button) findViewById(R.id.id_next_page_button);
 
     buttonNextPage.setOnClickListener(new View.OnClickListener() {
         @Override

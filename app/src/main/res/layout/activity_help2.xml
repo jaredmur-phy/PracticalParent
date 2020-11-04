@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/idURLRing"
+        android:id="@+id/id_url_ring"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -20,11 +20,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceHeads2"
+        app:layout_constraintStart_toEndOf="@+id/id_source_ring_text"
         app:layout_constraintTop_toBottomOf="@+id/idURLCoinSound" />
 
     <TextView
-        android:id="@+id/idURLRing3"
+        android:id="@+id/id_url_font"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -35,8 +35,8 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceFont"
-        app:layout_constraintTop_toBottomOf="@+id/idURLRing" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_font_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_ring" />
 
     <TextView
         android:id="@+id/idURLCoinSound"
@@ -51,11 +51,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceCoinFlipSound"
-        app:layout_constraintTop_toBottomOf="@+id/idSourcesTitle2" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_coin_sound_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_text2" />
 
     <TextView
-        android:id="@+id/idSourcesTitle2"
+        android:id="@+id/id_sources_text2"
         android:layout_width="244dp"
         android:layout_height="123dp"
         android:layout_marginStart="72dp"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/idSourceHeads2"
+        android:id="@+id/id_source_ring_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -78,10 +78,10 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceCoinFlipSound" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_coin_sound_text" />
 
     <TextView
-        android:id="@+id/idSourceFont"
+        android:id="@+id/id_source_font_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -90,10 +90,10 @@
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceHeads2" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_ring_text" />
 
     <TextView
-        android:id="@+id/idSourceCoinFlipSound"
+        android:id="@+id/id_source_coin_sound_text"
         android:layout_width="222dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -102,6 +102,6 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourcesTitle2" />
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_text2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

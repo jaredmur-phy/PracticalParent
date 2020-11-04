@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/idHeads"
+        android:id="@+id/id_heads_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -24,10 +24,10 @@
         android:text="@string/heads"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idImgHead" />
+        app:layout_constraintTop_toBottomOf="@+id/id_head_img" />
 
     <Button
-        android:id="@+id/idTails"
+        android:id="@+id/id_tails_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -42,10 +42,10 @@
         android:text="@string/tails"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idImgTail" />
+        app:layout_constraintTop_toBottomOf="@+id/id_tail_img" />
 
     <TextView
-        android:id="@+id/idOr"
+        android:id="@+id/id_or_text"
         android:layout_width="63dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
@@ -56,13 +56,13 @@
         android:text="@string/or"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
-        app:layout_constraintEnd_toStartOf="@+id/idTails"
+        app:layout_constraintEnd_toStartOf="@+id/id_tails_button"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/idHeads"
-        app:layout_constraintTop_toTopOf="@+id/idHeads" />
+        app:layout_constraintStart_toEndOf="@+id/id_heads_button"
+        app:layout_constraintTop_toTopOf="@+id/id_heads_button" />
 
     <TextView
-        android:id="@+id/idAskQuestion"
+        android:id="@+id/id_ask_question_text"
         android:layout_width="387dp"
         android:layout_height="57dp"
         android:layout_marginTop="116dp"
@@ -76,25 +76,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/idImgHead"
+        android:id="@+id/id_head_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="105dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idAskQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/id_ask_question_text"
         app:srcCompat="@drawable/heads" />
 
     <ImageView
-        android:id="@+id/idImgTail"
+        android:id="@+id/id_tail_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="105dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idAskQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/id_ask_question_text"
         app:srcCompat="@drawable/tail" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/idToolBarChooseCoin"
+        android:id="@+id/id_choose_coin_toolbar"
         android:layout_width="419dp"
         android:layout_height="50dp"
         android:background="#F0FF9800"

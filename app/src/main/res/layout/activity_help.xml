@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/idNextPage"
+        android:id="@+id/id_next_page_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
@@ -24,10 +24,10 @@
         android:text="@string/next_page"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceUser" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_user_text" />
 
     <TextView
-        android:id="@+id/idSourcesTitle"
+        android:id="@+id/id_sources_text"
         android:layout_width="246dp"
         android:layout_height="70dp"
         android:layout_marginStart="72dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/idSourceCoinFlip"
+        android:id="@+id/id_source_coin_flip_text"
         android:layout_width="222dp"
         android:layout_height="74dp"
         android:layout_marginTop="8dp"
@@ -51,10 +51,10 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourcesTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_text" />
 
     <TextView
-        android:id="@+id/idURLCoinFlip"
+        android:id="@+id/id_url_coin_flip_text"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -65,11 +65,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceCoinFlip"
-        app:layout_constraintTop_toTopOf="@+id/idSourceCoinFlip" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_coin_flip_text"
+        app:layout_constraintTop_toTopOf="@+id/id_source_coin_flip_text" />
 
     <TextView
-        android:id="@+id/idURLHead"
+        android:id="@+id/id_url_head_text"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -80,11 +80,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceHeads"
-        app:layout_constraintTop_toBottomOf="@+id/idURLCoinFlip" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_head_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_coin_flip_text" />
 
     <TextView
-        android:id="@+id/idURLHelp"
+        android:id="@+id/id_url_help_text"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -95,11 +95,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceHelp"
-        app:layout_constraintTop_toBottomOf="@+id/idURLHead" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_help_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_head_text" />
 
     <TextView
-        android:id="@+id/idURLSunset"
+        android:id="@+id/id_url_sunset_text"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -110,11 +110,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceSunset"
-        app:layout_constraintTop_toBottomOf="@+id/idURLHelp" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_sunset_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_help_text" />
 
     <TextView
-        android:id="@+id/idURLTail"
+        android:id="@+id/id_url_tail_text"
         android:layout_width="206dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -125,11 +125,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceTail"
-        app:layout_constraintTop_toBottomOf="@+id/idURLSunset" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_tail_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_sunset_text" />
 
     <TextView
-        android:id="@+id/idURLTimer"
+        android:id="@+id/id_url_timer_text"
         android:layout_width="195dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -140,11 +140,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceTimer"
-        app:layout_constraintTop_toBottomOf="@+id/idURLTail" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_timer_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_tail_text" />
 
     <TextView
-        android:id="@+id/idURLUser"
+        android:id="@+id/id_url_user_text"
         android:layout_width="180dp"
         android:layout_height="74dp"
         android:autoLink="all"
@@ -155,11 +155,11 @@
         android:textColor="#FFFFFF"
         android:textColorLink="#FFEB3B"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/idSourceUser"
-        app:layout_constraintTop_toBottomOf="@+id/idURLTimer" />
+        app:layout_constraintStart_toEndOf="@+id/id_source_user_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_timer_text" />
 
     <TextView
-        android:id="@+id/idSourceHeads"
+        android:id="@+id/id_source_head_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -168,10 +168,10 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceCoinFlip" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_coin_flip_text" />
 
     <TextView
-        android:id="@+id/idSourceHelp"
+        android:id="@+id/id_source_help_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -180,10 +180,10 @@
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceHeads" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_head_text" />
 
     <TextView
-        android:id="@+id/idSourceSunset"
+        android:id="@+id/id_source_sunset_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -192,10 +192,10 @@
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceHelp" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_help_text" />
 
     <TextView
-        android:id="@+id/idSourceTail"
+        android:id="@+id/id_source_tail_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -204,10 +204,10 @@
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceSunset" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_sunset_text" />
 
     <TextView
-        android:id="@+id/idSourceTimer"
+        android:id="@+id/id_source_timer_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -216,10 +216,10 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceTail" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_tail_text" />
 
     <TextView
-        android:id="@+id/idSourceUser"
+        android:id="@+id/id_source_user_text"
         android:layout_width="226dp"
         android:layout_height="74dp"
         android:fontFamily="@font/happy_school"
@@ -228,5 +228,5 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSourceTimer" />
+        app:layout_constraintTop_toBottomOf="@+id/id_source_timer_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

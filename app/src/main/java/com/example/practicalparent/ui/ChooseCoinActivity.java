@@ -28,14 +28,14 @@ public class ChooseCoinActivity extends AppCompatActivity {
 
 
     private void setToolBar() {
-        Toolbar toolbar = findViewById(R.id.idToolBarChooseCoin);
+        Toolbar toolbar = findViewById(R.id.id_choose_coin_toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
     private void headsChosen() {
-        Button buttonHead = (Button) findViewById(R.id.idHeads);
+        Button buttonHead = (Button) findViewById(R.id.id_heads_button);
         buttonHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,7 @@ public class ChooseCoinActivity extends AppCompatActivity {
     }
 
     private void tailsChosen() {
-        Button buttonTails = (Button) findViewById(R.id.idTails);
+        Button buttonTails = (Button) findViewById(R.id.id_tails_button);
         buttonTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

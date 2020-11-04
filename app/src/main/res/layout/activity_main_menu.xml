@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/idFlip"
+        android:id="@+id/id_flip_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -24,11 +24,11 @@
         android:shadowRadius="1.6"
         android:text="@string/flip_a_coin"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/idImgCoin"
-        app:layout_constraintTop_toBottomOf="@+id/idMainMenuTitle" />
+        app:layout_constraintStart_toEndOf="@+id/id_coin_img"
+        app:layout_constraintTop_toBottomOf="@+id/id_main_menu_title" />
 
     <TextView
-        android:id="@+id/idMainMenuTitle"
+        android:id="@+id/id_main_menu_title"
         android:layout_width="306dp"
         android:layout_height="94dp"
         android:layout_marginTop="4dp"
@@ -47,29 +47,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/idImgTimer"
+        android:id="@+id/id_timer_img"
         android:layout_width="106dp"
         android:layout_height="85dp"
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
         android:layout_marginTop="68dp"
-        app:layout_constraintStart_toEndOf="@+id/idTimeOut"
-        app:layout_constraintTop_toBottomOf="@+id/idConfigure"
+        app:layout_constraintStart_toEndOf="@+id/id_time_out_button"
+        app:layout_constraintTop_toBottomOf="@+id/id_configure_button"
         app:srcCompat="@drawable/timer" />
 
     <ImageView
-        android:id="@+id/idImgCoin"
+        android:id="@+id/id_coin_img"
         android:layout_width="148dp"
         android:layout_height="92dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idMainMenuTitle"
+        app:layout_constraintTop_toBottomOf="@+id/id_main_menu_title"
         app:srcCompat="@drawable/coinflip" />
 
     <Button
-        android:id="@+id/idTimeOut"
+        android:id="@+id/id_time_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -84,10 +84,10 @@
         android:text="@string/time_out"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idImgUser" />
+        app:layout_constraintTop_toBottomOf="@+id/id_user_img" />
 
     <Button
-        android:id="@+id/idHelp"
+        android:id="@+id/id_help_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -102,10 +102,10 @@
         android:text="Help"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idTimeOut" />
+        app:layout_constraintTop_toBottomOf="@+id/id_time_out_button" />
 
     <Button
-        android:id="@+id/idConfigure"
+        android:id="@+id/id_configure_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -120,21 +120,21 @@
         android:text="@string/configuration"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idFlip" />
+        app:layout_constraintTop_toBottomOf="@+id/id_flip_button" />
 
     <ImageView
-        android:id="@+id/idImgUser"
+        android:id="@+id/id_user_img"
         android:layout_width="93dp"
         android:layout_height="136dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
-        app:layout_constraintEnd_toStartOf="@+id/idConfigure"
-        app:layout_constraintTop_toBottomOf="@+id/idImgCoin"
+        app:layout_constraintEnd_toStartOf="@+id/id_configure_button"
+        app:layout_constraintTop_toBottomOf="@+id/id_coin_img"
         app:srcCompat="@drawable/user" />
 
     <TextView
-        android:id="@+id/idAuthors"
+        android:id="@+id/id_author_text"
         android:layout_width="381dp"
         android:layout_height="21dp"
         android:layout_marginStart="24dp"
@@ -148,14 +148,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/idImgHelp"
+        android:id="@+id/id_help_img"
         android:layout_width="94dp"
         android:layout_height="93dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="48dp"
-        app:layout_constraintStart_toEndOf="@+id/idHelp"
-        app:layout_constraintTop_toBottomOf="@+id/idImgTimer"
+        app:layout_constraintStart_toEndOf="@+id/id_help_button"
+        app:layout_constraintTop_toBottomOf="@+id/id_timer_img"
         app:srcCompat="@drawable/help" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
