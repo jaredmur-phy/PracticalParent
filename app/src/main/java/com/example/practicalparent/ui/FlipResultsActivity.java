@@ -23,6 +23,7 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.Random;
 
+// flip a coin; see the results
 public class FlipResultsActivity extends AppCompatActivity {
 
     Button buttonFlip;
@@ -102,9 +103,12 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     }
 
-    public static Intent  makeLaunchIntent(Context context){
-        Intent intent = new Intent(context, FlipResultsActivity.class);
-        return intent;
+    public static Intent getIntent(Context c){
+        return new Intent(c, FlipResultsActivity.class);
+    }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
     }
 
     @Override

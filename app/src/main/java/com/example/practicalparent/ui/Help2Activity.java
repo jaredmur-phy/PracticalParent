@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practicalparent.R;
 
+// The mext page for sources
 public class Help2Activity extends AppCompatActivity {
 
     @Override
@@ -16,8 +17,12 @@ public class Help2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_help2);
     }
 
-    public static Intent makeLaunchIntent(Context context) {
-        Intent intent = new Intent(context, Help2Activity.class);
-        return intent;
+    public static Intent getIntent(Context c) {
+        return new Intent(c, Help2Activity.class);
     }
+
+    public static Intent makeLaunchIntent(Context c) {
+        return getIntent(c);
+    }
+
 }
