@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.practicalparent.R;
-import com.example.practicalparent.listener.CustomizeChangedListener;
+import com.example.practicalparent.listener.TextChangedListener;
 import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
@@ -89,7 +89,7 @@ public class TimerActivity extends AppCompatActivity {
         TextView customizeTimerUnitTextView = findViewById(R.id.id_customize_timer);
         TextView customizeTimerPlainTextView = findViewById(R.id.id_customize_plain_text);
 
-        customizeTimerPlainTextView.addTextChangedListener(new CustomizeChangedListener() {
+        customizeTimerPlainTextView.addTextChangedListener(new TextChangedListener() {
             @Override
             public void afterTextChanged(Editable s) {
                 String str = s.toString();
