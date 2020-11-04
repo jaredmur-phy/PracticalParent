@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.practicalparent.R;
 
+// Select a coin; heads or tails
 public class ChooseCoinActivity extends AppCompatActivity {
 
 
@@ -26,16 +27,15 @@ public class ChooseCoinActivity extends AppCompatActivity {
         tailsChosen();
     }
 
-
     private void setToolBar() {
-        Toolbar toolbar = findViewById(R.id.idToolBarChooseCoin);
+        Toolbar toolbar = findViewById(R.id.id_choose_coin_toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
     private void headsChosen() {
-        Button buttonHead = (Button) findViewById(R.id.idHeads);
+        Button buttonHead = (Button) findViewById(R.id.id_heads_button);
         buttonHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,7 @@ public class ChooseCoinActivity extends AppCompatActivity {
     }
 
     private void tailsChosen() {
-        Button buttonTails = (Button) findViewById(R.id.idTails);
+        Button buttonTails = (Button) findViewById(R.id.id_tails_button);
         buttonTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,10 +59,14 @@ public class ChooseCoinActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static Intent makeLaunchIntent(Context context) {
-        Intent intent = new Intent(context, ChooseCoinActivity.class);
-        return intent;
+    public static Intent getIntent(Context c){
+        return new Intent(c, ChooseCoinActivity.class);
     }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

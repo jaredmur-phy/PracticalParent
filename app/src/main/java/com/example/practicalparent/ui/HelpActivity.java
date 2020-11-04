@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.practicalparent.R;
 
+// A page for sources
 public class HelpActivity extends AppCompatActivity {
 
     @Override
@@ -21,14 +22,14 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     private void setNextPage() {
-    Button buttonNextPage = (Button) findViewById(R.id.idNextPage);
+        Button buttonNextPage = (Button) findViewById(R.id.id_next_page_button);
 
-    buttonNextPage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            launchNextPage();
-        }
-    });
+        buttonNextPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchNextPage();
+            }
+        });
     }
 
     private void launchNextPage() {
@@ -36,8 +37,12 @@ public class HelpActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static Intent makeLaunchIntent(Context context){
-        Intent intent = new Intent(context,HelpActivity.class);
-        return intent;
+    public static Intent getIntent(Context c) {
+        return new Intent(c, HelpActivity.class);
     }
+
+    public static Intent makeLaunchIntent(Context c) {
+        return getIntent(c);
+    }
+
 }
