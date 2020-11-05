@@ -41,7 +41,6 @@
     <string name="saveChildUpdate">UPDATE</string>
     <string name="deleteButton">DELETE</string>
 
-    <string name="shorturl_at_bfjvj">shorturl.at/bfjvJ</string>
     <string name="coinflip_xml">coinflip.xml:</string>
     <string name="user_png">user.png:</string>
     <string name="timer_jpg">timer.jpg:</string>
@@ -66,4 +65,9 @@
     <string name="enter_child_name">enter child name</string>
     <string name="history_page_title">Coin Flip History</string>
     <string name="set_timer_page_title">Set Timer</string>
+    <string name="lost_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>
+    <string name="history">History</string>
+    <string name="search_child_flipping_history">search child flipping history</string>
+    <string name="https_bit_ly_3mueguf">https://bit.ly/3mUEGuF</string>
+    <string name="savechild_xml">savechild.xml:</string>
 </resources>

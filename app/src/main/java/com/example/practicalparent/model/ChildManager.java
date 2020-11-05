@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * manage child list
+ */
 public class ChildManager implements Iterable<Child>{
 
     private static final String FILENAME = "children";

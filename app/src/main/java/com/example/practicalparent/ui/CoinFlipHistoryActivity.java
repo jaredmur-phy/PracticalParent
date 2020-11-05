@@ -87,7 +87,7 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
                     item.setText(Html.fromHtml(text + getString(R.string.won_text)));
                 }
                 else {
-                    item.setText(Html.fromHtml( text + getString(R.string.loose_text)));
+                    item.setText(Html.fromHtml( text + getString(R.string.lost_text)));
                 }
                 return item;
             }
