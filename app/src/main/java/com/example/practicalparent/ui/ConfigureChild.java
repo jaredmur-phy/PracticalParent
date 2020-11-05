@@ -28,6 +28,7 @@ import com.example.practicalparent.model.ChildManager;
 // add,edit and delete a list of names given to children
 public class ConfigureChild extends AppCompatActivity {
 
+
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
