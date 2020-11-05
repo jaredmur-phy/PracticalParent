@@ -36,16 +36,12 @@ public class ChildManager implements Iterable<Child>{
         return children.iterator();
     }
 
-    public Child get(int i) {
-        return children.get(i);
-    }
-
     public void removeChild(int index) {
         children.remove(index);
     }
 
     public void changeName(int index, String newName) {
-        children.get(index).setName(newName);
+        children.get(index).firstName = newName;
     }
 
     public int size() {

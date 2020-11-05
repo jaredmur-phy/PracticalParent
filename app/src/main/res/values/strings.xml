@@ -36,9 +36,9 @@
     <string name="enterchild">Add Child:</string>
     <string name="nameexample">e.g. Jacob</string>
     <string name="currentList">Current Children:</string>
-    <string name="changeTutorial">To edit name, click the child\'s name in the list above</string>
-    <string name="deleteTutorial">To delete, switch delete button to "on" and select item to delete</string>
-    <string name="deleteMode">DELETE MODE</string>
+    <string name="changeTutorial">To edit/delete name, click the child\'s name in the list above</string>
+    <string name="saveChildUpdate">UPDATE</string>
+    <string name="deleteButton">DELETE</string>
 
     <string name="shorturl_at_bfjvj">shorturl.at/bfjvJ</string>
     <string name="coinflip_xml">coinflip.xml:</string>

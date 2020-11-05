@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ConfigureChild"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".ui.HelpActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"

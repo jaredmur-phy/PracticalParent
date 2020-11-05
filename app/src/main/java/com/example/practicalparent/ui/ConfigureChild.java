@@ -2,6 +2,7 @@ package com.example.practicalparent.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -20,6 +22,9 @@ import com.example.practicalparent.childmodel.Child;
 import com.example.practicalparent.childmodel.ChildManager;
 
 public class ConfigureChild extends AppCompatActivity {
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
 
     private ChildManager manager;
     private ArrayAdapter<Child> adapter;
@@ -37,25 +42,13 @@ public class ConfigureChild extends AppCompatActivity {
         registerClickCallBack();
     }
 
-    private boolean checkSwitch() {
-        Switch sw = (Switch)findViewById(R.id.deleteSwitch);
-        if(sw.isChecked()) {
-            return true;
-        }
-
-        return false;
-    }
-
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.childrenListView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                boolean delete = checkSwitch();
-                if(delete) {
-                    manager.removeChild(position);
-                    adapter.notifyDataSetChanged();
-                }
+                updatePosition(position);
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -88,6 +81,39 @@ public class ConfigureChild extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 } catch (Exception e) {}
+            }
+        });
+    }
+
+    public void updatePosition(int i) {
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
+        dialogBuilder.setView(changePopup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        Button saveBtn = (Button)changePopup.findViewById(R.id.saveChangeName);
+        Button deleteBtn = (Button)changePopup.findViewById(R.id.deleteButton);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String changeName = ((EditText)changePopup.findViewById(R.id.changeName)).getText().toString();
+                if(changeName != null) {
+                    manager.changeName(i, changeName);
+                    adapter.notifyDataSetChanged();
+                }
+
+                dialog.dismiss();
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manager.removeChild(i);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
             }
         });
     }
