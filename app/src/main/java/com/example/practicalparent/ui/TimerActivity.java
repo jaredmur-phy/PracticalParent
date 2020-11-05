@@ -1,7 +1,10 @@
 package com.example.practicalparent.ui;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,8 +55,22 @@ public class TimerActivity extends AppCompatActivity {
 
         initAttributes();
 
+        setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = findViewById(R.id.id_timer_tool_bar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void initAttributes(){

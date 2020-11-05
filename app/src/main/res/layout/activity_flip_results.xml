@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@drawable/sunset">
+    android:background="@drawable/sunset"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/id_flip_coin_toolbar"
-        android:layout_width="419dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="#F0FF9800"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Flip the coin"
         app:titleTextColor="#FFFFFF" />
@@ -23,16 +24,15 @@
         android:id="@+id/id_answer_text"
         android:layout_width="387dp"
         android:layout_height="57dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/your_coin_is"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFC107"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_coin_chosen_text" />
 
     <Button
         android:id="@+id/id_flip_button"
@@ -40,12 +40,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:background="@drawable/main_menu_buttons"
-        android:text="@string/flip"
-        android:textColor="#FFFFFF"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.3"
         android:shadowRadius="1.6"
+        android:text="@string/flip"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_coin_image" />
@@ -54,24 +54,23 @@
         android:id="@+id/id_coin_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_answer_text"
         app:srcCompat="@drawable/heads" />
 
     <TextView
         android:id="@+id/id_coin_chosen_text"
         android:layout_width="238dp"
         android:layout_height="51dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/textview"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/id_flip_coin_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

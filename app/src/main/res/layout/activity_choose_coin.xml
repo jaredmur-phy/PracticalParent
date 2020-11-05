@@ -66,13 +66,12 @@
         android:layout_width="387dp"
         android:layout_height="57dp"
         android:layout_marginTop="116dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:fontFamily="@font/happy_school"
         android:text="@string/would_you_like_to_choose_heads_or_tails"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -95,12 +94,13 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/id_choose_coin_toolbar"
-        android:layout_width="419dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="#F0FF9800"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Select your coin"
         app:titleTextColor="#FFFFFF" />

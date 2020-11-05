@@ -1,11 +1,15 @@
 package com.example.practicalparent.ui;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -13,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
+
 
 import com.example.practicalparent.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,16 +39,30 @@ public class ConfigureChild extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configure_child);
 
-        manager = ChildManager.getInstance();
+        manager = ChildManager.getInstance(this);
         manager.iterator();
 
         setupFAB();
         populateListView();
         registerClickCallBack();
+        setToolBar();
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = findViewById(R.id.id_configure_tool_bar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void registerClickCallBack() {
-        ListView list = findViewById(R.id.childrenListView);
+        ListView list = findViewById(R.id.id_children_list_view);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,8 +89,8 @@ public class ConfigureChild extends AppCompatActivity {
                 String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
 
                 Child child = new Child(firstName);
-                ChildManager.getInstance().addChild(child);
-                EditText clearName = ((EditText)findViewById(R.id.childname));
+                ChildManager.getInstance(ConfigureChild.this).addChild(child);
+                EditText clearName = ((EditText)findViewById(R.id.id_child_name));
                 clearName.getText().clear();
                 adapter.notifyDataSetChanged();
                 //Close the keyboard once input for child has been saved
