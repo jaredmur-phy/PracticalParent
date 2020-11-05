@@ -39,6 +39,21 @@
         app:layout_constraintTop_toBottomOf="@+id/id_url_ring" />
 
     <TextView
+        android:id="@+id/id_url_save_child"
+        android:layout_width="206dp"
+        android:layout_height="74dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/https_bit_ly_3mueguf"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFEB3B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/id_source_font_text"
+        app:layout_constraintTop_toBottomOf="@+id/id_url_font" />
+
+    <TextView
         android:id="@+id/idURLCoinSound"
         android:layout_width="206dp"
         android:layout_height="74dp"
@@ -75,8 +90,8 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/ring_mp3"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_coin_sound_text" />
 
@@ -88,9 +103,21 @@
         android:gravity="center"
         android:text="@string/happy_school_ttf"
         android:textColor="#B50E0E0E"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_ring_text" />
+
+    <TextView
+        android:id="@+id/id_source_save_child"
+        android:layout_width="226dp"
+        android:layout_height="74dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/savechild_xml"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_font_text" />
 
     <TextView
         android:id="@+id/id_source_coin_sound_text"
@@ -99,7 +126,7 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/coinflipsound_mp3"
-        android:textColor="#FFFFFF"
+        android:textColor="#B50E0E0E"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_sources_text2" />

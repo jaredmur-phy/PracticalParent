@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setTimeOut();
         setHelp();
         requestIgnoreBatteryOptimizations();
-        startActivity(CoinFlipHistoryActivity.makeLaunchIntent(this));
-
     }
 
     private void setCoinFlip() {
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 launchCoinFlip();
             }
         });
-
     }
 
     private void setConfigurations() {
@@ -54,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 launchConfigurations();
             }
         });
-
     }
 
     private void setTimeOut() {

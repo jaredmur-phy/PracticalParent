@@ -48,7 +48,7 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/coinflip_xml"
-        android:textColor="#FFFFFF"
+        android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_sources_text" />
@@ -165,7 +165,7 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/heads_png"
-        android:textColor="#FFFFFF"
+        android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_coin_flip_text" />
@@ -213,7 +213,7 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/timer_jpg"
-        android:textColor="#FFFFFF"
+        android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_tail_text" />
@@ -225,7 +225,7 @@
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/user_png"
-        android:textColor="#FFFFFF"
+        android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_timer_text" />
