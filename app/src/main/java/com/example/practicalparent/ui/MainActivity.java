@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setTimeOut();
         setHelp();
         requestIgnoreBatteryOptimizations();
+
     }
 
     private void setCoinFlip() {

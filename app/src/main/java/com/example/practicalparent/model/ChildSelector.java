@@ -1,4 +1,5 @@
 package com.example.practicalparent.model;
+import android.content.Context;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -8,12 +9,14 @@ import java.util.TreeSet;
  */
 public class ChildSelector {
 
-    private static ChildManager manager = ChildManager.getInstance();
+    private static ChildManager manager;
     private static ChildSelector selector;
 
     // deal with remove and edit before select child
     private static Set<String> childNameSet = new TreeSet<>();
-    private ChildSelector(){}
+    private ChildSelector(Context c){
+        manager = ChildManager.getInstance(c);
+    }
 
     public Child getNextChild(){
         if(manager.size() == 0)
@@ -32,9 +35,9 @@ public class ChildSelector {
         return child;
     }
 
-    public ChildSelector getInstance(){
+    public ChildSelector getInstance(Context c){
         if(selector == null){
-            selector = new ChildSelector();
+            selector = new ChildSelector(c);
         }
         return selector;
     }

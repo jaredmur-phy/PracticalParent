@@ -27,7 +27,7 @@ public class ConfigureChild extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configure_child);
 
-        manager = ChildManager.getInstance();
+        manager = ChildManager.getInstance(this);
         manager.iterator();
 
         setupFAB();
@@ -51,7 +51,7 @@ public class ConfigureChild extends AppCompatActivity {
                 String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
 
                 Child child = new Child(firstName);
-                ChildManager.getInstance().addChild(child);
+                ChildManager.getInstance(ConfigureChild.this).addChild(child);
                 finish();
             }
         });
