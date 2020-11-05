@@ -1,7 +1,9 @@
 package com.example.practicalparent.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
+import java.io.FilenameFilter;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,11 +14,17 @@ public class ChildSelector {
 
     private static ChildManager manager;
     private static ChildSelector selector;
+    private SharedPreferences sp;
+
+    private static final String FILENAME = "child_selector_record";
+    private static final String KEY_RECORD = "KEY_RECORD";
 
     // deal with remove and edit before select child
-    private static Set<String> childNameSet = new TreeSet<>();
+    private static Set<String> childNameSet;
     private ChildSelector(Context c){
         manager = ChildManager.getInstance(c);
+        sp = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
+        childNameSet = sp.getStringSet(KEY_RECORD, new TreeSet<>());
     }
 
     public Child getNextChild(){
@@ -26,6 +34,7 @@ public class ChildSelector {
             String childName = child.getName();
             if(!childNameSet.contains(childName)) {
                 childNameSet.add(childName);
+                write();
                 return child;
             }
         }
@@ -33,7 +42,12 @@ public class ChildSelector {
         childNameSet.clear();
         Child child = manager.get(0);
         childNameSet.add(child.getName());
+        write();
         return child;
+    }
+
+    private void write(){
+        sp.edit().putStringSet(KEY_RECORD, childNameSet).apply();
     }
 
     public static ChildSelector getInstance(Context c){
