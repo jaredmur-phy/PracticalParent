@@ -63,4 +63,5 @@
     <string name="won_text"><![CDATA[<br><font color=\'#00ff00\'> WON!!</font>]]></string>
     <string name="loose_text"><![CDATA[<br><font color=\'#ff0000\'> LOOSE!!</font>]]></string>
     <string name="enter_child_name">enter child name</string>
+    <string name="history">History</string>
 </resources>
