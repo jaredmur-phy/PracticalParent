@@ -40,7 +40,7 @@ public class ChooseCoinActivity extends AppCompatActivity {
         buttonHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchFlipResults();
+                launchFlipResults(true);
             }
         });
     }
@@ -50,13 +50,13 @@ public class ChooseCoinActivity extends AppCompatActivity {
         buttonTails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchFlipResults();
+                launchFlipResults(false);
             }
         });
     }
 
-    private void launchFlipResults() {
-        Intent intent = FlipResultsActivity.makeLaunchIntent(ChooseCoinActivity.this);
+    private void launchFlipResults(boolean isHead) {
+        Intent intent = FlipResultsActivity.makeLaunchIntent(ChooseCoinActivity.this, isHead);
         startActivity(intent);
     }
 
