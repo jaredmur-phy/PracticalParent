@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -67,10 +68,21 @@ public class ChooseCoinActivity extends AppCompatActivity {
         return getIntent(c);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.history_menu, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.id_action_settings:
+                startActivity(CoinFlipHistoryActivity.makeLaunchIntent(this));
+                return true;
+            default:
+                finish();
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
