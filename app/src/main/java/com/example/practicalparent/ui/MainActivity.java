@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 launchCoinFlip();
             }
         });
+
     }
 
     private void setConfigurations() {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 launchConfigurations();
             }
         });
+
     }
 
     private void setTimeOut() {

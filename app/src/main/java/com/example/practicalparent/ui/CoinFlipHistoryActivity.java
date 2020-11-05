@@ -1,12 +1,21 @@
 package com.example.practicalparent.ui;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -32,8 +41,22 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coin_flip_history);
 
         coinFlipHistoryManager = CoinFlipHistoryManager.getInstance(this);
+        setToolBar();
         showListView();
         setupFilter();
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = findViewById(R.id.id_coin_flip_history_tool_bar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupFilter(){

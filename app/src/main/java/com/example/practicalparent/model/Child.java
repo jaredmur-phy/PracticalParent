@@ -1,7 +1,7 @@
 package com.example.practicalparent.model;
 
 public class Child {
-    private String firstName;
+    public String firstName;
 
     //Constructor
     public Child(String name) {
