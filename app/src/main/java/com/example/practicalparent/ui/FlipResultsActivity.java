@@ -19,6 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.Child;
+import com.example.practicalparent.model.ChildManager;
+import com.example.practicalparent.model.ChildSelector;
+import com.example.practicalparent.model.CoinFlipHistory;
+import com.example.practicalparent.model.CoinFlipHistoryManager;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.Random;
@@ -32,12 +37,26 @@ public class FlipResultsActivity extends AppCompatActivity {
     private final int HEADS = 0;
     private final int TAILS = 1;
     ImageView imageCoin;
+    private boolean isPickedHead;
+
+    private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
+
+    private ChildSelector childSelector;
+    private CoinFlipHistoryManager historyManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flip_results);
+        initAttr();
         setToolBar();
         flipCoin();
+    }
+
+    private void initAttr(){
+        isPickedHead = getIntent().getBooleanExtra(COIN_PARAM_KEY, true);
+        historyManager = CoinFlipHistoryManager.getInstance(this);
+        childSelector = ChildSelector.getInstance(this);
     }
 
     private void setToolBar() {
@@ -60,7 +79,9 @@ public class FlipResultsActivity extends AppCompatActivity {
                 } else{
                     coinFlipped(R.drawable.tail, "Tails");
                 }
-
+                // update history
+                historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
+                        isPickedHead, headsOrTails == HEADS));
             }
         });
     }
@@ -103,12 +124,14 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     }
 
-    public static Intent getIntent(Context c){
-        return new Intent(c, FlipResultsActivity.class);
+    public static Intent getIntent(Context c, boolean isHead){
+        Intent intent = new Intent(c, FlipResultsActivity.class);
+        intent.putExtra(COIN_PARAM_KEY, isHead);
+        return intent;
     }
 
-    public static Intent makeLaunchIntent(Context c){
-        return getIntent(c);
+    public static Intent makeLaunchIntent(Context c, boolean isHead){
+        return getIntent(c, isHead);
     }
 
     @Override

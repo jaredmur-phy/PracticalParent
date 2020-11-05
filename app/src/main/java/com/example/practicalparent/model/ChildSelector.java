@@ -36,7 +36,7 @@ public class ChildSelector {
         return child;
     }
 
-    public ChildSelector getInstance(Context c){
+    public static ChildSelector getInstance(Context c){
         if(selector == null){
             selector = new ChildSelector(c);
         }
