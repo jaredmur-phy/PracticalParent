@@ -4,14 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -69,7 +64,7 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
                     item.setText(Html.fromHtml(text + getString(R.string.won_text)));
                 }
                 else {
-                    item.setText(Html.fromHtml( text + getString(R.string.loose_text)));
+                    item.setText(Html.fromHtml( text + getString(R.string.lost_text)));
                 }
                 return item;
             }
