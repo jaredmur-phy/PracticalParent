@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setConfigurations();
         setTimeOut();
         setHelp();
-        requestIgnoreBatteryOptimizations();
     }
 
     private void setCoinFlip() {
@@ -95,25 +94,6 @@ public class MainActivity extends AppCompatActivity {
     private void launchHelp() {
         Intent intent = HelpActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void requestIgnoreBatteryOptimizations() {
-
-        // do nothing if is already ignoring
-        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        boolean isIgnoring = powerManager.isIgnoringBatteryOptimizations(getPackageName());
-        if(isIgnoring) return;
-
-        // otherwise request ignoring the battery optimization
-        try {
-            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            intent.setData(Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
 }
