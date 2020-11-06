@@ -8,21 +8,51 @@
     android:background="@drawable/sunset">
 
 
-    <Button
-        android:id="@+id/id_next_page_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginLeft="152dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/main_menu_buttons"
+    <TextView
+        android:id="@+id/id_source_save_child2"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="1.6"
-        android:text="@string/next_page"
-        android:textColor="#FFFFFF"
+        android:text="@string/savechild_xml"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_font_text2" />
+
+    <TextView
+        android:id="@+id/id_source_font_text2"
+        android:layout_width="345dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/happy_school_ttf"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_ring_text2" />
+
+    <TextView
+        android:id="@+id/id_source_ring_text2"
+        android:layout_width="223dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/ring_mp3"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_source_coin_sound_text2" />
+
+    <TextView
+        android:id="@+id/id_source_coin_sound_text2"
+        android:layout_width="296dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/coinflipsound_mp3"
+        android:textColor="#B50E0E0E"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_source_user_text" />
 
@@ -42,8 +72,8 @@
 
     <TextView
         android:id="@+id/id_source_coin_flip_text"
-        android:layout_width="222dp"
-        android:layout_height="74dp"
+        android:layout_width="232dp"
+        android:layout_height="44dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
@@ -54,114 +84,9 @@
         app:layout_constraintTop_toBottomOf="@+id/id_sources_text" />
 
     <TextView
-        android:id="@+id/id_url_coin_flip_text"
-        android:layout_width="206dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/https_bit_ly_3opytc7"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_coin_flip_text"
-        app:layout_constraintTop_toTopOf="@+id/id_source_coin_flip_text" />
-
-    <TextView
-        android:id="@+id/id_url_head_text"
-        android:layout_width="206dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="https://shutr.bz/322uY1p"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_head_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_coin_flip_text" />
-
-    <TextView
-        android:id="@+id/id_url_help_text"
-        android:layout_width="206dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/https_bit_ly_3ekbfac"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_help_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_head_text" />
-
-    <TextView
-        android:id="@+id/id_url_sunset_text"
-        android:layout_width="206dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="https://bit.ly/34RdiHV"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_sunset_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_help_text" />
-
-    <TextView
-        android:id="@+id/id_url_tail_text"
-        android:layout_width="206dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/https_shutr_bz_322uy1p"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_tail_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_sunset_text" />
-
-    <TextView
-        android:id="@+id/id_url_timer_text"
-        android:layout_width="195dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/https_bit_ly_3mqffpr"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_timer_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_tail_text" />
-
-    <TextView
-        android:id="@+id/id_url_user_text"
-        android:layout_width="180dp"
-        android:layout_height="74dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/https_bit_ly_3otcvcs"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFEB3B"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/id_source_user_text"
-        app:layout_constraintTop_toBottomOf="@+id/id_url_timer_text" />
-
-    <TextView
         android:id="@+id/id_source_head_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="223dp"
+        android:layout_height="49dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/heads_png"
@@ -172,8 +97,8 @@
 
     <TextView
         android:id="@+id/id_source_help_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="223dp"
+        android:layout_height="48dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/help_png"
@@ -184,8 +109,8 @@
 
     <TextView
         android:id="@+id/id_source_sunset_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/sunset_jpg"
@@ -196,8 +121,8 @@
 
     <TextView
         android:id="@+id/id_source_tail_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/tail_png"
@@ -208,8 +133,8 @@
 
     <TextView
         android:id="@+id/id_source_timer_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="223dp"
+        android:layout_height="49dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/timer_jpg"
@@ -220,8 +145,8 @@
 
     <TextView
         android:id="@+id/id_source_user_text"
-        android:layout_width="226dp"
-        android:layout_height="74dp"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/user_png"
