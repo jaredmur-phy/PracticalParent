@@ -50,11 +50,9 @@
     <string name="sunset_jpg"><a href="https://www.setaswall.com/landscape-wallpapers/landscape-phone-wallpaper-002-1080x2340/">sunset.jpg:</a></string>
     <string name="help_png"><a href="https://iconsplace.com/orange-icons/help-icon-11/">help.png:</a></string>
     <string name="heads_png"><a href="https://www.shutterstock.com/image-vector/set-gold-coin-head-tail-isolated-1779736505">heads.png:</a></string>
-    <string name="title_activity_help2">Help2Activity</string>
     <string name="coinflipsound_mp3"><a href="https://www.partnersinrhyme.com/soundfx/office_sounds/office_coin-flip_wav.shtml">CoinFlipSound.mp3:</a></string>
     <string name="ring_mp3"><a href="https://dl.prokerala.com/downloads/ringtones/files/mp3/7120-download-iphone-6-original-ringtone-42676.mp3">ring.mp3:</a></string>
-    <string name="happy_school_ttf"><a href="https://bit.ly/3jS29uv">happy_school.ttf</a></string>
-    <string name="savechild_xml"><a href="https://bit.ly/3mUEGuF">savechild.xml:</a></string>
+    <string name="happy_school_ttf"><a href="https://www.fontspace.com/category/education">happy_school.ttf</a></string>
 
     <string name="won_text"><![CDATA[<br><font color=\'#00ff00\'> WON!!</font>]]></string>
     <string name="loose_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>

@@ -33,28 +33,25 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     private void setupHyperLinks() {
-        TextView t1 = (TextView)findViewById(R.id.id_source_coin_flip_text);
+        TextView t1 = (TextView)findViewById(R.id.coinFlipSource);
         t1.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t2 = (TextView)findViewById(R.id.id_source_head_text);
+        TextView t2 = (TextView)findViewById(R.id.headsSource);
         t2.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t3 = (TextView)findViewById(R.id.id_source_help_text);
+        TextView t3 = (TextView)findViewById(R.id.helpSource);
         t3.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t4 = (TextView)findViewById(R.id.id_source_sunset_text);
+        TextView t4 = (TextView)findViewById(R.id.sunsetSource);
         t4.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t5 = (TextView)findViewById(R.id.id_source_tail_text);
+        TextView t5 = (TextView)findViewById(R.id.tailsSource);
         t5.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t6 = (TextView)findViewById(R.id.id_source_timer_text);
+        TextView t6 = (TextView)findViewById(R.id.timerSource);
         t6.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t7 = (TextView)findViewById(R.id.id_source_user_text);
+        TextView t7 = (TextView)findViewById(R.id.userSource);
         t7.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t8 = (TextView)findViewById(R.id.id_source_coin_sound_text2);
+        TextView t8 = (TextView)findViewById(R.id.coinSoundSource);
         t8.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t9 = (TextView)findViewById(R.id.id_source_ring_text2);
+        TextView t9 = (TextView)findViewById(R.id.ringSource);
         t9.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t10 = (TextView)findViewById(R.id.id_source_font_text2);
+        TextView t10 = (TextView)findViewById(R.id.fontSource);
         t10.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t11 = (TextView)findViewById(R.id.id_source_save_child2);
-        t11.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
 }
