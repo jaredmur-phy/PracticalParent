@@ -88,7 +88,7 @@ public class ConfigureChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
-
+                if(!firstName.equals("")){
                 Child child = new Child(firstName);
                 ChildManager.getInstance(ConfigureChild.this).addChild(child);
                 EditText clearName = ((EditText)findViewById(R.id.id_child_name));
@@ -101,7 +101,7 @@ public class ConfigureChild extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 } catch (Exception e) {}
-            }
+            }}
         });
     }
 
@@ -119,7 +119,7 @@ public class ConfigureChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String changeName = ((EditText)changePopup.findViewById(R.id.changeName)).getText().toString();
-                if(changeName != null) {
+                if(!changeName.equals("")) {
                     manager.changeName(i, changeName);
                     adapter.notifyDataSetChanged();
                 }
