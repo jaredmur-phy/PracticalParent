@@ -11,7 +11,7 @@
         android:id="@+id/id_flip_coin_toolbar"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#F0FF9800"
+        android:background="@color/colorAccent"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,15 +24,14 @@
         android:id="@+id/id_answer_text"
         android:layout_width="387dp"
         android:layout_height="57dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/your_coin_is"
-        android:textColor="#FFC107"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_coin_chosen_text" />
+        tools:layout_editor_absoluteY="167dp" />
 
     <Button
         android:id="@+id/id_flip_button"
@@ -60,17 +59,4 @@
         app:layout_constraintTop_toBottomOf="@+id/id_answer_text"
         app:srcCompat="@drawable/heads" />
 
-    <TextView
-        android:id="@+id/id_coin_chosen_text"
-        android:layout_width="238dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/textview"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_flip_coin_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

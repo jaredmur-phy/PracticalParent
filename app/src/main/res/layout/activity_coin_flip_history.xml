@@ -11,7 +11,7 @@
         android:id="@+id/id_coin_flip_history_tool_bar"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#F0FF9800"
+        android:background="@color/colorAccent"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
