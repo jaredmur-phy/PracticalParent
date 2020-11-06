@@ -19,7 +19,6 @@ import com.example.practicalparent.R;
 // Select a coin; heads or tails
 public class ChooseCoinActivity extends AppCompatActivity {
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_coin);
@@ -73,7 +72,6 @@ public class ChooseCoinActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.history_menu, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

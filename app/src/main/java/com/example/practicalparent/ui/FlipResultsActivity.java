@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -35,9 +36,11 @@ public class FlipResultsActivity extends AppCompatActivity {
     Random generator = new Random();
     int headsOrTails;
     private final int HEADS = 0;
-    private final int TAILS = 1;
+    Handler handler;
     ImageView imageCoin;
     private boolean isPickedHead;
+    private static int DELAY = 950;
+
 
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
 
@@ -111,9 +114,10 @@ public class FlipResultsActivity extends AppCompatActivity {
                 fadeIn.setFillAfter(true);
 
                 imageCoin.startAnimation(fadeIn);
-                buttonFlip.setClickable(true);
+
                 // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
                 StyleableToast.makeText(FlipResultsActivity.this,  results, R.style.resultToast).show();
+                stopAnimation();
             }
             @Override
             public void onAnimationRepeat(Animation animation) {
@@ -122,6 +126,16 @@ public class FlipResultsActivity extends AppCompatActivity {
         });
         imageCoin.startAnimation(fadeOut);
 
+    }
+
+    private void stopAnimation() {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, DELAY);
     }
 
     public static Intent getIntent(Context c, boolean isHead){
