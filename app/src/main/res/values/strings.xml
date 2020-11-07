@@ -62,4 +62,5 @@
     <string name="lost_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>
     <string name="history">History</string>
     <string name="search_child_flipping_history">search child flipping history</string>
+    <string name="would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid">Would you like to pick a coin again for yourself or any other kid?</string>
 </resources>

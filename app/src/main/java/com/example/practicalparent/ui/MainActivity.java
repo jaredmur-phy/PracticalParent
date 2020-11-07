@@ -97,6 +97,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public static Intent getIntent(Context c){
+        Intent intent = new Intent(c, MainActivity.class);
+        return intent;
+    }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestIgnoreBatteryOptimizations() {
 

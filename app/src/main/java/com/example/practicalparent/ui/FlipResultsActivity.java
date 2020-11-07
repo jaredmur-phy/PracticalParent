@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.practicalparent.R;
 import com.example.practicalparent.model.ChildSelector;
@@ -131,9 +132,18 @@ public class FlipResultsActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                finish();
+                messagePopUP();
             }
         }, DELAY);
+    }
+
+    private void messagePopUP() {
+        FragmentManager manager = getSupportFragmentManager();
+        MessageFragment dialog = new MessageFragment();
+        dialog.show(manager, "Great");
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        //finish();
     }
 
     public static Intent getIntent(Context c, boolean isHead){
