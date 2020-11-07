@@ -20,8 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
-import com.example.practicalparent.model.Child;
-import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.ChildSelector;
 import com.example.practicalparent.model.CoinFlipHistory;
 import com.example.practicalparent.model.CoinFlipHistoryManager;
