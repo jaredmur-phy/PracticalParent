@@ -33,14 +33,17 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     private Button buttonFlip;
     private Random generator = new Random();
+    private ImageView imageCoin;
+
     private int headsOrTails;
     private final int HEADS = 0;
+
     private Handler handler;
-    private ImageView imageCoin;
+
+    private boolean turnOffBack;
     private boolean isPickedHead;
+
     private static int DELAY = 950;
-
-
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
 
     private ChildSelector childSelector;
@@ -100,6 +103,7 @@ public class FlipResultsActivity extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 buttonFlip.setClickable(false);
+                turnOffBack = true;
             }
 
             @Override
@@ -115,7 +119,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                 imageCoin.startAnimation(fadeIn);
 
                 // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
-                StyleableToast.makeText(FlipResultsActivity.this,  results, R.style.resultToast).show();
+                StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
                 stopAnimation();
             }
             @Override
@@ -124,7 +128,6 @@ public class FlipResultsActivity extends AppCompatActivity {
             }
         });
         imageCoin.startAnimation(fadeOut);
-
     }
 
     private void stopAnimation() {
@@ -143,7 +146,20 @@ public class FlipResultsActivity extends AppCompatActivity {
         dialog.show(manager, "Great");
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        //finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        if(turnOffBack){
+
+
+        }else{
+            super.onBackPressed();
+
+        }
+
     }
 
     public static Intent getIntent(Context c, boolean isHead){
