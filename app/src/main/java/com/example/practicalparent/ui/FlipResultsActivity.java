@@ -150,8 +150,6 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-
         if(turnOffBack){
 
 
@@ -159,7 +157,6 @@ public class FlipResultsActivity extends AppCompatActivity {
             super.onBackPressed();
 
         }
-
     }
 
     public static Intent getIntent(Context c, boolean isHead){
