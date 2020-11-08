@@ -28,6 +28,8 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.Random;
 
+import static com.example.practicalparent.model.PickedConstant.*;
+
 // flip a coin; see the results
 public class FlipResultsActivity extends AppCompatActivity {
 
@@ -41,10 +43,13 @@ public class FlipResultsActivity extends AppCompatActivity {
     private Handler handler;
 
     private boolean turnOffBack;
-    private boolean isPickedHead;
+    private int picked;
 
     private static int DELAY = 950;
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
+
+
+
 
     private ChildSelector childSelector;
     private CoinFlipHistoryManager historyManager;
@@ -59,7 +64,7 @@ public class FlipResultsActivity extends AppCompatActivity {
     }
 
     private void initAttr(){
-        isPickedHead = getIntent().getBooleanExtra(COIN_PARAM_KEY, true);
+        picked = getIntent().getIntExtra(COIN_PARAM_KEY, -1);
         historyManager = CoinFlipHistoryManager.getInstance(this);
         childSelector = ChildSelector.getInstance(this);
     }
@@ -86,7 +91,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                 }
                 // update history
                 historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
-                        isPickedHead, headsOrTails == HEADS));
+                        picked, headsOrTails == HEADS));
             }
         });
     }
@@ -159,14 +164,18 @@ public class FlipResultsActivity extends AppCompatActivity {
         }
     }
 
-    public static Intent getIntent(Context c, boolean isHead){
+    public static Intent getIntent(Context c, int picked){
         Intent intent = new Intent(c, FlipResultsActivity.class);
-        intent.putExtra(COIN_PARAM_KEY, isHead);
+        intent.putExtra(COIN_PARAM_KEY, picked);
         return intent;
     }
 
     public static Intent makeLaunchIntent(Context c, boolean isHead){
-        return getIntent(c, isHead);
+        return getIntent(c, isHead ? PICKED_HEAD : PICKED_TAIL);
+    }
+
+    public static Intent makeLaunchIntent(Context c){
+        return getIntent(c, NOT_PICKED);
     }
 
     @Override
@@ -174,4 +183,5 @@ public class FlipResultsActivity extends AppCompatActivity {
         finish();
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -98,10 +98,14 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
             CoinFlipHistory history = historyList.get(i);
             if(name != null && ("".equals(name) || name.isEmpty() ||
                     history.getChild().getName().toLowerCase().contains(name))){
-                String sb = history.getDate() + " <br><b>" +
-                        history.getChild().getName() +
-                        "</b> picked <b>" + parseBoolToHead(history.isPickedHead()) +
-                        "</b> got <i>" + parseBoolToHead(history.isGotHead()) + "</i>";
+                String sb = history.getDate() + " <br>";
+                if(history.isPicked()){
+                    sb += "<b>" +
+                            history.getChild().getName() +
+                            "</b> picked <b>" + parseBoolToHead(history.isPickedHead()) +
+                            "</b>";
+                }
+                sb += " got <i>" + parseBoolToHead(history.isGotHead()) + "</i>";
                 list.add(sb);
             }
         }

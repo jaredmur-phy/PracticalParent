@@ -16,7 +16,7 @@ import java.util.TreeSet;
  */
 public class CoinFlipHistoryManager {
 
-    private static final String FILENAME = "history";
+    private static final String FILENAME = "history_file";
     private static final String KEY_SET = "KEY_SET";
     private static final String SUFFIX_CHILD = "_CHILD";
     private static final String SUFFIX_DATE = "_DATE";
@@ -37,7 +37,7 @@ public class CoinFlipHistoryManager {
             String childName = sharedPreferences.getString(prefix+SUFFIX_CHILD, "");
             String date = sharedPreferences.getString(prefix+SUFFIX_DATE, "");
             boolean gotHead = sharedPreferences.getBoolean(prefix+SUFFIX_GOT_HEAD, true);
-            boolean pickedHead = sharedPreferences.getBoolean(prefix+SUFFIX_PICKED_HEAD, true);
+            int pickedHead = sharedPreferences.getInt(prefix+SUFFIX_PICKED_HEAD, -1);
             historyList.add(new CoinFlipHistory(new Child(childName), pickedHead, gotHead, date));
         }
 
@@ -74,7 +74,7 @@ public class CoinFlipHistoryManager {
             editor.putString(i + SUFFIX_CHILD, history.getChild().getName());
             editor.putString(i + SUFFIX_DATE, history.getDate());
             editor.putBoolean(i + SUFFIX_GOT_HEAD, history.isGotHead());
-            editor.putBoolean(i + SUFFIX_PICKED_HEAD, history.isPickedHead());
+            editor.putInt(i + SUFFIX_PICKED_HEAD, history.getPicked());
             keySet.add(String.valueOf(i));
         }
         editor.putStringSet(KEY_SET, keySet);

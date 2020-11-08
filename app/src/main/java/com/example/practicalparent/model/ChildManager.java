@@ -83,4 +83,8 @@ public class ChildManager implements Iterable<Child>{
         return children.size();
     }
 
+    public boolean isEmpty(){
+        return children.isEmpty();
+    }
+
 }

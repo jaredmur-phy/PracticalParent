@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.ChildManager;
 
 // Main menu which leads to other activities
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
         buttonCoinFlip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchCoinFlip();
+                if(ChildManager.getInstance(MainActivity.this).isEmpty()){
+                    launchFlipResults();
+                } else {
+                    launchCoinFlip();
+                }
             }
         });
 
@@ -94,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchHelp() {
         Intent intent = HelpActivity.makeLaunchIntent(MainActivity.this);
+        startActivity(intent);
+    }
+
+    private void launchFlipResults(){
+        Intent intent = FlipResultsActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 
