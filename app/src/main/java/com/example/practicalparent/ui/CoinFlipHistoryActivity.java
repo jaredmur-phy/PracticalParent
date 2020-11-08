@@ -79,11 +79,14 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
                 TextView item = (TextView) super.getView(position,convertView,parent);
                 String text = item.getText().toString();
                 int index = coinFlipHistoryManager.size()-1-position;
-                if(coinFlipHistoryManager.get(index).isWon()){
-                    item.setText(Html.fromHtml(text + getString(R.string.won_text)));
-                }
-                else {
-                    item.setText(Html.fromHtml( text + getString(R.string.lost_text)));
+                if(coinFlipHistoryManager.get(index).isPicked()) {
+                    if (coinFlipHistoryManager.get(index).isWon()) {
+                        item.setText(Html.fromHtml(text + getString(R.string.won_text)));
+                    } else {
+                        item.setText(Html.fromHtml(text + getString(R.string.lost_text)));
+                    }
+                }else {
+                    item.setText(Html.fromHtml(text));
                 }
                 return item;
             }
