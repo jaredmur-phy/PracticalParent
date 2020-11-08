@@ -22,25 +22,25 @@ public class MessageFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-       View v = LayoutInflater.from(getActivity())
-               .inflate(R.layout.message_layout,null);
+        View v = LayoutInflater.from(getActivity())
+                .inflate(R.layout.message_layout, null);
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch(which){
+                switch (which) {
                     case DialogInterface.BUTTON_NEGATIVE:
                         launchMainMenu();
-                     break;
+                        break;
 
                     case DialogInterface.BUTTON_POSITIVE:
 
                         getActivity().finish();
                         break;
-            } }
+                }
+            }
 
         };
-
 
         return new AlertDialog.Builder(getActivity()).setTitle("").
                 setView(v).setNegativeButton("No", listener).setView(v).setPositiveButton("Yes", listener).create();
@@ -55,6 +55,7 @@ public class MessageFragment extends DialogFragment {
         startActivity(intent);
         getActivity().finish();
     }
+
     public void setCanceledOnTouchOutside(boolean b) {
     }
 }

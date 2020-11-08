@@ -31,12 +31,12 @@ import java.util.Random;
 // flip a coin; see the results
 public class FlipResultsActivity extends AppCompatActivity {
 
-    Button buttonFlip;
-    Random generator = new Random();
-    int headsOrTails;
+    private Button buttonFlip;
+    private Random generator = new Random();
+    private int headsOrTails;
     private final int HEADS = 0;
-    Handler handler;
-    ImageView imageCoin;
+    private Handler handler;
+    private ImageView imageCoin;
     private boolean isPickedHead;
     private static int DELAY = 950;
 

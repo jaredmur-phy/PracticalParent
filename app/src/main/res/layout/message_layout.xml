@@ -12,6 +12,7 @@
         android:layout_height="173dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/happy_school"
+        android:gravity="center_horizontal"
         android:text="@string/would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
