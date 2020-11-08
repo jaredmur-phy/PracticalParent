@@ -11,18 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.practicalparent.R;
 
 // A page for sources
-public class HelpActivity extends AppCompatActivity {
+public class CreditsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_credits);
 
         setupHyperLinks();
     }
 
     public static Intent getIntent(Context c) {
-        return new Intent(c, HelpActivity.class);
+        return new Intent(c, CreditsActivity.class);
     }
 
     public static Intent makeLaunchIntent(Context c) {

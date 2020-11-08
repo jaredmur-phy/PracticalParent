@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         buttonHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchHelp();
+                launchCredits();
             }
         });
     }
@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void launchHelp() {
-        Intent intent = HelpActivity.makeLaunchIntent(MainActivity.this);
+    private void launchCredits() {
+        Intent intent = CreditsActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 
