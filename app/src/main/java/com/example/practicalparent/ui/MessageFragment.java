@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.ChildManager;
 
 
 public class MessageFragment extends DialogFragment {
@@ -33,8 +34,8 @@ public class MessageFragment extends DialogFragment {
                         break;
 
                     case DialogInterface.BUTTON_POSITIVE:
-
-                        getActivity().finish();
+                        if(!ChildManager.getInstance(getActivity()).isEmpty()){
+                        getActivity().finish();}
                         break;
                 }
             }

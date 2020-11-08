@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -121,8 +122,9 @@ public class FlipResultsActivity extends AppCompatActivity {
                 fadeIn.setDuration(3000);
                 fadeIn.setFillAfter(true);
 
+                buttonFlip.setClickable(true);
                 imageCoin.startAnimation(fadeIn);
-
+                turnOffBack = false;
                 // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
                 StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
                 stopAnimation();
@@ -178,10 +180,23 @@ public class FlipResultsActivity extends AppCompatActivity {
         return getIntent(c, NOT_PICKED);
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.history_menu, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.id_action_settings:
+                startActivity(CoinFlipHistoryActivity.makeLaunchIntent(this));
+                return true;
+            default:
+                finish();
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+
