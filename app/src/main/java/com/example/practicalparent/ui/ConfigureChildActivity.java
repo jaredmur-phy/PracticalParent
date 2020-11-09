@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -91,7 +92,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
                 String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
 
                 duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
-
 
                 if (duplicateCheck) {
                     //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
