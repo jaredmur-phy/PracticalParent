@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchConfigurations() {
-        Intent intent = ConfigureChild.makeLaunchIntent(MainActivity.this);
+        Intent intent = ConfigureChildActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 

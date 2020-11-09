@@ -26,4 +26,14 @@
         <item name="cornerRadius">3dp</item>
     </style>
 
+    <style name="errorToast">
+        <item name="colorBackground">#CC1C30</item>
+        <item name="textColor">#000</item>
+        <item name="iconLeft">@drawable/help</item>
+        <item name="strokeColor">#000</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="length">SHORT</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
+
 </resources>

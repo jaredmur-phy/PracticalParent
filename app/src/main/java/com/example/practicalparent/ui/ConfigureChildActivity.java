@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -23,9 +22,10 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 // add,edit and delete a list of names given to children
-public class ConfigureChild extends AppCompatActivity {
+public class ConfigureChildActivity extends AppCompatActivity {
 
 
     private AlertDialog.Builder dialogBuilder;
@@ -76,7 +76,7 @@ public class ConfigureChild extends AppCompatActivity {
 
     private void populateListView() {
         adapter = new ArrayAdapter<>(
-                ConfigureChild.this,
+                ConfigureChildActivity.this,
                 R.layout.childrenitems,
                 manager.getList());
         ListView list = findViewById(R.id.id_children_list_view);
@@ -90,16 +90,22 @@ public class ConfigureChild extends AppCompatActivity {
             public void onClick(View v) {
                 String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
 
-                duplicateCheck = ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
-                if(duplicateCheck) Toast.makeText(ConfigureChild.this, getString(R.string.name_already_exist),
-                        Toast.LENGTH_SHORT);
-                if (!firstName.equals("") && !duplicateCheck) {
+                duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
+
+
+                if (duplicateCheck) {
+                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
+                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a different name", R.style.errorToast).show();
+                } else if (ChildManager.getInstance(ConfigureChildActivity.this).isNullOrEmpty(firstName)) {
+                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
+                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a name", R.style.errorToast).show();
+                } else {
 
                     Child child = new Child(firstName);
 
-                    ChildManager.getInstance(ConfigureChild.this).addChild(child);
+                    ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
 
-                    EditText clearName = ((EditText) findViewById(R.id.id_child_name));
+                    EditText clearName = findViewById(R.id.id_child_name);
                     clearName.getText().clear();
                     adapter.notifyDataSetChanged();
                     //Close the keyboard once input for child has been saved
@@ -115,6 +121,7 @@ public class ConfigureChild extends AppCompatActivity {
         });
     }
 
+
     public void updatePosition(int i) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
@@ -122,14 +129,14 @@ public class ConfigureChild extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        Button saveBtn = (Button) changePopup.findViewById(R.id.saveChangeName);
-        Button deleteBtn = (Button) changePopup.findViewById(R.id.deleteButton);
+        Button saveBtn = changePopup.findViewById(R.id.saveChangeName);
+        Button deleteBtn = changePopup.findViewById(R.id.deleteButton);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String changeName = ((EditText) changePopup.findViewById(R.id.changeName)).getText().toString();
-                if (!changeName.equals("")) {
+                if (!ChildManager.getInstance(ConfigureChildActivity.this).isNullOrEmpty(changeName)) {
                     manager.changeName(i, changeName);
                     adapter.notifyDataSetChanged();
                 }
@@ -149,7 +156,7 @@ public class ConfigureChild extends AppCompatActivity {
     }
 
     public static Intent getIntent(Context c) {
-        return new Intent(c, ConfigureChild.class);
+        return new Intent(c, ConfigureChildActivity.class);
     }
 
     public static Intent makeLaunchIntent(Context c) {

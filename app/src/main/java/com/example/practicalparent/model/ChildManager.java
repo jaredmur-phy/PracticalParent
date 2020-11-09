@@ -83,12 +83,20 @@ public class ChildManager implements Iterable<Child> {
                 anyDuplicates = true;
             }
         }
-       return anyDuplicates;
+        return anyDuplicates;
     }
 
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
         write();
+    }
+
+    //code taken from: https://www.programiz.com/java-programming/examples/string-empty-null
+    public boolean isNullOrEmpty(String str) {
+        if (str != null && !str.trim().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public int size() {

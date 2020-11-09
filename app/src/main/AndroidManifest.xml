@@ -17,7 +17,7 @@
         tools:ignore="ExtraText">
         <activity android:name=".ui.CoinFlipHistoryActivity"></activity>
         <activity
-            android:name=".ui.ConfigureChild"
+            android:name=".ui.ConfigureChildActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.CreditsActivity"

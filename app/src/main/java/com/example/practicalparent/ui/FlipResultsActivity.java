@@ -92,7 +92,7 @@ public class FlipResultsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 isHead = generator.nextBoolean();
                 soundEffect.start();
-                coinFlipped(isHead, isHead ? "Heads":"Tails");
+                coinFlipped(isHead, isHead ? "Heads" : "Tails");
                 // update history
                 historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
                         picked, isHead));
@@ -111,18 +111,17 @@ public class FlipResultsActivity extends AppCompatActivity {
 
         Handler handler = new Handler();
         List<Runnable> runnables = new ArrayList<Runnable>();
-        for(int i = 0; i <= 100; i++){
+        for (int i = 0; i <= 100; i++) {
             // get id
-            int id = getResources().getIdentifier(prefix+i, "drawable", this.getPackageName());
+            int id = getResources().getIdentifier(prefix + i, "drawable", this.getPackageName());
             final int index = i;
             Runnable r = () -> {
                 imageCoin.setImageResource(id);
-                if(index == 0){         // animation start
+                if (index == 0) {         // animation start
                     buttonFlip.setClickable(false);
                     turnOffBack = true;
-                }
-                else if(index == 100){       // animation ends
-                    for(Runnable runnable : runnables) {
+                } else if (index == 100) {       // animation ends
+                    for (Runnable runnable : runnables) {
                         handler.removeCallbacks(runnable);
                     }
                     //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
