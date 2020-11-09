@@ -1,10 +1,5 @@
 package com.example.practicalparent.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 // add,edit and delete a list of names given to children
 public class ConfigureChild extends AppCompatActivity {

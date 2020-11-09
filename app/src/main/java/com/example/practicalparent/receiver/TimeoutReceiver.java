@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 
-
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
 

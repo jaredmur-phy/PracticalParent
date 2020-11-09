@@ -29,7 +29,9 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.Random;
 
-import static com.example.practicalparent.model.PickedConstant.*;
+import static com.example.practicalparent.model.PickedConstant.NOT_PICKED;
+import static com.example.practicalparent.model.PickedConstant.PICKED_HEAD;
+import static com.example.practicalparent.model.PickedConstant.PICKED_TAIL;
 
 // flip a coin; see the results
 public class FlipResultsActivity extends AppCompatActivity {
