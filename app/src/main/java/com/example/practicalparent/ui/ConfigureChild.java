@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -90,6 +91,8 @@ public class ConfigureChild extends AppCompatActivity {
                 String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
 
                 duplicateCheck = ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
+                if(duplicateCheck) Toast.makeText(ConfigureChild.this, getString(R.string.name_already_exist),
+                        Toast.LENGTH_SHORT);
                 if (!firstName.equals("") && !duplicateCheck) {
 
                     Child child = new Child(firstName);
