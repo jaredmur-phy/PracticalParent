@@ -28,7 +28,6 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 // add,edit and delete a list of names given to children
 public class ConfigureChildActivity extends AppCompatActivity {
 
-
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
@@ -121,7 +120,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         });
     }
 
-
     public void updatePosition(int i) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
@@ -140,7 +138,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
                     manager.changeName(i, changeName);
                     adapter.notifyDataSetChanged();
                 }
-
                 dialog.dismiss();
             }
         });

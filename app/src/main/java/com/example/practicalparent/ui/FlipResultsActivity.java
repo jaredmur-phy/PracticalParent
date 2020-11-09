@@ -103,7 +103,6 @@ public class FlipResultsActivity extends AppCompatActivity {
         });
     }
 
-
     private void coinFlipped(final boolean isHead, String results) {
         imageCoin = findViewById(R.id.id_coin_image);
 
@@ -152,17 +151,6 @@ public class FlipResultsActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (turnOffBack) {
-
-
-        } else {
-            super.onBackPressed();
-
-        }
-    }
-
     public static Intent getIntent(Context c, int picked) {
         Intent intent = new Intent(c, FlipResultsActivity.class);
         intent.putExtra(COIN_PARAM_KEY, picked);
@@ -177,6 +165,13 @@ public class FlipResultsActivity extends AppCompatActivity {
         return getIntent(c, NOT_PICKED);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (turnOffBack) {
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

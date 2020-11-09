@@ -62,11 +62,6 @@ public class ChildManager implements Iterable<Child> {
         return children;
     }
 
-    @Override
-    public Iterator<Child> iterator() {
-        return children.iterator();
-    }
-
     public Child get(int i) {
         return children.get(i);
     }
@@ -107,4 +102,8 @@ public class ChildManager implements Iterable<Child> {
         return children.isEmpty();
     }
 
+    @Override
+    public Iterator<Child> iterator() {
+        return children.iterator();
+    }
 }

@@ -74,8 +74,6 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void initAttributes() {
-
-
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         timeoutCallback = PendingIntent.getBroadcast(this, TimeoutReceiver.class.hashCode(),
                 TimeoutReceiver.getIntent(this), 0);

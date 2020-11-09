@@ -33,7 +33,6 @@ public class MessageFragment extends DialogFragment {
                     case DialogInterface.BUTTON_NEGATIVE:
                         launchMainMenu();
                         break;
-
                     case DialogInterface.BUTTON_POSITIVE:
                         if (!ChildManager.getInstance(getActivity()).isEmpty()) {
                             getActivity().finish();
@@ -41,13 +40,10 @@ public class MessageFragment extends DialogFragment {
                         break;
                 }
             }
-
         };
 
         return new AlertDialog.Builder(getActivity()).setTitle("").
                 setView(v).setNegativeButton("No", listener).setView(v).setPositiveButton("Yes", listener).create();
-
-
     }
 
     private void launchMainMenu() {

@@ -17,16 +17,7 @@ public class CreditsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
-
         setupHyperLinks();
-    }
-
-    public static Intent getIntent(Context c) {
-        return new Intent(c, CreditsActivity.class);
-    }
-
-    public static Intent makeLaunchIntent(Context c) {
-        return getIntent(c);
     }
 
     private void setupHyperLinks() {
@@ -50,5 +41,13 @@ public class CreditsActivity extends AppCompatActivity {
         t9.setMovementMethod(LinkMovementMethod.getInstance());
         TextView t10 = (TextView) findViewById(R.id.fontSource);
         t10.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    public static Intent getIntent(Context c) {
+        return new Intent(c, CreditsActivity.class);
+    }
+
+    public static Intent makeLaunchIntent(Context c) {
+        return getIntent(c);
     }
 }
