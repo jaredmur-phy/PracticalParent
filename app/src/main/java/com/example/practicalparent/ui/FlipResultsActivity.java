@@ -58,9 +58,9 @@ public class FlipResultsActivity extends AppCompatActivity {
     private static final int DELAY = 950;
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
 
+
     private ChildSelector childSelector;
     private CoinFlipHistoryManager historyManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
