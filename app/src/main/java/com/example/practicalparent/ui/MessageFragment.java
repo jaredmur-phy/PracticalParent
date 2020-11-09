@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -34,8 +35,9 @@ public class MessageFragment extends DialogFragment {
                         break;
 
                     case DialogInterface.BUTTON_POSITIVE:
-                        if(!ChildManager.getInstance(getActivity()).isEmpty()){
-                        getActivity().finish();}
+                        if (!ChildManager.getInstance(getActivity()).isEmpty()) {
+                            getActivity().finish();
+                        }
                         break;
                 }
             }

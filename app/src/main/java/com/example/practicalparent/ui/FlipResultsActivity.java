@@ -46,10 +46,8 @@ public class FlipResultsActivity extends AppCompatActivity {
     private boolean turnOffBack;
     private int picked;
 
-    private static int DELAY = 950;
+    private static final int DELAY = 950;
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
-
-
 
 
     private ChildSelector childSelector;
@@ -64,7 +62,7 @@ public class FlipResultsActivity extends AppCompatActivity {
         flipCoin();
     }
 
-    private void initAttr(){
+    private void initAttr() {
         picked = getIntent().getIntExtra(COIN_PARAM_KEY, -1);
         historyManager = CoinFlipHistoryManager.getInstance(this);
         childSelector = ChildSelector.getInstance(this);
@@ -85,9 +83,9 @@ public class FlipResultsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 headsOrTails = generator.nextInt(2);
                 soundEffect.start();
-                if(headsOrTails == HEADS) {
+                if (headsOrTails == HEADS) {
                     coinFlipped(R.drawable.heads, "Heads");
-                } else{
+                } else {
                     coinFlipped(R.drawable.tail, "Tails");
                 }
                 // update history
@@ -101,7 +99,7 @@ public class FlipResultsActivity extends AppCompatActivity {
     private void coinFlipped(final int imageId, String results) {
         imageCoin = findViewById(R.id.id_coin_image);
 
-        Animation fadeOut = new AlphaAnimation(1,0);
+        Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator());
         fadeOut.setDuration(1000);
         fadeOut.setFillAfter(true);
@@ -116,7 +114,7 @@ public class FlipResultsActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
                 imageCoin.setImageResource(imageId);
-                Animation fadeIn = new AlphaAnimation(0,1);
+                Animation fadeIn = new AlphaAnimation(0, 1);
 
                 fadeIn.setInterpolator(new DecelerateInterpolator(3));
                 fadeIn.setDuration(3000);
@@ -129,6 +127,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                 StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
                 stopAnimation();
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -157,26 +156,26 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(turnOffBack){
+        if (turnOffBack) {
 
 
-        }else{
+        } else {
             super.onBackPressed();
 
         }
     }
 
-    public static Intent getIntent(Context c, int picked){
+    public static Intent getIntent(Context c, int picked) {
         Intent intent = new Intent(c, FlipResultsActivity.class);
         intent.putExtra(COIN_PARAM_KEY, picked);
         return intent;
     }
 
-    public static Intent makeLaunchIntent(Context c, boolean isHead){
+    public static Intent makeLaunchIntent(Context c, boolean isHead) {
         return getIntent(c, isHead ? PICKED_HEAD : PICKED_TAIL);
     }
 
-    public static Intent makeLaunchIntent(Context c){
+    public static Intent makeLaunchIntent(Context c) {
         return getIntent(c, NOT_PICKED);
     }
 

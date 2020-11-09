@@ -30,25 +30,25 @@ public class CreditsActivity extends AppCompatActivity {
     }
 
     private void setupHyperLinks() {
-        TextView t1 = (TextView)findViewById(R.id.coinFlipSource);
+        TextView t1 = (TextView) findViewById(R.id.coinFlipSource);
         t1.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t2 = (TextView)findViewById(R.id.headsSource);
+        TextView t2 = (TextView) findViewById(R.id.headsSource);
         t2.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t3 = (TextView)findViewById(R.id.helpSource);
+        TextView t3 = (TextView) findViewById(R.id.helpSource);
         t3.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t4 = (TextView)findViewById(R.id.sunsetSource);
+        TextView t4 = (TextView) findViewById(R.id.sunsetSource);
         t4.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t5 = (TextView)findViewById(R.id.tailsSource);
+        TextView t5 = (TextView) findViewById(R.id.tailsSource);
         t5.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t6 = (TextView)findViewById(R.id.timerSource);
+        TextView t6 = (TextView) findViewById(R.id.timerSource);
         t6.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t7 = (TextView)findViewById(R.id.userSource);
+        TextView t7 = (TextView) findViewById(R.id.userSource);
         t7.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t8 = (TextView)findViewById(R.id.coinSoundSource);
+        TextView t8 = (TextView) findViewById(R.id.coinSoundSource);
         t8.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t9 = (TextView)findViewById(R.id.ringSource);
+        TextView t9 = (TextView) findViewById(R.id.ringSource);
         t9.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView t10 = (TextView)findViewById(R.id.fontSource);
+        TextView t10 = (TextView) findViewById(R.id.fontSource);
         t10.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

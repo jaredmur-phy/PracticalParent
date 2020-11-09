@@ -73,7 +73,7 @@ public class TimerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initAttributes(){
+    private void initAttributes() {
 
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -96,7 +96,7 @@ public class TimerActivity extends AppCompatActivity {
         };
     }
 
-    private void setupTimerOptions(){
+    private void setupTimerOptions() {
         // setup Spinner
         Spinner spinner = findViewById(R.id.id_timer_options);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -111,7 +111,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String str = s.toString();
-                if(!str.isEmpty()) {
+                if (!str.isEmpty()) {
                     countDownMinutes = Integer.parseInt(str);
                 }
             }
@@ -122,7 +122,7 @@ public class TimerActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int minutes = timerOptions[position];
                 customizeTimerPlainTextView.setText("");
-                if(minutes > 0){
+                if (minutes > 0) {
                     customizeTimerUnitTextView.setVisibility(View.INVISIBLE);
                     customizeTimerPlainTextView.setVisibility(View.INVISIBLE);
                     countDownMinutes = minutes;
@@ -131,6 +131,7 @@ public class TimerActivity extends AppCompatActivity {
                     customizeTimerPlainTextView.setVisibility(View.VISIBLE);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -138,14 +139,14 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void setupBtnOnClickListener(){
+    private void setupBtnOnClickListener() {
         TextView setTimerBtn = findViewById(R.id.id_set_timer);
         TextView resetBtn = findViewById(R.id.id_reset_btn);
 
-        setTimerBtn.setOnClickListener((View v)->{
+        setTimerBtn.setOnClickListener((View v) -> {
 
             stopAlarming();
-            switch (timer.getStatus()){
+            switch (timer.getStatus()) {
                 case SET_TIMER:
                     setTimer(countDownMinutes);
                     break;
@@ -158,14 +159,14 @@ public class TimerActivity extends AppCompatActivity {
             }
             timer.changeStatus();
         });
-        resetBtn.setOnClickListener((View v)-> resetTimer());
+        resetBtn.setOnClickListener((View v) -> resetTimer());
 
     }
 
-    private void showRemainingTimes(){
+    private void showRemainingTimes() {
         TextView timerView = findViewById(R.id.id_set_timer);
         StringBuilder sb = new StringBuilder();
-        if(!timer.isTimeout()){
+        if (!timer.isTimeout()) {
             sb.append(getShowTime()).append("\n");
         } else {
             timer.setTimeoutStatus();
@@ -175,7 +176,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void setTimer(int minutes){
+    private void setTimer(int minutes) {
         long triggerTime = SystemClock.elapsedRealtime() + minutes * TimeInMills.MINUTE.getValue();
         alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
         timer.reset(minutes * TimeInMills.MINUTE.getValue());
@@ -184,24 +185,24 @@ public class TimerActivity extends AppCompatActivity {
     /**
      * every half second it will refresh the clock
      */
-    private void setupPeriodRefresh(){
+    private void setupPeriodRefresh() {
         refreshCallbackHandler.post(refreshCallback);
     }
 
-    private void stopAlarming(){
+    private void stopAlarming() {
         alarmer.stop();
     }
 
-    private void pauseTimer(){
-        if(!timer.isPaused()) {
+    private void pauseTimer() {
+        if (!timer.isPaused()) {
             timer.pause();
             alarmManager.cancel(timeoutCallback);
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void resumeTimer(){
-        if(!timer.isPaused()) {
+    private void resumeTimer() {
+        if (!timer.isPaused()) {
             return;
         }
         timer.resume();
@@ -209,25 +210,25 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void resetTimer(){
+    private void resetTimer() {
         alarmer.stop();
         pauseTimer();
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
         alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
-    private String getShowTime(){
+    private String getShowTime() {
         long times = timer.getRemainingTime();
         long minute = times / TimeInMills.MINUTE.getValue();
         long second = (times % TimeInMills.MINUTE.getValue()) / TimeInMills.SECOND.getValue();
         return minute + " : " + second;
     }
 
-    public static Intent getIntent(Context c){
+    public static Intent getIntent(Context c) {
         return new Intent(c, TimerActivity.class);
     }
 
-    public static Intent makeLaunchIntent(Context c){
+    public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
 

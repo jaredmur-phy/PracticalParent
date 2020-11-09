@@ -27,47 +27,47 @@ public class CoinFlipHistoryManager {
     private ArrayList<CoinFlipHistory> historyList;
     private SharedPreferences sharedPreferences;
 
-    private CoinFlipHistoryManager(Context context){
+    private CoinFlipHistoryManager(Context context) {
         historyList = new ArrayList<>();
         sharedPreferences = context.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         Set<String> set = sharedPreferences.getStringSet(KEY_SET, new TreeSet<>());
-        for(String prefix : set){
-            String childName = sharedPreferences.getString(prefix+SUFFIX_CHILD, "");
-            String date = sharedPreferences.getString(prefix+SUFFIX_DATE, "");
-            boolean gotHead = sharedPreferences.getBoolean(prefix+SUFFIX_GOT_HEAD, true);
-            int pickedHead = sharedPreferences.getInt(prefix+SUFFIX_PICKED_HEAD, -1);
+        for (String prefix : set) {
+            String childName = sharedPreferences.getString(prefix + SUFFIX_CHILD, "");
+            String date = sharedPreferences.getString(prefix + SUFFIX_DATE, "");
+            boolean gotHead = sharedPreferences.getBoolean(prefix + SUFFIX_GOT_HEAD, true);
+            int pickedHead = sharedPreferences.getInt(prefix + SUFFIX_PICKED_HEAD, -1);
             historyList.add(new CoinFlipHistory(new Child(childName), pickedHead, gotHead, date));
         }
 
     }
 
-    public void add(CoinFlipHistory history){
-        if(history == null) return;
-        if(historyList.size() == LIMIT){
+    public void add(CoinFlipHistory history) {
+        if (history == null) return;
+        if (historyList.size() == LIMIT) {
             historyList.remove(0);
         }
         historyList.add(history);
         write();
     }
 
-    public int size(){
+    public int size() {
         return historyList.size();
     }
 
     // return which child is picked last
-    public Child getLastPickedChild(){
-        if(historyList.isEmpty()) return null;
+    public Child getLastPickedChild() {
+        if (historyList.isEmpty()) return null;
         return historyList.get(0).getChild();
     }
 
-    public CoinFlipHistory get(int index){
+    public CoinFlipHistory get(int index) {
         return historyList.get(index);
     }
 
-    private void write(){
+    private void write() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         TreeSet<String> keySet = new TreeSet<>();
-        for(int i = 0; i < historyList.size(); i++){
+        for (int i = 0; i < historyList.size(); i++) {
             CoinFlipHistory history = historyList.get(i);
             editor.putString(i + SUFFIX_CHILD, history.getChild().getName());
             editor.putString(i + SUFFIX_DATE, history.getDate());
@@ -83,8 +83,8 @@ public class CoinFlipHistoryManager {
         return historyList;
     }
 
-    public static CoinFlipHistoryManager getInstance(Context c){
-        if(historyManager == null){
+    public static CoinFlipHistoryManager getInstance(Context c) {
+        if (historyManager == null) {
             historyManager = new CoinFlipHistoryManager(c.getApplicationContext());
         }
         return historyManager;

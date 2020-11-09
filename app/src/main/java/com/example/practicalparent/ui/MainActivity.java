@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         buttonCoinFlip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ChildManager.getInstance(MainActivity.this).isEmpty()){
+                if (ChildManager.getInstance(MainActivity.this).isEmpty()) {
                     launchFlipResults();
                 } else {
                     launchCoinFlip();
@@ -102,18 +102,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void launchFlipResults(){
+    private void launchFlipResults() {
         Intent intent = FlipResultsActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 
 
-    public static Intent getIntent(Context c){
+    public static Intent getIntent(Context c) {
         Intent intent = new Intent(c, MainActivity.class);
         return intent;
     }
 
-    public static Intent makeLaunchIntent(Context c){
+    public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
 
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         // do nothing if is already ignoring
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         boolean isIgnoring = powerManager.isIgnoringBatteryOptimizations(getPackageName());
-        if(isIgnoring) return;
+        if (isIgnoring) return;
 
         // otherwise request ignoring the battery optimization
         try {

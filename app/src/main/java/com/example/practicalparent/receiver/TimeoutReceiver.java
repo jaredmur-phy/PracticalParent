@@ -21,21 +21,21 @@ public class TimeoutReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if(TIMEOUT_ACTION.equals(action)) {
+        if (TIMEOUT_ACTION.equals(action)) {
             wakeupScreen(context);
             Alarmer.getInstance(context).alarm();
         }
     }
 
-    private void wakeupScreen(Context context){
-        PowerManager pm=(PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    private void wakeupScreen(Context context) {
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         @SuppressLint("InvalidWakeLockTag")
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP |
-                PowerManager.SCREEN_DIM_WAKE_LOCK,"wakeupScreen");
+                PowerManager.SCREEN_DIM_WAKE_LOCK, "wakeupScreen");
         wl.acquire(screenWakingUpTimeout * TimeInMills.MINUTE.getValue());
     }
 
-    public static Intent getIntent(Context c){
+    public static Intent getIntent(Context c) {
         Intent i = new Intent(c, TimeoutReceiver.class);
         i.setAction(TIMEOUT_ACTION);
         return i;

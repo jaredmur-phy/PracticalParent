@@ -10,7 +10,8 @@ public enum TimeInMills {
     MINUTE(60_000);
 
     private long value;
-    TimeInMills(int val){
+
+    TimeInMills(int val) {
         value = val;
     }
 

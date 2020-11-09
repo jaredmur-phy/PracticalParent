@@ -8,7 +8,7 @@ public class Child {
 
     //Constructor
     public Child(String name) {
-        if(name == null) {
+        if (name == null) {
             throw new IllegalArgumentException("Null child name");
         }
 
@@ -22,7 +22,6 @@ public class Child {
     public String getName() {
         return this.firstName;
     }
-
 
 
     public String toString() {

@@ -15,16 +15,16 @@ public class CoinFlipHistory {
     private boolean gotHead;
     private String date;
 
-    public CoinFlipHistory(int picked, boolean gotHead){
+    public CoinFlipHistory(int picked, boolean gotHead) {
         // deal with no child case
         this(null, picked, gotHead);
     }
 
-    public CoinFlipHistory(Child child, int picked, boolean gotHead){
+    public CoinFlipHistory(Child child, int picked, boolean gotHead) {
         this(child, picked, gotHead, new SimpleDateFormat(FORMAT).format(new Date()));
     }
 
-    CoinFlipHistory(Child child, int picked, boolean gotHead, String date){
+    CoinFlipHistory(Child child, int picked, boolean gotHead, String date) {
         this.child = child;
         this.picked = picked;
         this.gotHead = gotHead;
@@ -32,7 +32,7 @@ public class CoinFlipHistory {
     }
 
 
-    public boolean isPicked(){
+    public boolean isPicked() {
         return picked != PickedConstant.NOT_PICKED;
     }
 
@@ -48,7 +48,7 @@ public class CoinFlipHistory {
         return gotHead;
     }
 
-    public int getPicked(){
+    public int getPicked() {
         return picked;
     }
 
@@ -56,7 +56,7 @@ public class CoinFlipHistory {
         return date;
     }
 
-    public boolean isWon(){
+    public boolean isWon() {
         return (picked == PickedConstant.PICKED_HEAD) == gotHead;
     }
 }

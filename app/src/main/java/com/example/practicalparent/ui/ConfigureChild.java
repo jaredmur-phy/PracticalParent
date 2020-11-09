@@ -87,28 +87,29 @@ public class ConfigureChild extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
-                if(!firstName.equals("")){
+                String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
+                if (!firstName.equals("")) {
 
-                   firstName= ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
+                    firstName = ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
                     Child child = new Child(firstName);
 
 
+                    ChildManager.getInstance(ConfigureChild.this).addChild(child);
 
-                ChildManager.getInstance(ConfigureChild.this).addChild(child);
 
-
-                EditText clearName = ((EditText)findViewById(R.id.id_child_name));
-                clearName.getText().clear();
-                adapter.notifyDataSetChanged();
-                //Close the keyboard once input for child has been saved
-                //Code taken from:
-                //https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232
-                try {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {}
-            }}
+                    EditText clearName = ((EditText) findViewById(R.id.id_child_name));
+                    clearName.getText().clear();
+                    adapter.notifyDataSetChanged();
+                    //Close the keyboard once input for child has been saved
+                    //Code taken from:
+                    //https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232
+                    try {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    } catch (Exception e) {
+                    }
+                }
+            }
         });
     }
 
@@ -119,14 +120,14 @@ public class ConfigureChild extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        Button saveBtn = (Button)changePopup.findViewById(R.id.saveChangeName);
-        Button deleteBtn = (Button)changePopup.findViewById(R.id.deleteButton);
+        Button saveBtn = (Button) changePopup.findViewById(R.id.saveChangeName);
+        Button deleteBtn = (Button) changePopup.findViewById(R.id.deleteButton);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String changeName = ((EditText)changePopup.findViewById(R.id.changeName)).getText().toString();
-                if(!changeName.equals("")) {
+                String changeName = ((EditText) changePopup.findViewById(R.id.changeName)).getText().toString();
+                if (!changeName.equals("")) {
                     manager.changeName(i, changeName);
                     adapter.notifyDataSetChanged();
                 }
@@ -145,11 +146,11 @@ public class ConfigureChild extends AppCompatActivity {
         });
     }
 
-    public static Intent getIntent(Context c){
+    public static Intent getIntent(Context c) {
         return new Intent(c, ConfigureChild.class);
     }
 
-    public static Intent makeLaunchIntent(Context c){
+    public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
 

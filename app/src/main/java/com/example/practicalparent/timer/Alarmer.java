@@ -20,7 +20,7 @@ import java.sql.Time;
  * Singleton class
  * this class do the alarming or stop alarming
  */
-public class Alarmer{
+public class Alarmer {
 
     private static Alarmer alarmer;
 
@@ -30,18 +30,18 @@ public class Alarmer{
     private MediaPlayer player;
     private Runnable vibrateCallback;
 
-    private Alarmer(Context c){
+    private Alarmer(Context c) {
         this.vibrator = (Vibrator) c.getSystemService(Service.VIBRATOR_SERVICE);
         this.player = MediaPlayer.create(c, R.raw.ring);
         this.vibrateHandler = new Handler();
         this.isAlarming = false;
 
         player.setOnCompletionListener(mp -> {
-            if(isAlarming){
+            if (isAlarming) {
                 player.start();
             }
         });
-        vibrateCallback = new Runnable(){
+        vibrateCallback = new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void run() {
@@ -61,16 +61,16 @@ public class Alarmer{
         };
     }
 
-    public void alarm(){
-        if(!isAlarming){
+    public void alarm() {
+        if (!isAlarming) {
             isAlarming = true;
             player.start();
             vibrateHandler.post(vibrateCallback);
         }
     }
 
-    public void stop(){
-        if(isAlarming){
+    public void stop() {
+        if (isAlarming) {
             isAlarming = false;
             player.seekTo(0);
             player.pause();
@@ -78,8 +78,8 @@ public class Alarmer{
         }
     }
 
-    public static Alarmer getInstance(Context c){
-        if(alarmer == null){
+    public static Alarmer getInstance(Context c) {
+        if (alarmer == null) {
             alarmer = new Alarmer(c.getApplicationContext());
         }
         return alarmer;

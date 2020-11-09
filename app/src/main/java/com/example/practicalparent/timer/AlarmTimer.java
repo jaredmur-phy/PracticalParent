@@ -8,7 +8,7 @@ import com.example.practicalparent.R;
 
 /**
  * Singleton class
- *
+ * <p>
  * Help to calculate the timer information
  * also can pause, reset, resume the timer
  */
@@ -30,8 +30,8 @@ public class AlarmTimer {
     /**
      * @param duration ms
      */
-    private AlarmTimer(long duration){
-        if(duration < 0)
+    private AlarmTimer(long duration) {
+        if (duration < 0)
             throw new IllegalArgumentException("duration should not be negative");
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
@@ -39,11 +39,11 @@ public class AlarmTimer {
         pausedPoint = -1;
     }
 
-    public void pause(){
+    public void pause() {
         pausedPoint = getRemainingTime();
     }
 
-    public void resume(){
+    public void resume() {
         if (isPaused()) {
             endTime = SystemClock.elapsedRealtime() + pausedPoint;
             pausedPoint = -1;
@@ -51,24 +51,24 @@ public class AlarmTimer {
     }
 
     // return after how many second times out
-    public long getRemainingTime(){
-        if(isPaused()){
+    public long getRemainingTime() {
+        if (isPaused()) {
             return pausedPoint;
         }
         long res = endTime - SystemClock.elapsedRealtime();
         return res > 0 ? res : 0;
     }
 
-    public boolean isPaused(){
+    public boolean isPaused() {
         return pausedPoint != -1;
     }
 
-    public boolean isTimeout(){
-        if(isPaused() || status == TimerStatus.SET_TIMER) return false;
+    public boolean isTimeout() {
+        if (isPaused() || status == TimerStatus.SET_TIMER) return false;
         return SystemClock.elapsedRealtime() >= endTime;
     }
 
-    public void reset(long duration){
+    public void reset(long duration) {
         status = TimerStatus.PAUSE;
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
@@ -93,13 +93,13 @@ public class AlarmTimer {
         return pausedPoint;
     }
 
-    private void validateNotPaused(){
-        if(isPaused()){
+    private void validateNotPaused() {
+        if (isPaused()) {
             throw new IllegalArgumentException("can't get end time when timer is paused.");
         }
     }
 
-    public static AlarmTimer getInstance(){
+    public static AlarmTimer getInstance() {
         return timer;
     }
 
@@ -114,7 +114,8 @@ public class AlarmTimer {
         TIMEOUT(R.string.time_out);
 
         private int msgId;
-        TimerStatus(int msgId){
+
+        TimerStatus(int msgId) {
             this.msgId = msgId;
         }
 
@@ -123,20 +124,20 @@ public class AlarmTimer {
         }
     }
 
-    public TimerStatus getStatus(){
+    public TimerStatus getStatus() {
         return status;
     }
 
-    public String getStatusDesc(Context c){
+    public String getStatusDesc(Context c) {
         return status.getMsg(c);
     }
 
-    public void setTimeoutStatus(){
+    public void setTimeoutStatus() {
         status = TimerStatus.TIMEOUT;
     }
 
-    public void changeStatus(){
-        switch (status){
+    public void changeStatus() {
+        switch (status) {
             case SET_TIMER:
             case RESUME:
                 status = TimerStatus.PAUSE;

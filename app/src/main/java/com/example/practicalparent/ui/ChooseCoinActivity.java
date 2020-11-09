@@ -59,11 +59,11 @@ public class ChooseCoinActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static Intent getIntent(Context c){
+    public static Intent getIntent(Context c) {
         return new Intent(c, ChooseCoinActivity.class);
     }
 
-    public static Intent makeLaunchIntent(Context c){
+    public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
 

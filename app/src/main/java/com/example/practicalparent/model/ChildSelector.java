@@ -20,18 +20,19 @@ public class ChildSelector {
 
     // deal with remove and edit before select child
     private static Set<String> childNameSet;
-    private ChildSelector(Context c){
+
+    private ChildSelector(Context c) {
         manager = ChildManager.getInstance(c);
         sp = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         childNameSet = sp.getStringSet(KEY_RECORD, new TreeSet<>());
     }
 
-    public Child getNextChild(){
-        if(manager.size() == 0)
+    public Child getNextChild() {
+        if (manager.size() == 0)
             return new Child("");
-        for(Child child : manager){
+        for (Child child : manager) {
             String childName = child.getName();
-            if(!childNameSet.contains(childName)) {
+            if (!childNameSet.contains(childName)) {
                 childNameSet.add(childName);
                 write();
                 return child;
@@ -45,12 +46,12 @@ public class ChildSelector {
         return child;
     }
 
-    private void write(){
+    private void write() {
         sp.edit().putStringSet(KEY_RECORD, childNameSet).apply();
     }
 
-    public static ChildSelector getInstance(Context c){
-        if(selector == null){
+    public static ChildSelector getInstance(Context c) {
+        if (selector == null) {
             selector = new ChildSelector(c);
         }
         return selector;
