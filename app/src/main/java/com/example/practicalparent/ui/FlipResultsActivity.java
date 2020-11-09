@@ -114,7 +114,11 @@ public class FlipResultsActivity extends AppCompatActivity {
             final int index = i;
             Runnable r = () -> {
                 imageCoin.setImageResource(id);
-                if(index == 100){       // animation ends
+                if(index == 0){         // animation start
+                    buttonFlip.setClickable(false);
+                    turnOffBack = true;
+                }
+                else if(index == 100){       // animation ends
                     for(Runnable runnable : runnables) {
                         handler.removeCallbacks(runnable);
                     }
