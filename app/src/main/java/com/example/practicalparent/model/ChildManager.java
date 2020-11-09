@@ -12,7 +12,7 @@ import java.util.TreeSet;
 /**
  * manage child list
  */
-public class ChildManager implements Iterable<Child>{
+public class ChildManager implements Iterable<Child> {
 
     private static final String FILENAME = "children";
     private static final String KEY_SET = "KEY_SET";
@@ -24,20 +24,21 @@ public class ChildManager implements Iterable<Child>{
 
     //Singleton support
     private static ChildManager instance;
+
     private ChildManager(Context c) {
         sp = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         // read from disk
         Set<String> keys = sp.getStringSet(KEY_SET, new TreeSet<String>());
-        for(String key: keys){
+        for (String key : keys) {
             String name = sp.getString(key + SUFFIX_NAME, "");
             children.add(new Child(name));
         }
     }
 
-    private void write(){
+    private void write() {
         SharedPreferences.Editor editor = sp.edit();
         TreeSet<String> keySet = new TreeSet<>();
-        for(int i = 0; i < children.size(); i++){
+        for (int i = 0; i < children.size(); i++) {
             editor.putString(i + SUFFIX_NAME, children.get(i).getName());
             keySet.add(String.valueOf(i));
         }
@@ -46,7 +47,7 @@ public class ChildManager implements Iterable<Child>{
     }
 
     public static ChildManager getInstance(Context context) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ChildManager(context.getApplicationContext());
         }
         return instance;
@@ -77,27 +78,29 @@ public class ChildManager implements Iterable<Child>{
 
     public String findChild(String name) {
         for (int i = 0; i < children.size(); i++) {
-            if(children.get(i).getName().equals(name)){
+            if (children.get(i).getName().equals(name)) {
                 name = name + "(" + incrementChildCount() + ")";
             }
         }
-return name;
+        return name;
     }
+
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
         write();
     }
 
-    public int incrementChildCount(){
+    public int incrementChildCount() {
         int duplicateChild = 0;
         return ++duplicateChild;
 
     }
+
     public int size() {
         return children.size();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return children.isEmpty();
     }
 
