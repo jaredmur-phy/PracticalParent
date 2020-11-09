@@ -76,23 +76,19 @@ public class ChildManager implements Iterable<Child> {
         write();
     }
 
-    public String findChild(String name) {
+    public boolean findChild(String name) {
+        boolean anyDuplicates = false;
         for (int i = 0; i < children.size(); i++) {
             if (children.get(i).getName().equals(name)) {
-                name = name + "(" + incrementChildCount() + ")";
+                anyDuplicates = true;
             }
         }
-        return name;
+       return anyDuplicates;
     }
 
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
         write();
-    }
-
-    public int incrementChildCount() {
-        int duplicateChild = 0;
-        return ++duplicateChild;
     }
 
     public int size() {

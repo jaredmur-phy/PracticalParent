@@ -30,6 +30,8 @@ public class ConfigureChild extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
+    private boolean duplicateCheck = false;
+
     private ChildManager manager;
     private ArrayAdapter<Child> adapter;
 
@@ -86,14 +88,13 @@ public class ConfigureChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
-                if (!firstName.equals("")) {
 
-                    firstName = ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
+                duplicateCheck = ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
+                if (!firstName.equals("") && !duplicateCheck) {
+
                     Child child = new Child(firstName);
 
-
                     ChildManager.getInstance(ConfigureChild.this).addChild(child);
-
 
                     EditText clearName = ((EditText) findViewById(R.id.id_child_name));
                     clearName.getText().clear();
