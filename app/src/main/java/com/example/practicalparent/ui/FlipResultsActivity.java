@@ -96,11 +96,14 @@ public class FlipResultsActivity extends AppCompatActivity {
                 // update history
                 historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
                         picked, isHead));
+                // locks buttons
+                buttonFlip.setClickable(true);
+                turnOffBack = false;
             }
         });
     }
 
-    // Code taken from https://www.youtube.com/watch?v=eoPRhXoIOWA
+
     private void coinFlipped(final boolean isHead, String results) {
         imageCoin = findViewById(R.id.id_coin_image);
 
@@ -122,8 +125,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                     for(Runnable runnable : runnables) {
                         handler.removeCallbacks(runnable);
                     }
-                    buttonFlip.setClickable(true);
-                    turnOffBack = false;
+                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
                     StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
                     stopAnimation();
                 }
