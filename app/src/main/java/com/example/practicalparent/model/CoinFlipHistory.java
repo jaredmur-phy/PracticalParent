@@ -11,7 +11,7 @@ public class CoinFlipHistory {
     private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     private Child child;
-    private int picked; // -1 not pick, 0 pick tail, 1 pick head
+    private int picked; // -1 not pick, 0 pick tail, 1 pick heads
     private boolean gotHead;
     private String date;
 

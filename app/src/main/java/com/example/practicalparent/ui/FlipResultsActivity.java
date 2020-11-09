@@ -3,8 +3,10 @@ package com.example.practicalparent.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +27,14 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.ChildSelector;
 import com.example.practicalparent.model.CoinFlipHistory;
 import com.example.practicalparent.model.CoinFlipHistoryManager;
+import com.example.practicalparent.timer.TimeInMills;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import static com.example.practicalparent.model.PickedConstant.NOT_PICKED;
@@ -40,8 +48,7 @@ public class FlipResultsActivity extends AppCompatActivity {
     private Random generator = new Random();
     private ImageView imageCoin;
 
-    private int headsOrTails;
-    private final int HEADS = 0;
+    private boolean isHead;
 
     private Handler handler;
 
@@ -51,9 +58,9 @@ public class FlipResultsActivity extends AppCompatActivity {
     private static final int DELAY = 950;
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
 
-
     private ChildSelector childSelector;
     private CoinFlipHistoryManager historyManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,59 +90,43 @@ public class FlipResultsActivity extends AppCompatActivity {
         buttonFlip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                headsOrTails = generator.nextInt(2);
+                isHead = generator.nextBoolean();
                 soundEffect.start();
-                if (headsOrTails == HEADS) {
-                    coinFlipped(R.drawable.heads, "Heads");
-                } else {
-                    coinFlipped(R.drawable.tail, "Tails");
-                }
+                coinFlipped(isHead, isHead ? "Heads":"Tails");
                 // update history
                 historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
-                        picked, headsOrTails == HEADS));
+                        picked, isHead));
             }
         });
     }
 
     // Code taken from https://www.youtube.com/watch?v=eoPRhXoIOWA
-    private void coinFlipped(final int imageId, String results) {
+    private void coinFlipped(final boolean isHead, String results) {
         imageCoin = findViewById(R.id.id_coin_image);
 
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator());
-        fadeOut.setDuration(1000);
-        fadeOut.setFillAfter(true);
-        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                buttonFlip.setClickable(false);
-                turnOffBack = true;
-            }
+        String prefix = isHead ? "head_" : "tail_";
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-                imageCoin.setImageResource(imageId);
-                Animation fadeIn = new AlphaAnimation(0, 1);
-
-                fadeIn.setInterpolator(new DecelerateInterpolator(3));
-                fadeIn.setDuration(3000);
-                fadeIn.setFillAfter(true);
-
-                buttonFlip.setClickable(true);
-                imageCoin.startAnimation(fadeIn);
-                turnOffBack = false;
-                // Code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
-                StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
-                stopAnimation();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        imageCoin.startAnimation(fadeOut);
+        Handler handler = new Handler();
+        List<Runnable> runnables = new ArrayList<Runnable>();
+        for(int i = 0; i <= 100; i++){
+            // get id
+            int id = getResources().getIdentifier(prefix+i, "drawable", this.getPackageName());
+            final int index = i;
+            Runnable r = () -> {
+                imageCoin.setImageResource(id);
+                if(index == 100){       // animation ends
+                    for(Runnable runnable : runnables) {
+                        handler.removeCallbacks(runnable);
+                    }
+                    buttonFlip.setClickable(true);
+                    turnOffBack = false;
+                    StyleableToast.makeText(FlipResultsActivity.this, results, R.style.resultToast).show();
+                    stopAnimation();
+                }
+            };
+            runnables.add(r);
+            handler.postDelayed(r, i * TimeInMills.Hundredths_OF_A_SECOND.getValue());
+        }
     }
 
     private void stopAnimation() {
