@@ -92,10 +92,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
                 String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
 
                 duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
-                if(duplicateCheck){ 
-                    Toast.makeText(ConfigureChildActivity.this, getString(R.string.name_already_exist),
-                        Toast.LENGTH_SHORT).show();
-                }
 
                 if (duplicateCheck) {
                     //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
