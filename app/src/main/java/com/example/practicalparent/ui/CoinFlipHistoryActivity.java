@@ -26,6 +26,7 @@ import com.example.practicalparent.model.CoinFlipHistoryManager;
 import java.util.ArrayList;
 import java.util.List;
 
+// show the coin flipping history, "when" "who" picked "what" and got "what".
 public class CoinFlipHistoryActivity extends AppCompatActivity {
 
     private CoinFlipHistoryManager coinFlipHistoryManager;

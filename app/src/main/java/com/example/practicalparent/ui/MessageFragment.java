@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.practicalparent.R;
 import com.example.practicalparent.model.ChildManager;
 
-
+// message which shows after flipping the coin
 public class MessageFragment extends DialogFragment {
 
     @NonNull

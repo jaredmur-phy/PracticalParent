@@ -1,5 +1,8 @@
 package com.example.practicalparent.model;
 
+/**
+ * One child object represent a child
+ */
 public class Child {
     private String firstName;
 

@@ -3,7 +3,9 @@ package com.example.practicalparent.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * saves coin flip history,
+ */
 public class CoinFlipHistory {
 
     private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";

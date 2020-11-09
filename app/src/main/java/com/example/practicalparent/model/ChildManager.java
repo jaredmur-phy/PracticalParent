@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * manage child list
+ * manage child list, can save data to the disk
  */
 public class ChildManager implements Iterable<Child>{
 
@@ -81,7 +81,7 @@ public class ChildManager implements Iterable<Child>{
                 name = name + "(" + incrementChildCount() + ")";
             }
         }
-return name;
+        return name;
     }
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
@@ -91,8 +91,8 @@ return name;
     public int incrementChildCount(){
         int duplicateChild = 0;
         return ++duplicateChild;
-
     }
+
     public int size() {
         return children.size();
     }

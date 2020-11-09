@@ -30,7 +30,7 @@ import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
 
 /**
- * Timer page
+ * Timer page, can set, reset, pause, resume a timer
  */
 public class TimerActivity extends AppCompatActivity {
 
