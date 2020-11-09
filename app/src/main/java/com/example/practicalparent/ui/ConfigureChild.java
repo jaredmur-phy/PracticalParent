@@ -89,8 +89,15 @@ public class ConfigureChild extends AppCompatActivity {
             public void onClick(View v) {
                 String firstName = ((EditText)findViewById(R.id.id_child_name)).getText().toString();
                 if(!firstName.equals("")){
-                Child child = new Child(firstName);
+
+                   firstName= ChildManager.getInstance(ConfigureChild.this).findChild(firstName);
+                    Child child = new Child(firstName);
+
+
+
                 ChildManager.getInstance(ConfigureChild.this).addChild(child);
+
+
                 EditText clearName = ((EditText)findViewById(R.id.id_child_name));
                 clearName.getText().clear();
                 adapter.notifyDataSetChanged();

@@ -18,6 +18,7 @@ public class ChildManager implements Iterable<Child>{
     private static final String KEY_SET = "KEY_SET";
     private static final String SUFFIX_NAME = "_NAME";
 
+
     private List<Child> children = new ArrayList<>();
     private SharedPreferences sp;
 
@@ -74,11 +75,24 @@ public class ChildManager implements Iterable<Child>{
         write();
     }
 
+    public String findChild(String name) {
+        for (int i = 0; i < children.size(); i++) {
+            if(children.get(i).getName().equals(name)){
+                name = name + "(" + incrementChildCount() + ")";
+            }
+        }
+return name;
+    }
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
         write();
     }
 
+    public int incrementChildCount(){
+        int duplicateChild = 0;
+        return ++duplicateChild;
+
+    }
     public int size() {
         return children.size();
     }
