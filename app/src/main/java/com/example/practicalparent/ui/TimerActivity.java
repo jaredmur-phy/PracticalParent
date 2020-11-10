@@ -60,6 +60,12 @@ public class TimerActivity extends AppCompatActivity {
         setupPeriodRefresh();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        alarmer.stop();
+    }
+
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_timer_tool_bar);
         setSupportActionBar(toolbar);
