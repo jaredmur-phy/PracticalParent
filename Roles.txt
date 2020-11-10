@@ -1,0 +1,5 @@
+Iteration 1 Mango Team Roles:
+Scrum Master: Jared Murphy
+Project Manager: Sabri Isik
+Repo Manager: Jiatang Zhou
+Team Member: Denys Dymnich
