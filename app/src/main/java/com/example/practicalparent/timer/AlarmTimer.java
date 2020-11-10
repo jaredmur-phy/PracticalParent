@@ -135,6 +135,10 @@ public class AlarmTimer {
         status = TimerStatus.TIMEOUT;
     }
 
+    public void setSetTimerStatus(){
+        status = TimerStatus.SET_TIMER;
+    }
+
     public void setPauseStatus(){
         status = TimerStatus.PAUSE;
     }

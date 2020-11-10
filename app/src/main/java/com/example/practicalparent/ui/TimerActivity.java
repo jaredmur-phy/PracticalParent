@@ -65,7 +65,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onResume();
         stopAlarming();
         if(timer.isTimeout()){
-            findViewById(R.id.id_set_timer).callOnClick();
+            timer.setSetTimerStatus();
         }
     }
 
@@ -74,7 +74,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onRestart();
         stopAlarming();
         if(timer.isTimeout()){
-            findViewById(R.id.id_set_timer).callOnClick();
+            timer.setSetTimerStatus();
         }
     }
 
