@@ -58,6 +58,13 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
+        alarmer.stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        alarmer.stop();
     }
 
     @Override
