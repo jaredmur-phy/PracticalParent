@@ -58,19 +58,19 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
-        alarmer.stop();
+        stopAlarming();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        alarmer.stop();
+        stopAlarming();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        alarmer.stop();
+        stopAlarming();
     }
 
     private void setToolBar() {
@@ -201,6 +201,9 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void stopAlarming() {
+        if(timer.isTimeout()){
+            timer.changeStatus();
+        }
         alarmer.stop();
     }
 
