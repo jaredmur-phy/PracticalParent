@@ -69,7 +69,6 @@ public class AlarmTimer {
     }
 
     public void reset(long duration) {
-        status = TimerStatus.PAUSE;
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
@@ -134,6 +133,10 @@ public class AlarmTimer {
 
     public void setTimeoutStatus() {
         status = TimerStatus.TIMEOUT;
+    }
+
+    public void setPauseStatus(){
+        status = TimerStatus.PAUSE;
     }
 
     public void changeStatus() {

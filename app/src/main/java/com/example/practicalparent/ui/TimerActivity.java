@@ -58,19 +58,24 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
-        stopAlarming();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         stopAlarming();
+        if(timer.isTimeout()){
+            findViewById(R.id.id_set_timer).callOnClick();
+        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         stopAlarming();
+        if(timer.isTimeout()){
+            findViewById(R.id.id_set_timer).callOnClick();
+        }
     }
 
     private void setToolBar() {
@@ -201,9 +206,6 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void stopAlarming() {
-        if(timer.isTimeout()){
-            timer.changeStatus();
-        }
         alarmer.stop();
     }
 
@@ -228,6 +230,7 @@ public class TimerActivity extends AppCompatActivity {
         alarmer.stop();
         pauseTimer();
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
+        timer.setPauseStatus();
         alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
     }
 
