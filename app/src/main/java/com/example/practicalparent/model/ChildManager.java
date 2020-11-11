@@ -3,6 +3,9 @@ package com.example.practicalparent.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.practicalparent.util.SerializationUtil;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,35 +18,23 @@ import java.util.TreeSet;
 public class ChildManager implements Iterable<Child> {
 
     private static final String FILENAME = "children";
-    private static final String KEY_SET = "KEY_SET";
-    private static final String SUFFIX_NAME = "_NAME";
+    private static final String KEY = "child_list";
+    private final SerializationUtil serializationUtil;
 
+    private List<Child> children;
 
-    private List<Child> children = new ArrayList<>();
-    private SharedPreferences sp;
 
     //Singleton support
     private static ChildManager instance;
 
     private ChildManager(Context c) {
-        sp = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
-        // read from disk
-        Set<String> keys = sp.getStringSet(KEY_SET, new TreeSet<String>());
-        for (String key : keys) {
-            String name = sp.getString(key + SUFFIX_NAME, "");
-            children.add(new Child(name));
-        }
+        serializationUtil = new SerializationUtil(c, FILENAME);
+        children = serializationUtil.getObject(KEY,
+                new TypeToken<List<Child>>(){}.getType(), new ArrayList<>());
     }
 
     private void write() {
-        SharedPreferences.Editor editor = sp.edit();
-        TreeSet<String> keySet = new TreeSet<>();
-        for (int i = 0; i < children.size(); i++) {
-            editor.putString(i + SUFFIX_NAME, children.get(i).getName());
-            keySet.add(String.valueOf(i));
-        }
-        editor.putStringSet(KEY_SET, keySet);
-        editor.apply();
+        serializationUtil.putObject(KEY, children);
     }
 
     public static ChildManager getInstance(Context context) {
