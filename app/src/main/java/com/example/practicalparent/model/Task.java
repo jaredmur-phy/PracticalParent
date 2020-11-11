@@ -1,17 +1,27 @@
 package com.example.practicalparent.model;
 
 public class Task {
-    private String firstName;
-    private String task;
+    private Child child;
+    private String taskName;
+    private String desc;
 
     //Constructor
-    public Task(String task, String firstName) {
-        if (task == null || firstName == null) {
-            throw new IllegalArgumentException("Please add something");
-        }
+    public Task(Child child, String taskName, String desc) {
 
-        this.firstName = firstName;
-        this.task = task;
+        this.child = child;
+        this.taskName = taskName;
+        this.desc = desc;
     }
 
+    public Child getChild(){
+        return child;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }
