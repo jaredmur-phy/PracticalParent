@@ -22,8 +22,13 @@ public class TaskManager implements Iterable<Task> {
     // by calling this function
     // "When a child has had their turn,
     // it automatically advances to the next child's turn for that task next time"
-    public void next(){
+    public void moveNext(){
 
+    }
+
+    // get the nextTask in the queue
+    public Task peekTask(){
+        return taskQueue.get(0);
     }
 
     public boolean isEmpty(){
