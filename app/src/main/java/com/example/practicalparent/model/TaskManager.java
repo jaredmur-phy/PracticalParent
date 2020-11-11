@@ -1,33 +1,42 @@
 package com.example.practicalparent.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
+
 
 public class TaskManager implements Iterable<Task> {
 
     private static TaskManager taskManager;
-    private Context context;
+    private SharedPreferences sp;
     private ArrayList<Task> taskQueue = new ArrayList<>();
 
+    private static final String FILE_NAME = "task_list";
+
     private TaskManager(Context c){
-        this.context = c;
+        this.sp = c.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
     // by calling this function
     // "When a child has had their turn,
     // it automatically advances to the next child's turn for that task next time"
     public void moveNext(){
-
+        if(!taskQueue.isEmpty()) {
+            taskQueue.remove(0);
+        }
     }
 
     // get the nextTask in the queue
+    // return null if no task in the queue
     public Task peekTask(){
+        if(taskQueue.isEmpty()){
+            return null;
+        }
         return taskQueue.get(0);
     }
 
@@ -49,6 +58,10 @@ public class TaskManager implements Iterable<Task> {
 
     public void removeTask(int index){
         taskQueue.remove(index);
+    }
+
+    public List<Task> getList(){
+        return taskQueue;
     }
 
     public static TaskManager getInstance(Context c){
