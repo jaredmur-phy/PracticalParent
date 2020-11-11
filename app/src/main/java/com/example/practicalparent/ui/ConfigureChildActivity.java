@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -57,11 +58,7 @@ public class ConfigureChildActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_children_list_view);
@@ -158,6 +155,26 @@ public class ConfigureChildActivity extends AppCompatActivity {
 
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.task_list_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.id_action_task_settings:
+                startActivity(TaskListActivity.makeLaunchIntent(this));
+                return true;
+            default:
+                finish();
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
