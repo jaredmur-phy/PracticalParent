@@ -1,21 +1,19 @@
 package com.example.practicalparent.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
@@ -23,14 +21,32 @@ import com.example.practicalparent.model.TaskManager;
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager manager;
    private ArrayAdapter<Task> adapter;
+    private ChildManager childManager;
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-        populateListView();
-        registerClickCallBack();
+
+        childManager = ChildManager.getInstance(this);
+        childManager.iterator();
+        
+        createSpinner();
+        
+        
+        /*populateListView();
+        registerClickCallBack();*/
         setToolBar();
     }
+
+    private void createSpinner() {
+        spinner = (Spinner) findViewById(R.id.id_choose_child_spinner);
+        ArrayAdapter<Child> adapter =
+                new ArrayAdapter<Child>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, childManager.getList());
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_task_tool_bar);
         setSupportActionBar(toolbar);
@@ -38,7 +54,13 @@ public class TaskListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-
+//public int size() {
+//        return children.size();
+//    }
+    
+    //public Child get(int i) {
+    //        return children.get(i);
+    //    }
 
     private void registerClickCallBack() {
         /*ListView list = findViewById(R.id.id_task_list_view);
@@ -99,4 +121,12 @@ public class TaskListActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+                finish();
+                return super.onOptionsItemSelected(item);
+        }
+
 }

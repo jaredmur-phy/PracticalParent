@@ -23,7 +23,6 @@ public class ChildManager implements Iterable<Child> {
 
     private List<Child> children;
 
-
     //Singleton support
     private static ChildManager instance;
 

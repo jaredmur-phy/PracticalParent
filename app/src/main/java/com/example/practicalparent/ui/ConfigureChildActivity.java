@@ -58,8 +58,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-
-
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_children_list_view);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -156,8 +154,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
