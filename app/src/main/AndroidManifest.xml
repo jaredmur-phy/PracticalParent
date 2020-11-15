@@ -11,11 +11,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:statusBarColor="@color/colorPrimaryDark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:statusBarColor="@color/colorPrimaryDark"
         tools:ignore="ExtraText">
-        <activity android:name=".ui.CoinFlipHistoryActivity"></activity>
+        <activity android:name=".ui.TaskListActivity"></activity>
+        <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity
             android:name=".ui.ConfigureChildActivity"
             android:windowSoftInputMode="stateHidden" />
@@ -26,17 +27,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.FlipResultsActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_flip_results"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ChooseCoinActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_coin_flip"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".ui.TimerActivity"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TimerActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".ui.MainActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
