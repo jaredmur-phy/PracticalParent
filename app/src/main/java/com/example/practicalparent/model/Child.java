@@ -31,6 +31,10 @@ public class Child {
         setDrawable(d);
     }
 
+    public boolean hasDrawable(){
+        return imgInByte != null;
+    }
+
     public void setDrawable(Drawable d) {
         Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
