@@ -37,7 +37,6 @@ public class SaveChildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_child);
 
-        requestWritePermission();
 
         // TODO: delete child and tack picture
         // TODO: check duplicate name
@@ -57,7 +56,7 @@ public class SaveChildActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void fillInfo() {
         ImageView childImg = findViewById(R.id.id_child_img);
-        if (editChildIndex == -1) {
+        if (editChildIndex == -1) { // use default image
             childImg.setImageDrawable(getDrawable(R.drawable.head));
         } else {
 
@@ -97,11 +96,11 @@ public class SaveChildActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == OPEN_GALLERY_REQUEST_CODE) {
+            // select an image from gallery
             ImageView imageView = findViewById(R.id.id_child_img);
             Uri uri = data.getData();
             imageView.setImageURI(uri);
@@ -128,10 +127,5 @@ public class SaveChildActivity extends AppCompatActivity {
         return getIntent(c, index);
     }
 
-    private void requestWritePermission(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        }
-    }
 
 }
