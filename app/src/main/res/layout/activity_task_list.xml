@@ -20,7 +20,7 @@
         app:titleTextColor="#FFFFFF" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/id_save_child2"
+        android:id="@+id/id_save_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -47,20 +47,12 @@
             android:hint='"Enter a task name: e.g. Take out the trash"' />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <GridView
-        android:id="@+id/id_task_list_view"
-        android:layout_width="414dp"
-        android:layout_height="465dp"
-        app:layout_constraintBottom_toTopOf="@+id/id_task_text_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="Task1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_task_tool_bar" />
@@ -69,7 +61,7 @@
         android:id="@+id/id_task_description_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/id_save_child2"
+        app:layout_constraintBottom_toTopOf="@+id/id_save_task"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -78,5 +70,14 @@
             android:layout_height="wrap_content"
             android:hint='"Enter a description for the task: e.g. First bath"' />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ListView
+        android:id="@+id/id_task_list_view"
+        android:layout_width="412dp"
+        android:layout_height="444dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

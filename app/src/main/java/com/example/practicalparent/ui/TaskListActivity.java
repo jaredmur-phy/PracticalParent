@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -17,10 +21,15 @@ import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+
+import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager manager;
-   private ArrayAdapter<Task> adapter;
+   private ArrayAdapter<Child> adapter;
     private ChildManager childManager;
     private Spinner spinner;
     @Override
@@ -28,24 +37,79 @@ public class TaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
+//
         childManager = ChildManager.getInstance(this);
         childManager.iterator();
         
-        createSpinner();
+
         
         
-        /*populateListView();
-        registerClickCallBack();*/
+        populateListView();
+        registerClickCallBack();
+        setupFAB();
         setToolBar();
     }
 
-    private void createSpinner() {
-        spinner = (Spinner) findViewById(R.id.id_choose_child_spinner);
-        ArrayAdapter<Child> adapter =
-                new ArrayAdapter<Child>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, childManager.getList());
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+    private void setupFAB() {
+
+        FloatingActionButton fab = findViewById(R.id.id_save_task);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String taskName = ((TextInputEditText) findViewById(R.id.id_enter_task)).getText().toString();
+
+                String taskDescription = ((TextInputEditText) findViewById(R.id.id_enter_description)).getText().toString();
+
+                //Task task = new Task(ChildManager.getInstance(TaskListActivity.this).iterator(),taskName,taskDescription);
+
+                //duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
+
+              /*  if (duplicateCheck) {
+                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
+                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a different name", R.style.errorToast).show();
+                } else if (ChildManager.getInstance(ConfigureChildActivity.this).isNullOrEmpty(firstName)) {
+                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
+                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a name", R.style.errorToast).show();
+                } else {*/
+
+                    //Child child = new Child(firstName);
+
+                    //ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
+
+                TextInputEditText clearTask = findViewById(R.id.id_enter_task);
+                //TextInputEditText clearTaskDescription = findViewById(R.id.id_enter_description);
+                    clearTask.getText().clear();
+                   // clearTaskDescription.getText().clear();
+                    adapter.notifyDataSetChanged();
+
+
+
+                    //Close the keyboard once input for child has been saved
+                    //Code taken from:
+                    //https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232
+                    try {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    } catch (Exception e) {
+                    }
+                }
+            //}
+        });
     }
+
+    private void populateListView() {
+        //List<Child> childrens = new Child();
+        //  childrens.addAll(getList());
+        adapter = new ArrayAdapter<>(
+                TaskListActivity.this,
+                R.layout.taskitems,
+                //fix
+                childManager.getList());
+        ListView list =  findViewById(R.id.id_task_list_view);
+        list.setAdapter(adapter);
+    }
+
+
 
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_task_tool_bar);
@@ -73,14 +137,7 @@ public class TaskListActivity extends AppCompatActivity {
         });*/
     }
 
-    private void populateListView() {
-       /* adapter = new ArrayAdapter<>(
-                TaskListActivity.this,
-                R.layout.taskitems,
-                manager.getList());
-        ListView list = findViewById(R.id.id_task_list_view);
-        list.setAdapter(adapter);*/
-    }
+
 
     public void updatePosition(int i) {
        /* dialogBuilder = new AlertDialog.Builder(this);

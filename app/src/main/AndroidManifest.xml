@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText">
-        <activity android:name=".ui.TaskListActivity" />
+        <activity android:name=".ui.TaskListActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity
             android:name=".ui.ConfigureChildActivity"
