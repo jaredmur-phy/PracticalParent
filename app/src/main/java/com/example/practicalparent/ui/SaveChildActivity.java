@@ -40,6 +40,7 @@ public class SaveChildActivity extends AppCompatActivity {
         requestWritePermission();
 
         // TODO: delete child and tack picture
+        // TODO: check duplicate name
         getChildIndex();
         getChildManager();
 
