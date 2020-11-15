@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.practicalparent">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -14,6 +16,11 @@
         android:statusBarColor="@color/colorPrimaryDark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        tools:ignore="ExtraText"
+        android:requestLegacyExternalStorage="true">
+        <activity android:name=".ui.SaveChildActivity" />
+
+        <activity android:name=".ui.TaskListActivity" />
         tools:ignore="ExtraText">
         <activity android:name=".ui.TaskListActivity"
             android:windowSoftInputMode="stateHidden"/>

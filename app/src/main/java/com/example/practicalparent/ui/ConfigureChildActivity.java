@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,18 +25,11 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 // add,edit and delete a list of names given to children
 public class ConfigureChildActivity extends AppCompatActivity {
 
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
-
-    private boolean duplicateCheck = false;
-
     private ChildManager manager;
-    private ArrayAdapter<Child> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +37,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_configure_child);
 
         manager = ChildManager.getInstance(this);
-        manager.iterator();
 
         setupFAB();
         populateListView();
@@ -58,93 +51,62 @@ public class ConfigureChildActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
+
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_children_list_view);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                updatePosition(position);
-                adapter.notifyDataSetChanged();
-            }
-        });
+        list.setOnItemClickListener((parent, view, position, id) -> launchSaveChild(position));
     }
 
     private void populateListView() {
-        adapter = new ArrayAdapter<>(
-                ConfigureChildActivity.this,
-                R.layout.childrenitems,
-                manager.getList());
+        ArrayAdapter<Child> adapter = new ChildListAdapter();
         ListView list = findViewById(R.id.id_children_list_view);
         list.setAdapter(adapter);
     }
 
-    private void setupFAB() {
-        FloatingActionButton fab = findViewById(R.id.id_save_child);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String firstName = ((EditText) findViewById(R.id.id_child_name)).getText().toString();
-
-                duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
-
-                if (duplicateCheck) {
-                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
-                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a different name", R.style.errorToast).show();
-                } else if (ChildManager.getInstance(ConfigureChildActivity.this).isNullOrEmpty(firstName)) {
-                    //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
-                    StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a name", R.style.errorToast).show();
-                } else {
-
-                    Child child = new Child(firstName);
-
-                    ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
-
-                    EditText clearName = findViewById(R.id.id_child_name);
-                    clearName.getText().clear();
-                    adapter.notifyDataSetChanged();
-                    //Close the keyboard once input for child has been saved
-                    //Code taken from:
-                    //https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232
-                    try {
-                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                    } catch (Exception e) {
-                    }
-                }
-            }
-        });
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        populateListView();
     }
 
-    public void updatePosition(int i) {
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
-        dialogBuilder.setView(changePopup);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        Button saveBtn = changePopup.findViewById(R.id.saveChangeName);
-        Button deleteBtn = changePopup.findViewById(R.id.deleteButton);
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String changeName = ((EditText) changePopup.findViewById(R.id.changeName)).getText().toString();
-                if (!ChildManager.getInstance(ConfigureChildActivity.this).isNullOrEmpty(changeName)) {
-                    manager.changeName(i, changeName);
-                    adapter.notifyDataSetChanged();
-                }
-                dialog.dismiss();
+    private class ChildListAdapter extends ArrayAdapter<Child>{
+        public ChildListAdapter(){
+            super(ConfigureChildActivity.this,
+                    R.layout.childrenitems,
+                    manager.getList());
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Make sure we have a view to work with (may have been given null)
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.childrenitems, parent, false);
             }
-        });
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manager.removeChild(i);
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });
+            // Find the car to work with.
+            Child curChild = manager.get(position);
+
+            // Fill the view
+            ImageView childImgView = itemView.findViewById(R.id.id_child_img);
+            childImgView.setImageDrawable(curChild.getDrawable(ConfigureChildActivity.this));
+
+            TextView childNameView = itemView.findViewById(R.id.id_child_name);
+            childNameView.setText(curChild.getName());
+
+            return itemView;
+        }
+    }
+
+    private void setupFAB() {
+        findViewById(R.id.id_add_child).setOnClickListener(v -> launchSaveChild());
+    }
+
+    private void launchSaveChild(){
+        startActivity(SaveChildActivity.makeLaunchIntent(ConfigureChildActivity.this));
+    }
+
+    private void launchSaveChild(int index){
+        startActivity(SaveChildActivity.makeLaunchIntent(ConfigureChildActivity.this, index));
     }
 
     public static Intent getIntent(Context c) {
@@ -154,6 +116,8 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
