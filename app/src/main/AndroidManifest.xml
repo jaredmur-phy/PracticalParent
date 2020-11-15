@@ -20,8 +20,6 @@
         android:requestLegacyExternalStorage="true">
         <activity android:name=".ui.SaveChildActivity" />
 
-        <activity android:name=".ui.TaskListActivity" />
-        tools:ignore="ExtraText">
         <activity android:name=".ui.TaskListActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.CoinFlipHistoryActivity" />
