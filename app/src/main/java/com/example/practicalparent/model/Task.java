@@ -9,6 +9,7 @@ public class Task {
     private List<Child> childList;
     private String taskName;
     private String desc;
+    private int index;
 
     //Constructor
     public Task(List<Child> childList, String taskName, String desc) {
@@ -16,29 +17,29 @@ public class Task {
 
         this.childList = new ArrayList<>();
         this.childList.addAll(childList);
-        Collections.reverse(childList);
+        Collections.shuffle(this.childList);
 
+        this.index = 0;
         this.taskName = taskName;
         this.desc = desc == null ? "" : desc;
     }
 
     // return the current Child in the list
     public Child peekChild(){
-        if(isDone()) return null;
-        return childList.get(childList.size() - 1);
+        if(isEmpty()) return null;
+        return childList.get(index);
     }
 
     // move to the next child
     public void moveNext() {
-        if(isDone()) return;
-        childList.remove(childList.size() - 1);
+        if(isEmpty()) return;
+        index ++;
+        index = index % childList.size();
     }
 
-    public boolean isDone(){
+    public boolean isEmpty(){
         return childList.isEmpty();
     }
-
-
 
     public String getTaskName() {
         return taskName;
