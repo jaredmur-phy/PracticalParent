@@ -17,7 +17,7 @@ import java.util.TreeSet;
  */
 public class ChildManager implements Iterable<Child> {
 
-    private static final String FILENAME = "children";
+    private static final String FILENAME = "CHILD_LIST_1";
     private static final String KEY = "child_list";
     private final SerializationUtil serializationUtil;
 
@@ -74,6 +74,11 @@ public class ChildManager implements Iterable<Child> {
 
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
+        write();
+    }
+
+    public void updateChild(int index, Child child){
+        children.set(index, child);
         write();
     }
 
