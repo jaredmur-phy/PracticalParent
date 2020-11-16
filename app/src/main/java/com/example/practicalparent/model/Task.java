@@ -1,23 +1,44 @@
 package com.example.practicalparent.model;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Task {
-    private Child child;
+    private List<Child> childList;
     private String taskName;
     private String desc;
 
     //Constructor
-    public Task(Child child, String taskName, String desc) {
-        validateChild(child);
+    public Task(List<Child> childList, String taskName, String desc) {
         validateTaskName(taskName);
 
-        this.child = child;
+        this.childList = new ArrayList<>();
+        this.childList.addAll(childList);
+        Collections.reverse(childList);
+
         this.taskName = taskName;
         this.desc = desc == null ? "" : desc;
     }
 
-    public Child getChild(){
-        return child;
+    // return the current Child in the list
+    public Child peekChild(){
+        if(isDone()) return null;
+        return childList.get(childList.size() - 1);
     }
+
+    // move to the next child
+    public void moveNext() {
+        if(isDone()) return;
+        childList.remove(childList.size() - 1);
+    }
+
+    public boolean isDone(){
+        return childList.isEmpty();
+    }
+
+
 
     public String getTaskName() {
         return taskName;
@@ -27,11 +48,6 @@ public class Task {
         return desc;
     }
 
-    private void validateChild(Child child){
-        if(child == null){
-            throw new IllegalArgumentException("Child should not be null");
-        }
-    }
 
     private void validateTaskName(String taskName){
         if(taskName == null || taskName.trim().isEmpty()){
