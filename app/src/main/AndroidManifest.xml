@@ -26,7 +26,7 @@
             android:name=".ui.ConfigureChildActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.CreditsActivity"
+            android:name=".ui.HelpActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar" />

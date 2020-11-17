@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.practicalparent.R;
 
 // A page for sources
-public class CreditsActivity extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_credits);
+        setContentView(R.layout.activity_help);
         setupHyperLinks();
     }
 
@@ -41,10 +41,13 @@ public class CreditsActivity extends AppCompatActivity {
         t9.setMovementMethod(LinkMovementMethod.getInstance());
         TextView t10 = (TextView) findViewById(R.id.fontSource);
         t10.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t11 = (TextView) findViewById(R.id.id_team_name);
+        t11.setMovementMethod(LinkMovementMethod.getInstance());
+
     }
 
     public static Intent getIntent(Context c) {
-        return new Intent(c, CreditsActivity.class);
+        return new Intent(c, HelpActivity.class);
     }
 
     public static Intent makeLaunchIntent(Context c) {
