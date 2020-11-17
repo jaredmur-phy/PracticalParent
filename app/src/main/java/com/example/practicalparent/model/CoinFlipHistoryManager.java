@@ -7,9 +7,6 @@ import com.example.practicalparent.util.SerializationUtil;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 
 /**
@@ -18,18 +15,19 @@ import java.util.TreeSet;
  */
 public class CoinFlipHistoryManager {
 
-    private static final String FILENAME = "history_file";
+    private static final String FILENAME = "History_file";
+    private static final String KEY_SET = "KEY_SET";
+
     private static final int LIMIT = 100; // only save 100 histories
 
     private static CoinFlipHistoryManager historyManager;
 
     private ArrayList<CoinFlipHistory> historyList;
-    private SerializationUtil serializationUtil;
+    private final SerializationUtil serializationUtil;
 
     private CoinFlipHistoryManager(Context context) {
-        serializationUtil = new SerializationUtil(context, FILENAME);
-        historyList = serializationUtil.getObject(FILENAME,
-                new TypeToken<ArrayList<CoinFlipHistory>>(){}.getType(), new ArrayList<>());
+        serializationUtil = new SerializationUtil(context.getApplicationContext(), FILENAME);
+        historyList = serializationUtil.getObject(KEY_SET, new TypeToken<ArrayList<CoinFlipHistory>>(){}.getType(), new ArrayList<>());
     }
 
     public void add(CoinFlipHistory history) {
@@ -56,7 +54,7 @@ public class CoinFlipHistoryManager {
     }
 
     private void write() {
-        serializationUtil.putObject(FILENAME, historyList);
+        serializationUtil.putObject(KEY_SET, historyList);
     }
 
     public ArrayList<CoinFlipHistory> getHistoryList() {

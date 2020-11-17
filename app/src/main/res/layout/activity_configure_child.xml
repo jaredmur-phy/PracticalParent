@@ -19,18 +19,6 @@
         app:title="Configure Children"
         app:titleTextColor="#FFFFFF" />
 
-    <EditText
-        android:id="@+id/id_child_name"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/nameexample"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/id_current_list_text"
         android:layout_width="wrap_content"
@@ -41,18 +29,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_configure_tool_bar" />
 
-    <TextView
-        android:id="@+id/id_enter_child_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/enterchild"
-        app:layout_constraintBottom_toTopOf="@+id/id_child_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/id_save_child"
+        android:id="@+id/id_add_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -63,35 +41,17 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/savechild" />
+        app:srcCompat="@drawable/add"/>
 
     <ListView
         android:id="@+id/id_children_list_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_current_list_text"
-        app:layout_constraintVertical_bias="0.506" />
-
-    <TextView
-        android:id="@+id/id_change_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/changeTutorial"
-        app:layout_constraintBottom_toTopOf="@+id/id_enter_child_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.72" />
+        app:layout_constraintTop_toBottomOf="@+id/id_current_list_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
