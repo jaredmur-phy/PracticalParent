@@ -68,4 +68,5 @@
     <string name="name_already_exist">Name already exist</string>
     <string name="task_list">Task List</string>
     <string name="title_activity_save_child">Save Child</string>
+    <string name="turn_switch_on_to_edit_click_on_task_to_do_so"><![CDATA[<- Turn switch on to edit; click on task to do so.]]></string>
 </resources>

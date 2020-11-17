@@ -63,6 +63,16 @@ public class TaskManager implements Iterable<Task> {
         write();
     }
 
+    public void changeTaskName(int index, String newName) {
+        taskQueue.get(index).setTaskName(newName);
+        write();
+    }
+
+    public void changeTaskDesc(int index, String newName) {
+        taskQueue.get(index).setTaskDesc(newName);
+        write();
+    }
+
     public List<Task> getList(){
         return taskQueue;
     }

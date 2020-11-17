@@ -1,49 +1,53 @@
 package com.example.practicalparent.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
-import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
-
-import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
    private ArrayAdapter<Task> adapter;
     private ChildManager childManager;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-//
+
         taskManager = TaskManager.getInstance(this);
         childManager = ChildManager.getInstance(this);
 
         setupFAB();
         populateListView();
-        registerClickCallBack();
+        registerClickCallBackToEdit();
+        //registerClickCallBackForPopUp();
         setToolBar();
     }
 
@@ -53,15 +57,16 @@ public class TaskListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String taskName = ((TextInputEditText) findViewById(R.id.id_enter_task)).getText().toString();
+                String taskName = ((EditText) findViewById(R.id.id_enter_task)).getText().toString();
 
-                String taskDescription = ((TextInputEditText) findViewById(R.id.id_enter_description)).getText().toString();
+                String taskDescription = ((EditText) findViewById(R.id.id_enter_description)).getText().toString();
 
-                Task task = new Task(childManager.getInstance(TaskListActivity.this).getList(),taskName,taskDescription);
+                if (!taskName.isEmpty() && !taskDescription.isEmpty()) {
+                    Task task = new Task(childManager.getInstance(TaskListActivity.this).getList(), taskName, taskDescription);
 
-                taskManager.getInstance(TaskListActivity.this).addTask(task);
+                    taskManager.getInstance(TaskListActivity.this).addTask(task);
 
-                //duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
+                    //duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
 
               /*  if (duplicateCheck) {
                     //code taken from: https://www.youtube.com/watch?v=fq8TDVqpmZ0
@@ -75,13 +80,11 @@ public class TaskListActivity extends AppCompatActivity {
 
                     //ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
 
-                TextInputEditText clearTask = findViewById(R.id.id_enter_task);
-                TextInputEditText clearTaskDescription = findViewById(R.id.id_enter_description);
+                  EditText clearTask = findViewById(R.id.id_enter_task);
+                  EditText clearTaskDescription = findViewById(R.id.id_enter_description);
                     clearTask.getText().clear();
                     clearTaskDescription.getText().clear();
                     adapter.notifyDataSetChanged();
-
-
 
                     //Close the keyboard once input for child has been saved
                     //Code taken from:
@@ -92,7 +95,8 @@ public class TaskListActivity extends AppCompatActivity {
                     } catch (Exception e) {
                     }
                 }
-            //}
+                //}
+            }
         });
     }
 
@@ -101,13 +105,10 @@ public class TaskListActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(
                 TaskListActivity.this,
                 R.layout.taskitems,
-                //fix
                 taskManager.getList());
         ListView list =  findViewById(R.id.id_task_list_view);
         list.setAdapter(adapter);
     }
-
-
 
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_task_tool_bar);
@@ -116,23 +117,31 @@ public class TaskListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-
-
-    private void registerClickCallBack() {
-        /*ListView list = findViewById(R.id.id_task_list_view);
+    private void registerClickCallBackToEdit() {
+        ListView list = findViewById(R.id.id_task_list_view);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showID(position);
-                adapter.notifyDataSetChanged();
+                boolean delete = checkSwitch();
+                if(delete) {
+                    showID(position);
+                    adapter.notifyDataSetChanged();
+                }
             }
-        });*/
+        });
+    }
+
+    private boolean checkSwitch() {
+        Switch sw = (Switch)findViewById(R.id.id_update);
+        if(sw.isChecked()) {
+            return true;
+        }
+        return false;
     }
 
 
-
-    public void updatePosition(int i) {
-       /* dialogBuilder = new AlertDialog.Builder(this);
+    public void showID(int i) {
+        dialogBuilder = new AlertDialog.Builder(this);
         final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
         dialogBuilder.setView(changePopup);
         dialog = dialogBuilder.create();
@@ -144,24 +153,28 @@ public class TaskListActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String changeName = ((EditText) changePopup.findViewById(R.id.changeName)).getText().toString();
-                if (!taskManager.getInstance(taskListActivity.this).isNullOrEmpty(changeName)) {
-                    manager.changeName(i, changeName);
-                    adapter.notifyDataSetChanged();
-                }
+                String changeTaskName = ((EditText) changePopup.findViewById(R.id.id_update_task_name)).getText().toString();
+                String changeTaskDesc = ((EditText) changePopup.findViewById(R.id.id_update_task_desc)).getText().toString();
+
+                TaskManager.getInstance(TaskListActivity.this).changeTaskName(i, changeTaskName);
+                TaskManager.getInstance(TaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
+
+                adapter.notifyDataSetChanged();
+
+
                 dialog.dismiss();
             }
-        });
+            });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manager.removeChild(i);
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });*/
-    }
+                @Override
+                public void onClick(View v) {
+                    taskManager.removeTask(i);
+                    adapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+        }
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
@@ -171,11 +184,9 @@ public class TaskListActivity extends AppCompatActivity {
         return getIntent(c);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
                 finish();
                 return super.onOptionsItemSelected(item);
         }
-
 }

@@ -49,6 +49,13 @@ public class Task {
         return desc;
     }
 
+    public void setTaskName(String name) {
+        this.taskName = name;
+    }
+
+    public void setTaskDesc(String name) {
+        this.desc = name;
+    }
 
     private void validateTaskName(String taskName){
         if(taskName == null || taskName.trim().isEmpty()){
@@ -58,5 +65,9 @@ public class Task {
 
     public String toString() {
         return "Task: " + taskName + " " + peekChild();
+    }
+
+    public String toString2() {
+        return "Task Description: " + desc;
     }
 }

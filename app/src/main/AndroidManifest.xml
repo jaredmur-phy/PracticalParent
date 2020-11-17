@@ -21,10 +21,12 @@
         <activity android:name=".ui.SaveChildActivity" />
 
         <activity android:name=".ui.TaskListActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
         <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity
             android:name=".ui.ConfigureChildActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.CreditsActivity"

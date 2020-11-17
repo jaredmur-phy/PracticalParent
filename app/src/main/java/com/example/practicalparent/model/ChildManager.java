@@ -24,8 +24,6 @@ public class ChildManager implements Iterable<Child> {
 
     private List<Child> children;
 
-
-
     //Singleton support
     private static ChildManager instance;
 
@@ -53,12 +51,6 @@ public class ChildManager implements Iterable<Child> {
 
     public List<Child> getList() {
         return children;
-    }
-
-    public void getChildren(){
-      //  List<Child> childrens = new ChildManager(this);
-      //  childrens.addAll(getList());
-      // return childrens;
     }
 
     public Child get(int i) {
