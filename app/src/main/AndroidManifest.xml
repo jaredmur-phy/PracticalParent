@@ -4,7 +4,7 @@
     package="com.example.practicalparent">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -12,17 +12,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:statusBarColor="@color/colorPrimaryDark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="ExtraText"
-        android:requestLegacyExternalStorage="true">
+        tools:ignore="ExtraText">
+        <activity
+            android:name=".ui.TaskInfoActivity"
+            android:label="@string/title_activity_task_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.SaveChildActivity" />
-
-        <activity android:name=".ui.TaskListActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".ui.TaskListActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity
             android:name=".ui.ConfigureChildActivity"

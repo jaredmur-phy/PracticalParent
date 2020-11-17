@@ -1,8 +1,11 @@
 package com.example.practicalparent.ui;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -14,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +32,7 @@ public class SaveChildActivity extends AppCompatActivity {
 
     private final static String GET_INDEX = "GET_INDEX";
     private final static int OPEN_GALLERY_REQUEST_CODE = 13;
+    private final static int SAME_IMAGE = -1;
     private ChildManager childManager;
     private int editChildIndex = -1;
 
@@ -47,6 +52,14 @@ public class SaveChildActivity extends AppCompatActivity {
 
         setupImgBtn();
         setupSaveBtn();
+        setToolBar();
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = findViewById(R.id.id_save_child_tool_bar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     private void getChildIndex(){
@@ -56,7 +69,7 @@ public class SaveChildActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void fillInfo() {
         ImageView childImg = findViewById(R.id.id_child_img);
-        if (editChildIndex == -1) { // use default image
+        if (editChildIndex == SAME_IMAGE) { // use default image
             childImg.setImageDrawable(getDrawable(R.drawable.head));
         } else {
 
@@ -86,7 +99,7 @@ public class SaveChildActivity extends AppCompatActivity {
                 String childName = editText.getText().toString();
                 ImageView imageView = findViewById(R.id.id_child_img);
                 Child child = new Child(childName, imageView.getDrawable());
-                if (editChildIndex == -1) {
+                if (editChildIndex == SAME_IMAGE) {
                     childManager.addChild(child);
                 } else {
                     childManager.updateChild(editChildIndex, child);
@@ -127,5 +140,9 @@ public class SaveChildActivity extends AppCompatActivity {
         return getIntent(c, index);
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -67,7 +67,4 @@ public class Task {
         return "Task: " + taskName + " " + peekChild();
     }
 
-    public String toString2() {
-        return "Task Description: " + desc;
-    }
 }

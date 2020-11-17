@@ -117,8 +117,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         return getIntent(c);
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.task_list_menu, menu);

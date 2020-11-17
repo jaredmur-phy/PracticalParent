@@ -28,7 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
-   private ArrayAdapter<Task> adapter;
+    private ArrayAdapter<Task> adapter;
     private ChildManager childManager;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
@@ -47,7 +47,7 @@ public class TaskListActivity extends AppCompatActivity {
         setupFAB();
         populateListView();
         registerClickCallBackToEdit();
-        //registerClickCallBackForPopUp();
+        launchTaskInfo();
         setToolBar();
     }
 
@@ -139,7 +139,6 @@ public class TaskListActivity extends AppCompatActivity {
         return false;
     }
 
-
     public void showID(int i) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
@@ -175,6 +174,17 @@ public class TaskListActivity extends AppCompatActivity {
                 }
             });
         }
+
+    private void launchTaskInfo() {
+        ListView list = findViewById(R.id.id_task_list_view);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this);
+                startActivity(intent);
+            }
+        });
+    }
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
