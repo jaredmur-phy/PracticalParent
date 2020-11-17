@@ -28,25 +28,22 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity {
-    private TaskManager manager;
-   private ArrayAdapter<Child> adapter;
+    private TaskManager taskManager;
+   private ArrayAdapter<Task> adapter;
     private ChildManager childManager;
-    private Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
 //
+        taskManager = TaskManager.getInstance(this);
         childManager = ChildManager.getInstance(this);
-        childManager.iterator();
-        
 
-        
-        
+        setupFAB();
         populateListView();
         registerClickCallBack();
-        setupFAB();
         setToolBar();
     }
 
@@ -60,7 +57,9 @@ public class TaskListActivity extends AppCompatActivity {
 
                 String taskDescription = ((TextInputEditText) findViewById(R.id.id_enter_description)).getText().toString();
 
-                //Task task = new Task(ChildManager.getInstance(TaskListActivity.this).iterator(),taskName,taskDescription);
+                Task task = new Task(childManager.getInstance(TaskListActivity.this).getList(),taskName,taskDescription);
+
+                taskManager.getInstance(TaskListActivity.this).addTask(task);
 
                 //duplicateCheck = ChildManager.getInstance(ConfigureChildActivity.this).findChild(firstName);
 
@@ -77,9 +76,9 @@ public class TaskListActivity extends AppCompatActivity {
                     //ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
 
                 TextInputEditText clearTask = findViewById(R.id.id_enter_task);
-                //TextInputEditText clearTaskDescription = findViewById(R.id.id_enter_description);
+                TextInputEditText clearTaskDescription = findViewById(R.id.id_enter_description);
                     clearTask.getText().clear();
-                   // clearTaskDescription.getText().clear();
+                    clearTaskDescription.getText().clear();
                     adapter.notifyDataSetChanged();
 
 
@@ -98,13 +97,12 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void populateListView() {
-        //List<Child> childrens = new Child();
-        //  childrens.addAll(getList());
+
         adapter = new ArrayAdapter<>(
                 TaskListActivity.this,
                 R.layout.taskitems,
                 //fix
-                childManager.getList());
+                taskManager.getList());
         ListView list =  findViewById(R.id.id_task_list_view);
         list.setAdapter(adapter);
     }
@@ -118,20 +116,14 @@ public class TaskListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-//public int size() {
-//        return children.size();
-//    }
-    
-    //public Child get(int i) {
-    //        return children.get(i);
-    //    }
+
 
     private void registerClickCallBack() {
         /*ListView list = findViewById(R.id.id_task_list_view);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                updatePosition(position);
+                showID(position);
                 adapter.notifyDataSetChanged();
             }
         });*/

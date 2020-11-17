@@ -55,4 +55,8 @@ public class Task {
             throw new IllegalArgumentException("Task name should not be empty");
         }
     }
+
+    public String toString() {
+        return "Task: " + taskName + " " + peekChild();
+    }
 }
