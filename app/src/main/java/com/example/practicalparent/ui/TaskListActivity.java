@@ -32,7 +32,7 @@ public class TaskListActivity extends AppCompatActivity {
     private ChildManager childManager;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
-
+    private boolean switchState;
 
 
     @Override
@@ -46,8 +46,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         setupFAB();
         populateListView();
-        registerClickCallBackToEdit();
-        launchTaskInfo();
+        registerClickCallBack();
         setToolBar();
     }
 
@@ -60,6 +59,8 @@ public class TaskListActivity extends AppCompatActivity {
                 String taskName = ((EditText) findViewById(R.id.id_enter_task)).getText().toString();
 
                 String taskDescription = ((EditText) findViewById(R.id.id_enter_description)).getText().toString();
+
+                //taskManager.getInstance(TaskListActivity.this).setTaskDesc(taskDescription);
 
                 if (!taskName.isEmpty() && !taskDescription.isEmpty()) {
                     Task task = new Task(childManager.getInstance(TaskListActivity.this).getList(), taskName, taskDescription);
@@ -80,8 +81,8 @@ public class TaskListActivity extends AppCompatActivity {
 
                     //ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
 
-                  EditText clearTask = findViewById(R.id.id_enter_task);
-                  EditText clearTaskDescription = findViewById(R.id.id_enter_description);
+                    EditText clearTask = findViewById(R.id.id_enter_task);
+                    EditText clearTaskDescription = findViewById(R.id.id_enter_description);
                     clearTask.getText().clear();
                     clearTaskDescription.getText().clear();
                     adapter.notifyDataSetChanged();
@@ -106,7 +107,7 @@ public class TaskListActivity extends AppCompatActivity {
                 TaskListActivity.this,
                 R.layout.taskitems,
                 taskManager.getList());
-        ListView list =  findViewById(R.id.id_task_list_view);
+        ListView list = findViewById(R.id.id_task_list_view);
         list.setAdapter(adapter);
     }
 
@@ -117,26 +118,32 @@ public class TaskListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void registerClickCallBackToEdit() {
+    private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_task_list_view);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                boolean delete = checkSwitch();
-                if(delete) {
+                switchState = checkSwitch();
+                if (switchState) {
                     showID(position);
                     adapter.notifyDataSetChanged();
+                } else {
+                    Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this, position);
+
+                    startActivity(intent);
                 }
             }
         });
     }
 
     private boolean checkSwitch() {
-        Switch sw = (Switch)findViewById(R.id.id_update);
-        if(sw.isChecked()) {
+        Switch sw = (Switch) findViewById(R.id.id_update);
+        if (sw.isChecked()) {
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
     }
 
     public void showID(int i) {
@@ -163,28 +170,18 @@ public class TaskListActivity extends AppCompatActivity {
 
                 dialog.dismiss();
             }
-            });
+        });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    taskManager.removeTask(i);
-                    adapter.notifyDataSetChanged();
-                    dialog.dismiss();
-                }
-            });
-        }
-
-    private void launchTaskInfo() {
-        ListView list = findViewById(R.id.id_task_list_view);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this);
-                startActivity(intent);
+            public void onClick(View v) {
+                taskManager.removeTask(i);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
             }
         });
     }
+
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
@@ -196,7 +193,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-                finish();
-                return super.onOptionsItemSelected(item);
-        }
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }

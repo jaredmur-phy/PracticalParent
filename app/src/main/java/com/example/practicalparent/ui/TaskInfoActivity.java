@@ -1,9 +1,12 @@
 package com.example.practicalparent.ui;
 
+import android.app.TaskInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.practicalparent.model.ChildManager;
+import com.example.practicalparent.model.TaskManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -14,18 +17,32 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.practicalparent.R;
 
 public class TaskInfoActivity extends AppCompatActivity {
-
+    private TaskManager taskManager;
+    private ChildManager childManager;
+    private final static String GET_INDEX = "GET_INDEX";
+    private int editChildIndex = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_info);
-
+        taskManager.getInstance(this);
+        childManager = ChildManager.getInstance(this);
+        getChildIndex();
         setToolBar();
+        setChildPhoto();
+        confirmation();
+        cancel();
 
+    }
+
+    private void getChildIndex(){
+        editChildIndex = getIntent().getExtras().getInt(GET_INDEX);
     }
 
     private void setToolBar() {
@@ -35,22 +52,40 @@ public class TaskInfoActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
+    private void setChildPhoto() {
+        ImageView childImgView = findViewById(R.id.id_get_child_img);
 
+        childImgView.setImageDrawable(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getDrawable(TaskInfoActivity.this));
 
-
-
-
-
-
-
-
-
-    public static Intent getIntent(Context c) {
-        return new Intent(c, TaskInfoActivity.class);
     }
 
-    public static Intent makeLaunchIntent(Context c) {
-        return getIntent(c);
+
+
+    private void cancel() {
+        Button cancelButton = (Button) findViewById(R.id.id_cancel_button);
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void confirmation() {
+
+    }
+
+
+
+    public static Intent getIntent(Context c, int index) {
+        Intent intent = new Intent(c, TaskInfoActivity.class);
+        intent.putExtra(GET_INDEX, index);
+        return intent;
+    }
+
+    public static Intent makeLaunchIntent(Context c, int index) {
+        return getIntent(c,index);
     }
 
 

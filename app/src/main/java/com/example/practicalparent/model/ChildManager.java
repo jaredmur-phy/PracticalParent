@@ -72,6 +72,8 @@ public class ChildManager implements Iterable<Child> {
         return anyDuplicates;
     }
 
+    //public void storeDesc(String )
+
     public void changeName(int index, String newName) {
         children.get(index).setName(newName);
         write();
