@@ -128,12 +128,16 @@ public class TaskListActivity extends AppCompatActivity {
                     showID(position);
                     adapter.notifyDataSetChanged();
                 } else {
-                    Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this, position);
-
-                    startActivity(intent);
+                    launchTaskInfo(position);
                 }
             }
         });
+    }
+
+    private void launchTaskInfo(int position)  {
+        Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this, position);
+
+        startActivity(intent);
     }
 
     private boolean checkSwitch() {

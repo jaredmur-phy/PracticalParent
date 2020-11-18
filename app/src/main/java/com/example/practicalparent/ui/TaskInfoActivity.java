@@ -18,7 +18,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.practicalparent.R;
 
@@ -36,6 +38,10 @@ public class TaskInfoActivity extends AppCompatActivity {
         getChildIndex();
         setToolBar();
         setChildPhoto();
+        setChildName();
+        setTaskName();
+        setTaskDesc();
+
         confirmation();
         cancel();
 
@@ -59,7 +65,21 @@ public class TaskInfoActivity extends AppCompatActivity {
 
     }
 
+private void setChildName(){
+    TextView editChildName = (TextView) findViewById(R.id.id_child_text);
+    editChildName.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getName());
+}
 
+    private void setTaskName(){
+        TextView editTaskName = (TextView) findViewById(R.id.id_task_title);
+        editTaskName.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getTaskName());
+
+    }
+
+    private void setTaskDesc(){
+        TextView editTaskDesc = (TextView) findViewById(R.id.id_task_desc);
+        editTaskDesc.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getDesc());
+    }
 
     private void cancel() {
         Button cancelButton = (Button) findViewById(R.id.id_cancel_button);
