@@ -40,7 +40,6 @@ public class TaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-
         taskManager = TaskManager.getInstance(this);
         childManager = ChildManager.getInstance(this);
 
@@ -50,6 +49,11 @@ public class TaskListActivity extends AppCompatActivity {
         setToolBar();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        populateListView();
+    }
     private void setupFAB() {
 
         FloatingActionButton fab = findViewById(R.id.id_save_task);

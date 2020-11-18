@@ -54,6 +54,10 @@ public class TaskManager implements Iterable<Task> {
         write();
     }
 
+    public void updateNextChild(){
+        write();
+    }
+
     public Task getTask(int index){
         return taskQueue.get(index);
     }

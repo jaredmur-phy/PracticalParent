@@ -100,6 +100,7 @@ private void setChildName(){
             @Override
             public void onClick(View v) {
                 taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).moveNext();
+                taskManager.getInstance(TaskInfoActivity.this).updateNextChild();
                 finish();
             }
         });
