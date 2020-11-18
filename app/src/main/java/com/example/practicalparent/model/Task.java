@@ -37,6 +37,8 @@ public class Task {
         index = index % childList.size();
     }
 
+    public void nextChild(){
+    }
     public boolean isEmpty(){
         return childList.isEmpty();
     }

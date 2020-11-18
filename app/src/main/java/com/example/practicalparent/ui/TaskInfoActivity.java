@@ -34,7 +34,8 @@ public class TaskInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_info);
         taskManager.getInstance(this);
-        childManager = ChildManager.getInstance(this);
+        childManager.getInstance(this);
+
         getChildIndex();
         setToolBar();
         setChildPhoto();
@@ -93,10 +94,17 @@ private void setChildName(){
     }
 
     private void confirmation() {
+        Button confirmationButton = (Button) findViewById(R.id.id_confirm_button);
+
+        confirmationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).moveNext();
+                finish();
+            }
+        });
 
     }
-
-
 
     public static Intent getIntent(Context c, int index) {
         Intent intent = new Intent(c, TaskInfoActivity.class);
