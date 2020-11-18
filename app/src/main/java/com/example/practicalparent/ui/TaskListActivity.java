@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -54,6 +55,7 @@ public class TaskListActivity extends AppCompatActivity {
         super.onRestart();
         populateListView();
     }
+
     private void setupFAB() {
 
         FloatingActionButton fab = findViewById(R.id.id_save_task);
@@ -81,9 +83,7 @@ public class TaskListActivity extends AppCompatActivity {
                     StyleableToast.makeText(ConfigureChildActivity.this, "Please enter a name", R.style.errorToast).show();
                 } else {*/
 
-                    //Child child = new Child(firstName);
 
-                    //ChildManager.getInstance(ConfigureChildActivity.this).addChild(child);
 
                     EditText clearTask = findViewById(R.id.id_enter_task);
                     EditText clearTaskDescription = findViewById(R.id.id_enter_description);
@@ -190,7 +190,6 @@ public class TaskListActivity extends AppCompatActivity {
         });
     }
 
-
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
     }
@@ -200,8 +199,21 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.task_list_edit_menu, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.id_action_edit_setting:
+                startActivity(EditTaskListActivity.makeLaunchIntent(this));
+                return true;
+            default:
+                finish();
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

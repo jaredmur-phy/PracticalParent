@@ -19,9 +19,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText">
         <activity
+            android:name=".ui.DeleteTaskListActivity"
+            android:label="@string/title_activity_delete_task_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.EditTaskListActivity"
+            android:label="@string/title_activity_edit_task_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.TaskInfoActivity"
             android:label="@string/title_activity_task_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.SaveChildActivity" />
         <activity
             android:name=".ui.TaskListActivity"
