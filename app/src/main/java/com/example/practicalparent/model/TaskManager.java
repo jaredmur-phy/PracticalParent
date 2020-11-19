@@ -31,16 +31,6 @@ public class TaskManager implements Iterable<Task> {
         serializationUtil.putObject(FILE_NAME, taskQueue);
     }
 
-    // by calling this function
-    // "When a child has had their turn,
-    // it automatically advances to the next child's turn for that task next time"
-    public void moveNext(){
-        if(!taskQueue.isEmpty()) {
-            taskQueue.remove(0);
-            write();
-        }
-    }
-
     // get the nextTask in the queue
     // return null if no task in the queue
     // not change the task list
