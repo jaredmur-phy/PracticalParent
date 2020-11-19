@@ -55,7 +55,6 @@ public class HelpActivity extends AppCompatActivity {
         t10.setMovementMethod(LinkMovementMethod.getInstance());
         TextView t11 = (TextView) findViewById(R.id.id_team_name);
         t11.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
 
     public static Intent getIntent(Context c) {
