@@ -45,10 +45,7 @@ public class DeleteTaskListActivity extends AppCompatActivity {
         populateListView();
         registerClickCallBack();
 
-
-
     }
-
 
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_delete_task_list);
@@ -116,7 +113,7 @@ public class DeleteTaskListActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(
                 DeleteTaskListActivity.this,
-                R.layout.taskitems,
+                R.layout.delete_task_items,
                 taskManager.getList());
         ListView list = findViewById(R.id.id_delete_task_list);
         list.setAdapter(adapter);
@@ -130,12 +127,10 @@ public class DeleteTaskListActivity extends AppCompatActivity {
         return getIntent(c);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         finish();
         return super.onOptionsItemSelected(item);
     }
-
 
 }

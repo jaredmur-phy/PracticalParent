@@ -66,7 +66,7 @@ public class Task {
     }
 
     public String toString() {
-        return "Task: " + taskName + " " + peekChild();
+        return "Task: " + taskName + "\n" + peekChild();
     }
 
 }

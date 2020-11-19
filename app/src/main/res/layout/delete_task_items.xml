@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linearLayOut xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"/>
+
+
+    <CheckBox
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:text="C"
+        android:textColor="#1e1e1e"
+        android:gravity="center"
+        android:button="@android:color/transparent"
+        android:id="@+id/checkbox"
+    />
+
+</linearLayOut>
