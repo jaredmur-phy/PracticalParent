@@ -72,6 +72,5 @@
     <string name="task_list">Task List</string>
     <string name="title_activity_save_child">Save Child</string>
     <string name="help">Help</string>
-
-
+    <string name="no_camera_message">The current device does not have a camera</string>
 </resources>
