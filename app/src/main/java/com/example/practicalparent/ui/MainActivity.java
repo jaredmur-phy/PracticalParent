@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchCredits() {
-        Intent intent = CreditsActivity.makeLaunchIntent(MainActivity.this);
+        Intent intent = HelpActivity.makeLaunchIntent(MainActivity.this);
         startActivity(intent);
     }
 
