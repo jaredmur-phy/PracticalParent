@@ -3,8 +3,10 @@ package com.example.practicalparent.ui;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -25,8 +27,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +41,7 @@ import android.widget.Toast;
 import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
+import com.example.practicalparent.timer.TimeInMills;
 
 
 public class SaveChildActivity extends AppCompatActivity {
@@ -53,6 +59,7 @@ public class SaveChildActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_child);
+        setToolBar();
 
         // TODO: check duplicate name
         getChildIndex();
@@ -62,6 +69,28 @@ public class SaveChildActivity extends AppCompatActivity {
 
         setupImgBtn();
         setupSaveBtn();
+    }
+
+    private void setToolBar() {
+        Toolbar toolbar = findViewById(R.id.id_config_child);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.delete_child_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.id_delete_child && editChildIndex != -1) {
+            childManager.removeChild(editChildIndex);
+        }
+        exit();
+        return super.onOptionsItemSelected(item);
     }
 
     private void getChildIndex(){
@@ -98,7 +127,7 @@ public class SaveChildActivity extends AppCompatActivity {
     private void showDialog(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         SelectCameraOrGalleryFragment dialog = new SelectCameraOrGalleryFragment();
-        dialog.show(fragmentManager, "test");
+        dialog.show(fragmentManager, "choose img");
     }
 
     private void setupSaveBtn(){
@@ -119,11 +148,17 @@ public class SaveChildActivity extends AppCompatActivity {
                 } else {
                     childManager.updateChild(editChildIndex, child);
                 }
-                finish();
+                exit();
             }
         });
     }
 
+    // if exit too fast, then list will be show before the data write into disk
+    // therefore add a delay.
+    private void exit(){
+        Handler h = new Handler();
+        h.postDelayed(() -> finish(), TimeInMills.HALF_SECOND.getValue()/2);
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

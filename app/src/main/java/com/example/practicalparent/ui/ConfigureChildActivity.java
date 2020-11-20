@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -61,13 +62,16 @@ public class ConfigureChildActivity extends AppCompatActivity {
         ArrayAdapter<Child> adapter = new ChildListAdapter();
         ListView list = findViewById(R.id.id_children_list_view);
         list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
+
 
     @Override
     protected void onRestart() {
         super.onRestart();
         populateListView();
     }
+
 
     private class ChildListAdapter extends ArrayAdapter<Child>{
         public ChildListAdapter(){
@@ -116,8 +120,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
