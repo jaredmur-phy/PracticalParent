@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_trash_can"
+        android:icon="@drawable/ic_baseline_delete"
+        android:orderInCategory="100"
+        android:title="Delete"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/id_action_checkbox"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_baseline_check_box_off"
+        app:showAsAction="ifRoom"
+        android:title="checkbox"
+        android:checkable="true"
+        app:actionViewClass="android.widget.CheckBox" />
+
+
+
+
+</menu>

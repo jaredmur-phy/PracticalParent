@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<linearLayOut xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/id_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/happy_school"
@@ -19,14 +20,11 @@
 
 
     <CheckBox
+        android:visibility="gone"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="visible"
-        android:text="C"
-        android:textColor="#1e1e1e"
-        android:gravity="center"
-        android:button="@android:color/transparent"
-        android:id="@+id/checkbox"
+        android:layout_alignParentRight="true"
+        android:id="@+id/id_check_box"
     />
 
-</linearLayOut>
+</RelativeLayout>

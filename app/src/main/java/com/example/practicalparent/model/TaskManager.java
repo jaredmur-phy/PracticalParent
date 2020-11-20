@@ -20,6 +20,7 @@ public class TaskManager implements Iterable<Task> {
     private final ArrayList<Task> taskQueue;
 
     private static final String FILE_NAME = "task_list";
+    private List<Task> checked = new ArrayList<>();
 
     private TaskManager(Context c){
         serializationUtil = new SerializationUtil(c, FILE_NAME);
@@ -41,6 +42,34 @@ public class TaskManager implements Iterable<Task> {
         return taskQueue.get(0);
     }
 
+    public List<Task> checkBoxTask(){
+        return checked;
+
+    }
+
+public void selectTask(Task selectedTask){
+    checked.add(selectedTask);
+
+}
+
+public void unSelectTask(Task selectedTask){
+        checked.remove(selectedTask);
+}
+
+public boolean deSelectTask(Task selectedTask){
+        return checked.contains(selectedTask);
+}
+
+public int selectedTaskSize(){
+        return checked.size();
+}
+
+    public void deleteSelectedTasks(List<Task> selectedTask) {
+        for (Task task : selectedTask) {
+            taskManager.getList().remove(task);
+            taskManager.update();
+        }
+    }
     public boolean isEmpty(){
         return taskQueue.isEmpty();
     }
@@ -54,7 +83,7 @@ public class TaskManager implements Iterable<Task> {
         write();
     }
 
-    public void updateNextChild(){
+    public void update(){
         write();
     }
 

@@ -1,14 +1,11 @@
 package com.example.practicalparent.ui;
 
-import android.app.TaskInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.TaskManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -18,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -100,7 +96,7 @@ private void setChildName(){
             @Override
             public void onClick(View v) {
                 taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).moveNext();
-                taskManager.getInstance(TaskInfoActivity.this).updateNextChild();
+                taskManager.getInstance(TaskInfoActivity.this).update();
                 finish();
             }
         });
