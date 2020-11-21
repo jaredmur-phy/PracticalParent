@@ -1,6 +1,7 @@
 package com.example.practicalparent.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.practicalparent.util.SerializationUtil;
 import com.google.gson.reflect.TypeToken;
@@ -8,6 +9,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * manage child list, can save data to the disk

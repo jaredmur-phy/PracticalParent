@@ -6,4 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".ui.TaskListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/id_task_tool_bar"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#cd8863"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Task List"
+        app:titleTextColor="#FFFFFF" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/id_save_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/savechild" />
+
+    <TextView
+        android:id="@+id/id_task_title_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/happy_school"
+        android:text="Tasks"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_task_tool_bar" />
+
+    <ListView
+        android:id="@+id/id_task_list_view"
+        android:layout_width="407dp"
+        android:layout_height="489dp"
+        app:layout_constraintBottom_toTopOf="@+id/id_enter_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_task_title_2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/id_enter_task"
+        android:layout_width="410dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint='"Enter a task name: e.g. Take out the trash"'
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/id_enter_description"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/id_enter_description"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint='"Enter a description for the task: e.g. First bath"'
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/id_save_task"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
