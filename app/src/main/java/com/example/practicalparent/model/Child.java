@@ -27,8 +27,11 @@ public class Child {
             throw new IllegalArgumentException("Null child name");
         }
         this.firstName = name;
-
-        setDrawable(d);
+        if(d == null){
+            imgInByte = null;
+        }else {
+            setDrawable(d);
+        }
     }
 
     public boolean hasDrawable(){

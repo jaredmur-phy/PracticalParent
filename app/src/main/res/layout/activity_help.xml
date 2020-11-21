@@ -9,25 +9,44 @@
 
 
     <TextView
-        android:id="@+id/fontSource"
-        android:layout_width="345dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:id="@+id/id_team_name"
+        android:layout_width="269dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:text="@string/happy_school_ttf"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="@string/team_mango"
+        android:textColor="#F2F2F2"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_sources_tool_bar" />
+
+    <TextView
+        android:id="@+id/coinFlipSource"
+        android:layout_width="232dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/coinflip.xml"
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ringSource" />
+        app:layout_constraintTop_toBottomOf="@+id/id_team_name" />
 
     <TextView
         android:id="@+id/helpSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/help_png"
@@ -37,11 +56,25 @@
         app:layout_constraintTop_toBottomOf="@+id/headsSource" />
 
     <TextView
+        android:id="@+id/userSource"
+        android:layout_width="232dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center"
+        android:text="@string/user_png"
+        android:textColor="#B50E0E0E"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerSource" />
+
+    <TextView
         android:id="@+id/ringSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/ring_mp3"
@@ -54,8 +87,8 @@
         android:id="@+id/coinSoundSource"
         android:layout_width="295dp"
         android:layout_height="83dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/coinflipsound_mp3"
@@ -65,40 +98,27 @@
         app:layout_constraintTop_toBottomOf="@+id/userSource" />
 
     <TextView
-        android:id="@+id/coinFlipSource"
-        android:layout_width="232dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/fontSource"
+        android:layout_width="345dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:text="@string/coinflip_animation"
+        android:text="@string/happy_school_ttf"
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_sources_tool_bar" />
-
-    <TextView
-        android:id="@+id/headsSource"
-        android:layout_width="232dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:fontFamily="@font/happy_school"
-        android:gravity="center"
-        android:text="@string/heads_png"
-        android:textColor="#B50E0E0E"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coinFlipSource" />
+        app:layout_constraintTop_toBottomOf="@+id/ringSource"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/sunsetSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/sunset_jpg"
@@ -111,8 +131,8 @@
         android:id="@+id/tailsSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/tail_png"
@@ -125,8 +145,8 @@
         android:id="@+id/timerSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
         android:text="@string/timer_jpg"
@@ -136,18 +156,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tailsSource" />
 
     <TextView
-        android:id="@+id/userSource"
+        android:id="@+id/headsSource"
         android:layout_width="232dp"
         android:layout_height="44dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
         android:fontFamily="@font/happy_school"
         android:gravity="center"
-        android:text="@string/user_png"
+        android:text="@string/heads_png"
         android:textColor="#B50E0E0E"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerSource" />
+        app:layout_constraintTop_toBottomOf="@+id/coinFlipSource" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/id_sources_tool_bar"

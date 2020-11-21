@@ -24,7 +24,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.practicalparent.R;
-import com.example.practicalparent.model.ChildSelector;
+import com.example.practicalparent.model.Child;
+import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.CoinFlipHistory;
 import com.example.practicalparent.model.CoinFlipHistoryManager;
 import com.example.practicalparent.timer.TimeInMills;
@@ -54,13 +55,14 @@ public class FlipResultsActivity extends AppCompatActivity {
 
     private boolean turnOffBack;
     private int picked;
+    private int childIndex;
 
     private static final int DELAY = 950;
     private static final String COIN_PARAM_KEY = "COIN_PARAM_KEY";
+    private static final String CHILD_INDEX_PARAM_KEY = "CHILD_INDEX_PARAM_KEY";
 
-
-    private ChildSelector childSelector;
     private CoinFlipHistoryManager historyManager;
+    private ChildManager childManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +74,11 @@ public class FlipResultsActivity extends AppCompatActivity {
     }
 
     private void initAttr() {
-        picked = getIntent().getIntExtra(COIN_PARAM_KEY, -1);
+        Intent i = getIntent();
+        picked = i.getIntExtra(COIN_PARAM_KEY, -1);
+        childIndex = i.getIntExtra(CHILD_INDEX_PARAM_KEY, -1);
         historyManager = CoinFlipHistoryManager.getInstance(this);
-        childSelector = ChildSelector.getInstance(this);
+        childManager = ChildManager.getInstance(this);
     }
 
     private void setToolBar() {
@@ -93,14 +97,23 @@ public class FlipResultsActivity extends AppCompatActivity {
                 isHead = generator.nextBoolean();
                 soundEffect.start();
                 coinFlipped(isHead, isHead ? "Heads" : "Tails");
-                // update history
-                historyManager.add(new CoinFlipHistory(childSelector.getNextChild(),
-                        picked, isHead));
+
+                // will update history before destroy
+
                 // locks buttons
                 buttonFlip.setClickable(true);
                 turnOffBack = false;
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        // update history
+        Child child = childManager.select(childIndex);;
+        historyManager.add(new CoinFlipHistory(child,
+                picked, isHead));
+        super.onDestroy();
     }
 
     private void coinFlipped(final boolean isHead, String results) {
@@ -120,6 +133,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                     buttonFlip.setClickable(false);
                     turnOffBack = true;
                 } else if (index == 100) {       // animation ends
+
                     for (Runnable runnable : runnables) {
                         handler.removeCallbacks(runnable);
                     }
@@ -151,18 +165,23 @@ public class FlipResultsActivity extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
     }
 
-    public static Intent getIntent(Context c, int picked) {
+    public static Intent getIntent(Context c, int picked, int childIndex) {
         Intent intent = new Intent(c, FlipResultsActivity.class);
         intent.putExtra(COIN_PARAM_KEY, picked);
+        intent.putExtra(CHILD_INDEX_PARAM_KEY, childIndex);
         return intent;
     }
 
+    public static Intent makeLaunchIntent(Context c, boolean isHead, int childIndex) {
+        return getIntent(c, isHead ? PICKED_HEAD : PICKED_TAIL, childIndex);
+    }
+
     public static Intent makeLaunchIntent(Context c, boolean isHead) {
-        return getIntent(c, isHead ? PICKED_HEAD : PICKED_TAIL);
+        return getIntent(c, isHead ? PICKED_HEAD : PICKED_TAIL, -1);
     }
 
     public static Intent makeLaunchIntent(Context c) {
-        return getIntent(c, NOT_PICKED);
+        return getIntent(c, NOT_PICKED, -1);
     }
 
     @Override
