@@ -82,4 +82,7 @@
     <string name="title_activity_task_info">TaskInfoActivity</string>
     <string name="title_activity_edit_task_list">EditTaskListActivity</string>
     <string name="title_activity_delete_task_list">DeleteTaskListActivity</string>
+    <string name="tasks">Tasks</string>
+    <string name="enter_a_task_name_e_g_take_out_the_trash">Enter a task name: e.g. Take out the trash</string>
+    <string name="enter_a_description_for_the_task_e_g_first_bath">Enter a description for the task: e.g. First bath</string>
 </resources>

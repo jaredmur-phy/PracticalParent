@@ -52,11 +52,11 @@ public void selectTask(Task selectedTask){
 
 }
 
-public void unSelectTask(Task selectedTask){
+public void unselectTask(Task selectedTask){
         checked.remove(selectedTask);
 }
 
-public boolean deSelectTask(Task selectedTask){
+public boolean deselectTask(Task selectedTask){
         return checked.contains(selectedTask);
 }
 

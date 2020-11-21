@@ -161,12 +161,12 @@ public class EditTaskListActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                        if (taskManager.deSelectTask(curTask)) {
-                            taskManager.unSelectTask(curTask);
+                        if (taskManager.deselectTask(curTask)) {
+                            taskManager.unselectTask(curTask);
                         } else {
                             taskManager.selectTask(curTask);
                         }
-                        actionMode.setTitle(taskManager.selectedTaskSize() + " items selected:");
+                        actionMode.setTitle(taskManager.selectedTaskSize() + " tasks selected:");
                     }
                 });
 
@@ -182,7 +182,7 @@ public class EditTaskListActivity extends AppCompatActivity {
         }
     }
 
-    private void unSelectAllItems() {
+    private void unselectAllItems() {
         for (int i = 0; i < list.getCount(); i++) {
             View v = list.getChildAt(i);
             checkBox = v.findViewById(R.id.id_check_box);
@@ -230,7 +230,7 @@ public class EditTaskListActivity extends AppCompatActivity {
                     } else {
                         item.setChecked(false);
                         item.setIcon(R.drawable.ic_baseline_check_box_off);
-                        unSelectAllItems();
+                        unselectAllItems();
                     }
                 default:
                     return false;
@@ -239,7 +239,7 @@ public class EditTaskListActivity extends AppCompatActivity {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            unSelectAllItems();
+            unselectAllItems();
             toolBarVisibility();
             checkBoxVisibility();
             actionMode = null;
