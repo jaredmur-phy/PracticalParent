@@ -64,18 +64,18 @@ public class TaskInfoActivity extends AppCompatActivity {
 
 private void setChildName(){
     TextView editChildName = (TextView) findViewById(R.id.id_child_text);
-    editChildName.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getName());
+    editChildName.setText("Name: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getName());
 }
 
     private void setTaskName(){
         TextView editTaskName = (TextView) findViewById(R.id.id_task_title);
-        editTaskName.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getTaskName());
+        editTaskName.setText("Task: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getTaskName());
 
     }
 
     private void setTaskDesc(){
         TextView editTaskDesc = (TextView) findViewById(R.id.id_task_desc);
-        editTaskDesc.setText(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getDesc());
+        editTaskDesc.setText("Description: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getDesc());
     }
 
     private void cancel() {
