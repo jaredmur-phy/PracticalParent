@@ -19,11 +19,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText">
         <activity
-            android:name=".ui.DeleteTaskListActivity"
+            android:name=".ui.EditTaskListActivity"
             android:label="@string/title_activity_delete_task_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ui.EditTaskListActivity"
+            android:name=".ui.OldEditTaskListActivity"
             android:label="@string/title_activity_edit_task_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

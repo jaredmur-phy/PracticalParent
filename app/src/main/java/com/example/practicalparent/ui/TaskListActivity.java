@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -127,13 +126,8 @@ public class TaskListActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switchState = checkSwitch();
-                if (switchState) {
-                    showID(position);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    launchTaskInfo(position);
-                }
+
+                launchTaskInfo(position);
             }
         });
     }
@@ -144,17 +138,8 @@ public class TaskListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean checkSwitch() {
-        Switch sw = (Switch) findViewById(R.id.id_update);
-        if (sw.isChecked()) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-    public void showID(int i) {
+  /*  public void showID(int i) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
         dialogBuilder.setView(changePopup);
@@ -162,9 +147,9 @@ public class TaskListActivity extends AppCompatActivity {
         dialog.show();
 
         Button saveBtn = changePopup.findViewById(R.id.saveChangeName);
-        Button deleteBtn = changePopup.findViewById(R.id.deleteButton);
+        Button deleteBtn = changePopup.findViewById(R.id.deleteButton);*/
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+      /*  saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String changeTaskName = ((EditText) changePopup.findViewById(R.id.id_update_task_name)).getText().toString();
@@ -188,7 +173,7 @@ public class TaskListActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-    }
+    }*/
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
