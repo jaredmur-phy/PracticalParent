@@ -42,6 +42,7 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.timer.TimeInMills;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 
 public class SaveChildActivity extends AppCompatActivity {
@@ -53,6 +54,7 @@ public class SaveChildActivity extends AppCompatActivity {
     private final static int IMG_HEIGHT = 100;
     private ChildManager childManager;
     private int editChildIndex = -1;
+    private final static int SAME_IMAGE = -1;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -61,7 +63,6 @@ public class SaveChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_save_child);
         setToolBar();
 
-        // TODO: check duplicate name
         getChildIndex();
         getChildManager();
 
@@ -100,7 +101,7 @@ public class SaveChildActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void fillInfo() {
         ImageView childImg = findViewById(R.id.id_child_img);
-        if (editChildIndex == -1) { // use default image
+        if (editChildIndex == SAME_IMAGE) { // use default image
             childImg.setImageDrawable(getDrawable(R.drawable.head));
         } else {
 
@@ -138,12 +139,23 @@ public class SaveChildActivity extends AppCompatActivity {
                 String childName = editText.getText().toString();
                 ImageView imageView = findViewById(R.id.id_child_img);
 
+                if(childName.trim().isEmpty()){
+                    StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_is_empty),
+                            R.style.resultToast).show();
+                    return;
+                } else if(childManager.checkChildName(childName, editChildIndex)){
+                    // duplicate name
+                    StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_already_exist),
+                            R.style.resultToast).show();
+                    return;
+                }
+
                 // Compress bitmap
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap bitmap = Bitmap.createScaledBitmap(drawable.getBitmap(), IMG_WIDTH, IMG_HEIGHT, true);
 
                 Child child = new Child(childName, new BitmapDrawable(getResources(), bitmap));
-                if (editChildIndex == -1) {
+                if (editChildIndex == SAME_IMAGE) {
                     childManager.addChild(child);
                 } else {
                     childManager.updateChild(editChildIndex, child);

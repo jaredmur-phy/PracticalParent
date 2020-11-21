@@ -52,7 +52,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_children_list_view);
         list.setOnItemClickListener((parent, view, position, id) -> launchSaveChild(position));
@@ -105,11 +104,11 @@ public class ConfigureChildActivity extends AppCompatActivity {
         findViewById(R.id.id_add_child).setOnClickListener(v -> launchSaveChild());
     }
 
-    private void launchSaveChild(){
+    private void launchSaveChild()  {
         startActivity(SaveChildActivity.makeLaunchIntent(ConfigureChildActivity.this));
     }
 
-    private void launchSaveChild(int index){
+    private void launchSaveChild(int index) {
         startActivity(SaveChildActivity.makeLaunchIntent(ConfigureChildActivity.this, index));
     }
 

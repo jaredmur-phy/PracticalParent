@@ -1,6 +1,7 @@
 package com.example.practicalparent.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.practicalparent.util.SerializationUtil;
 import com.google.gson.reflect.TypeToken;
@@ -8,6 +9,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * manage child list, can save data to the disk
@@ -132,14 +136,18 @@ public class ChildManager implements Iterable<Child> {
         return children.get(childIndex);
     }
 
-    public boolean findChild(String name) {
-        boolean anyDuplicates = false;
-        for (int i = 0; i < children.size(); i++) {
-            if (children.get(i).getName().equals(name)) {
-                anyDuplicates = true;
+    public boolean checkChildName(String name){
+        return checkChildName(name, -1);
+    }
+
+    // return true if children contains name in other index
+    public boolean checkChildName(String name, int index) {
+        for(int i = 0; i < children.size(); i++){
+            if(children.get(i).getName().equals(name) && i != index){
+                return true;
             }
         }
-        return anyDuplicates;
+        return false;
     }
 
     public void changeName(int index, String newName) {

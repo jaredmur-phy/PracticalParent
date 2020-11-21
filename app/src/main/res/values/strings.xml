@@ -67,7 +67,7 @@
     <string name="search_child_flipping_history">search child flipping history</string>
     <string name="would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid">Would you like to pick a coin again for yourself or any other kid?</string>
 
-
+    <string name="name_is_empty">Name should not be empty</string>
     <string name="name_already_exist">Name already exist</string>
     <string name="task_list">Task List</string>
     <string name="title_activity_save_child">Save Child</string>
@@ -78,4 +78,8 @@
     <string name="config_child">Config Child</string>
     <string name="current_child">Current Child:</string>
     <string name="nobody">nobody</string>
+    <string name="turn_switch_on_to_edit_click_on_task_to_do_so"><![CDATA[<- Turn switch on to edit; click on task to do so.]]></string>
+    <string name="title_activity_task_info">TaskInfoActivity</string>
+    <string name="title_activity_edit_task_list">EditTaskListActivity</string>
+    <string name="title_activity_delete_task_list">DeleteTaskListActivity</string>
 </resources>
