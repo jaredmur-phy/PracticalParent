@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,16 +16,60 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.ChildManager;
 
 // Select a coin; heads or tails
 public class ChooseCoinActivity extends AppCompatActivity {
 
+    private static final String KEY_INDEX = "KEY_INDEX";
+    private ChildManager selector;
+    private int childIndex = 0;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_coin);
+
+        selector = ChildManager.getInstance(this);
+        getIndex();
+
+        setChildInfo(childIndex);
+        setChildOnClickListener();
         setToolBar();
         headsChosen();
         tailsChosen();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        childIndex = selector.peekOrder();
+        setChildInfo(childIndex);
+    }
+
+    private void getIndex(){
+        childIndex = getIntent().getIntExtra(KEY_INDEX, -1);
+        if(childIndex == -1){
+            childIndex = selector.peekOrder();
+        }
+    }
+
+    private void setChildInfo(int index){
+        if(index == -1) return;
+        ImageView imageView = findViewById(R.id.id_next_child_img);
+        TextView textView = findViewById(R.id.id_next_child_name);
+        imageView.setImageDrawable(selector.get(index).getDrawable(this));
+        textView.setText(selector.get(index).getName());
+    }
+
+    private void setChildOnClickListener(){
+        ImageView imageView = findViewById(R.id.id_next_child_img);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SelectChildActivity.getIntent(ChooseCoinActivity.this));
+                finish();
+            }
+        });
     }
 
     private void setToolBar() {
@@ -54,16 +100,25 @@ public class ChooseCoinActivity extends AppCompatActivity {
     }
 
     private void launchFlipResults(boolean isHead) {
-        Intent intent = FlipResultsActivity.makeLaunchIntent(ChooseCoinActivity.this, isHead);
+        Intent intent = FlipResultsActivity.makeLaunchIntent(ChooseCoinActivity.this, isHead, childIndex);
         startActivity(intent);
     }
 
     public static Intent getIntent(Context c) {
-        return new Intent(c, ChooseCoinActivity.class);
+        return getIntent(c, -1);
+    }
+
+    public static Intent getIntent(Context c, int index){
+        Intent i = new Intent(c, ChooseCoinActivity.class);
+        i.putExtra(KEY_INDEX, index);
+        return i;
     }
 
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
+    }
+    public static Intent makeLaunchIntent(Context c, int index) {
+        return getIntent(c, index);
     }
 
     @Override
