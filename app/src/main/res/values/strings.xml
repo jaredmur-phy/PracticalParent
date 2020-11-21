@@ -9,6 +9,15 @@
     <string name="pause_timer">Pause</string>
     <string name="resume_timer">Resume</string>
 
+    <string name="task_name">Name:</string>
+    <string name="task_description">Description:</string>
+    <string name="task_confirm">Confirm</string>
+    <string name="task_cancel">Cancel</string>
+    <string name="task_task">Task:</string>
+
+    <string name="update_entername">"Enter a task name: e.g. Take out the trash"</string>
+    <string name="update_enterdesc">"Enter a description: e.g. First bath"</string>
+
     <string name="practical_parent">Practical Parent</string>
     <string name="configuration">Configuration</string>
     <string name="flip_a_coin">Flip a coin</string>
