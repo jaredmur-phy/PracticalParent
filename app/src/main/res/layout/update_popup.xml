@@ -37,24 +37,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginRight="160dp"
         android:background="@color/colorAccent"
         android:text="@string/saveChildUpdate"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_update_task_desc2" />
 
-    <Button
-        android:id="@+id/deleteButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorAccent"
-        android:text="@string/deleteButton"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_update_task_desc2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

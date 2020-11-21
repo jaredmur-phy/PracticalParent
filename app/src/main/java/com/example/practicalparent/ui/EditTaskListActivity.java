@@ -59,13 +59,13 @@ public class EditTaskListActivity extends AppCompatActivity {
     }
 
     private void showID(int i) {dialogBuilder = new AlertDialog.Builder(this);
-    final View changePopup = getLayoutInflater().inflate(R.layout.update_popup, null);
+    final View changePopup = getLayoutInflater().inflate(R.layout.popup, null);
         dialogBuilder.setView(changePopup);
         dialog = dialogBuilder.create();
         dialog.show();
 
-    Button saveBtn = changePopup.findViewById(R.id.saveChangeName2);
-    Button deleteBtn = changePopup.findViewById(R.id.deleteButton2);
+    Button saveBtn = changePopup.findViewById(R.id.saveChangeName);
+    Button deleteBtn = changePopup.findViewById(R.id.deleteButton);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
         @Override

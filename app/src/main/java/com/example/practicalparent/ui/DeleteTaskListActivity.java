@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -58,22 +59,11 @@ public class DeleteTaskListActivity extends AppCompatActivity {
 
         setToolBar();
         populateListView();
-        //registerClickCallBack();
+
 
     }
 
-    /*private void registerClickCallBack() {
-        ListView list = findViewById(R.id.id_delete_task_list);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                showID(position);
-                adapter.notifyDataSetChanged();
-            }
-
-        });
-    }*/
 
     private void showID(int i) {
         dialogBuilder = new AlertDialog.Builder(this);
@@ -83,7 +73,7 @@ public class DeleteTaskListActivity extends AppCompatActivity {
         dialog.show();
 
         Button saveBtn = changePopup.findViewById(R.id.saveChangeName2);
-        Button deleteBtn = changePopup.findViewById(R.id.deleteButton2);
+
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,14 +91,7 @@ public class DeleteTaskListActivity extends AppCompatActivity {
             }
         });
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                taskManager.removeTask(i);
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });
+
     }
 
     @Override
@@ -165,9 +148,18 @@ public class DeleteTaskListActivity extends AppCompatActivity {
 
             Task curTask = taskManager.getTask(position);
 
+
+
             // Fill the view
             TextView taskNameView = itemView.findViewById(R.id.id_task);
             taskNameView.setText(curTask.toString());
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> av, View v, int pos, long id) {
+                    showID(pos);
+                    adapter.notifyDataSetChanged();
+                }
+            });
 
             checkBox = itemView.findViewById(R.id.id_check_box);
             checkBox.setTag(position);
@@ -219,7 +211,6 @@ public class DeleteTaskListActivity extends AppCompatActivity {
             toolBarVisibility();
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.task_list_menu_deleter, menu);
-
             actionMode = mode;
             return true;
         }
