@@ -19,7 +19,7 @@
         tools:ignore="ExtraText"
         android:requestLegacyExternalStorage="true">
         <activity android:name=".ui.SaveChildActivity" />
-
+        <activity android:name=".ui.SelectChildActivity"/>
         <activity android:name=".ui.TaskListActivity" />
         <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity

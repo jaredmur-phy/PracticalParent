@@ -74,4 +74,8 @@
     <string name="help">Help</string>
     <string name="no_camera_message">The current device does not have a camera</string>
     <string name="delete">Delete</string>
+    <string name="select_child">Select Child</string>
+    <string name="config_child">Config Child</string>
+    <string name="current_child">Current Child:</string>
+    <string name="nobody">nobody</string>
 </resources>
