@@ -42,6 +42,7 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.timer.TimeInMills;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 
 public class SaveChildActivity extends AppCompatActivity {
@@ -62,7 +63,6 @@ public class SaveChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_save_child);
         setToolBar();
 
-        // TODO: check duplicate name
         getChildIndex();
         getChildManager();
 
@@ -138,6 +138,17 @@ public class SaveChildActivity extends AppCompatActivity {
                 EditText editText = findViewById(R.id.id_child_name_text);
                 String childName = editText.getText().toString();
                 ImageView imageView = findViewById(R.id.id_child_img);
+
+                if(childName.trim().isEmpty()){
+                    StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_is_empty),
+                            R.style.resultToast).show();
+                    return;
+                } else if(childManager.checkChildName(childName, editChildIndex)){
+                    // duplicate name
+                    StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_already_exist),
+                            R.style.resultToast).show();
+                    return;
+                }
 
                 // Compress bitmap
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();

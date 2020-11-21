@@ -67,7 +67,7 @@
     <string name="search_child_flipping_history">search child flipping history</string>
     <string name="would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid">Would you like to pick a coin again for yourself or any other kid?</string>
 
-
+    <string name="name_is_empty">Name should not be empty</string>
     <string name="name_already_exist">Name already exist</string>
     <string name="task_list">Task List</string>
     <string name="title_activity_save_child">Save Child</string>
