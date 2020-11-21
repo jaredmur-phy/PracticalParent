@@ -37,6 +37,8 @@ public class Task {
         index = index % childList.size();
     }
 
+    public void nextChild(){
+    }
     public boolean isEmpty(){
         return childList.isEmpty();
     }
@@ -49,10 +51,23 @@ public class Task {
         return desc;
     }
 
+    public void setTaskName(String name) {
+        this.taskName = name;
+    }
+
+    public void setTaskDesc(String name) {
+        this.desc = name;
+    }
+
 
     private void validateTaskName(String taskName){
         if(taskName == null || taskName.trim().isEmpty()){
             throw new IllegalArgumentException("Task name should not be empty");
         }
     }
+
+    public String toString() {
+        return "Task: " + taskName + "\n" + peekChild();
+    }
+
 }

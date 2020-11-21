@@ -4,7 +4,7 @@
     package="com.example.practicalparent">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -16,14 +16,29 @@
         android:statusBarColor="@color/colorPrimaryDark"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="ExtraText"
-        android:requestLegacyExternalStorage="true">
+        tools:ignore="ExtraText">
+        <activity
+            android:name=".ui.EditTaskListActivity"
+            android:label="@string/title_activity_delete_task_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.OldEditTaskListActivity"
+            android:label="@string/title_activity_edit_task_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TaskInfoActivity"
+            android:label="@string/title_activity_task_info"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.SaveChildActivity" />
         <activity android:name=".ui.SelectChildActivity"/>
-        <activity android:name=".ui.TaskListActivity" />
+        <activity
+            android:name=".ui.TaskListActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.CoinFlipHistoryActivity" />
         <activity
             android:name=".ui.ConfigureChildActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.HelpActivity"
