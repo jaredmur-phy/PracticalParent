@@ -107,14 +107,6 @@ public class FlipResultsActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        // update history
-        Child child = childManager.select(childIndex);;
-        historyManager.add(new CoinFlipHistory(child,
-                picked, isHead));
-        super.onDestroy();
-    }
 
     private void coinFlipped(final boolean isHead, String results) {
         imageCoin = findViewById(R.id.id_coin_image);
@@ -133,6 +125,12 @@ public class FlipResultsActivity extends AppCompatActivity {
                     buttonFlip.setClickable(false);
                     turnOffBack = true;
                 } else if (index == 100) {       // animation ends
+
+                    // update history
+                    Child child = childManager.select(childIndex);;
+                    historyManager.add(new CoinFlipHistory(child,
+                            picked, isHead));
+
 
                     for (Runnable runnable : runnables) {
                         handler.removeCallbacks(runnable);
