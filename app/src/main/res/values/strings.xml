@@ -9,12 +9,21 @@
     <string name="pause_timer">Pause</string>
     <string name="resume_timer">Resume</string>
 
+    <string name="choose_name">Name:</string>
+
     <string name="task_name">Name:</string>
     <string name="task_description">Description:</string>
     <string name="task_confirm">Confirm</string>
     <string name="task_cancel">Cancel</string>
     <string name="task_task">Task:</string>
-
+    <string name="task_info_title">Task Info</string>
+    <string name="task_list_title">Task List</string>
+    <string name="childrenitem_name">Name</string>
+    <string name="configure_title">Configure Children</string>
+    <string name="edit_task_tasks">Tasks</string>
+    <string name="results_flip_flip">Flip the coin</string>
+    <string name="task_list_task">Tasks</string>
+    <string name="task_list_edit">Edit</string>
     <string name="update_entername">"Enter a task name: e.g. Take out the trash"</string>
     <string name="update_enterdesc">"Enter a description: e.g. First bath"</string>
 
