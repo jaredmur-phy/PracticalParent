@@ -18,23 +18,43 @@ import java.util.TreeSet;
  */
 public class ChildManager implements Iterable<Child> {
 
-    private static final String FILENAME = "CHILD_LIST_1";
-    private static final String KEY = "child_list";
+    private static final String FILENAME = "CHILD_LIST_0";
+    private static final String CHILDREN_KEY = "child_list";
+    private static final String ORDER_KEY = "order_list";
     private final SerializationUtil serializationUtil;
 
     private List<Child> children;
+
+    // save the order of child list
+    // for example:
+    //      children: aa, bb, cc
+    //      order   : 2, 0, 1
+    // then the order to flip the coin is : cc, aa, bb
+    private List<Integer> order;
+
 
     //Singleton support
     private static ChildManager instance;
 
     private ChildManager(Context c) {
         serializationUtil = new SerializationUtil(c, FILENAME);
-        children = serializationUtil.getObject(KEY,
+        children = serializationUtil.getObject(CHILDREN_KEY,
                 new TypeToken<List<Child>>(){}.getType(), new ArrayList<>());
+        order = serializationUtil.getObject(ORDER_KEY,
+                new TypeToken<List<Integer>>(){}.getType(), new ArrayList<>());
     }
 
     private void write() {
-        serializationUtil.putObject(KEY, children);
+        writeChildren();
+        writeOrder();
+    }
+
+    private void writeChildren(){
+        serializationUtil.putObject(CHILDREN_KEY, children);
+    }
+
+    private void writeOrder(){
+        serializationUtil.putObject(ORDER_KEY, order);
     }
 
     public static ChildManager getInstance(Context context) {
@@ -44,8 +64,21 @@ public class ChildManager implements Iterable<Child> {
         return instance;
     }
 
+    // return a child, which is first in the order
+    public Child peek(){
+        if(children.isEmpty()) return null;
+        return children.get(order.get(0));
+    }
+
+    // return a childIndex, which is first in the order
+    public int peekOrder(){
+        if(order.isEmpty()) return -1;
+        return order.get(0);
+    }
+
     public void addChild(Child child) {
         children.add(child);
+        order.add(children.size() - 1);
         write();
     }
 
@@ -53,13 +86,54 @@ public class ChildManager implements Iterable<Child> {
         return children;
     }
 
+    public List<Child> getOrderList(){
+        ArrayList<Child> list = new ArrayList<>();
+        for(int i = 0; i < children.size(); i++){
+            list.add(children.get(order.get(i)));
+        }
+        return list;
+    }
+
     public Child get(int i) {
+        if(i < 0 || i >= children.size()){
+            return new Child("");
+        }
         return children.get(i);
     }
 
-    public void removeChild(int index) {
-        children.remove(index);
+    public Child getByOrder(int orderIndex){
+        return children.get(order.get(orderIndex));
+    }
+
+    public int getOrder(int orderIndex){
+        return order.get(orderIndex);
+    }
+
+    public void removeChild(int childIndex) {
+        children.remove(childIndex);
+        order.remove((Integer) childIndex);
+
+        // update order list
+        for(int i = 0; i < order.size(); i++){
+            int oldIndex = order.get(i);
+            if(oldIndex > childIndex){
+                order.set(i, oldIndex-1);
+            }
+        }
+
         write();
+    }
+
+    public Child select(int childIndex){
+        if(childIndex < 0 || childIndex >= order.size()){
+            return new Child("");
+        }
+
+        int orderIndex = order.indexOf(childIndex);
+        order.remove(orderIndex);
+        order.add(childIndex);
+        writeOrder();
+        return children.get(childIndex);
     }
 
     public boolean findChild(String name) {

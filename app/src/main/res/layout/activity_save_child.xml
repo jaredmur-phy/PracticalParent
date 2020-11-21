@@ -7,16 +7,16 @@
     tools:context=".ui.SaveChildActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/id_save_child_tool_bar"
+        android:id="@+id/id_config_child"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#cd8863"
+        android:background="@color/colorAccent"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Save Child"
+        app:title="@string/config_child"
         app:titleTextColor="#FFFFFF" />
 
     <androidx.constraintlayout.widget.Guideline

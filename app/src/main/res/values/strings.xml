@@ -43,7 +43,7 @@
     <string name="saveChildUpdate">UPDATE</string>
     <string name="deleteButton">DELETE</string>
 
-    <string name="coinflip_animation"><a href="https://www.google.com/logos/fnbx/coin_flip/coin_sheet.png">coinflip animation</a></string>
+    <string name="coinflip.xml"><a href="https://www.google.com/logos/fnbx/coin_flip/coin_sheet.png">coinflip.xml</a></string>
     <string name="user_png"><a href="https://www.iconfinder.com/icons/1902270/add_new_ad_user_plus_icon">user.png:</a></string>
     <string name="timer_jpg"><a href="https://www.iconfinder.com/icons/3366121/clock_launcher_alarm_time_android_timer_icon">timer.jpg:</a></string>
     <string name="tail_png"><a href="https://www.shutterstock.com/image-vector/set-gold-coin-head-tail-isolated-1779736505">tail.png:</a></string>
@@ -53,6 +53,9 @@
     <string name="coinflipsound_mp3"><a href="https://www.partnersinrhyme.com/soundfx/office_sounds/office_coin-flip_wav.shtml">CoinFlipSound.mp3:</a></string>
     <string name="ring_mp3"><a href="https://dl.prokerala.com/downloads/ringtones/files/mp3/7120-download-iphone-6-original-ringtone-42676.mp3">ring.mp3:</a></string>
     <string name="happy_school_ttf"><a href="https://www.fontspace.com/category/education">happy_school.ttf</a></string>
+    <string name="team_mango"><a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">Team Mango</a></string>
+
+
 
     <string name="won_text"><![CDATA[<br><font color=\'#00ff00\'> WON!!</font>]]></string>
     <string name="loose_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>
@@ -63,11 +66,18 @@
     <string name="history">History</string>
     <string name="search_child_flipping_history">search child flipping history</string>
     <string name="would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid">Would you like to pick a coin again for yourself or any other kid?</string>
-    <string name="credits">Credits</string>
+
 
     <string name="name_already_exist">Name already exist</string>
     <string name="task_list">Task List</string>
     <string name="title_activity_save_child">Save Child</string>
+    <string name="help">Help</string>
+    <string name="no_camera_message">The current device does not have a camera</string>
+    <string name="delete">Delete</string>
+    <string name="select_child">Select Child</string>
+    <string name="config_child">Config Child</string>
+    <string name="current_child">Current Child:</string>
+    <string name="nobody">nobody</string>
     <string name="turn_switch_on_to_edit_click_on_task_to_do_so"><![CDATA[<- Turn switch on to edit; click on task to do so.]]></string>
     <string name="title_activity_task_info">TaskInfoActivity</string>
     <string name="title_activity_edit_task_list">EditTaskListActivity</string>

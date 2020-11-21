@@ -12,7 +12,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:statusBarColor="@color/colorPrimaryDark"
         android:supportsRtl="true"
@@ -31,6 +30,7 @@
             android:label="@string/title_activity_task_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.SaveChildActivity" />
+        <activity android:name=".ui.SelectChildActivity"/>
         <activity
             android:name=".ui.TaskListActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
@@ -41,7 +41,7 @@
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.CreditsActivity"
+            android:name=".ui.HelpActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -73,6 +73,8 @@
                 <action android:name="TIMEOUT_ACTION" />
             </intent-filter>
         </receiver>
+
+
     </application>
 
 </manifest>

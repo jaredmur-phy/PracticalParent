@@ -79,7 +79,7 @@
         android:id="@+id/id_head_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_ask_question_text"
         app:srcCompat="@drawable/heads" />
@@ -88,7 +88,7 @@
         android:id="@+id/id_tail_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_ask_question_text"
         app:srcCompat="@drawable/tail" />
@@ -105,4 +105,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Select your coin"
         app:titleTextColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/id_next_child_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/id_head_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_ask_question_text"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/id_next_child_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Name"
+        android:textColor="#050505"
+        app:layout_constraintBottom_toBottomOf="@+id/id_next_child_img"
+        app:layout_constraintStart_toEndOf="@+id/id_next_child_img"
+        app:layout_constraintTop_toTopOf="@+id/id_next_child_img" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/current_child"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/id_next_child_img"
+        app:layout_constraintEnd_toStartOf="@+id/id_next_child_img"
+        app:layout_constraintTop_toTopOf="@+id/id_next_child_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>
