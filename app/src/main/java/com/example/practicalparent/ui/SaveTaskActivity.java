@@ -47,7 +47,7 @@ public class SaveTaskActivity extends AppCompatActivity {
                 if (taskName.trim().isEmpty() || taskDescription.trim().isEmpty()) {
                     StyleableToast.makeText(SaveTaskActivity.this, getString(R.string.task_is_empty),
                             R.style.errorToast).show();
-
+                    return;
                 } else if (taskManager.getInstance(SaveTaskActivity.this).checkTaskDesc(taskDescription) &&
                         taskManager.getInstance(SaveTaskActivity.this).checkTaskName(taskName)) {
                     // duplicate name
