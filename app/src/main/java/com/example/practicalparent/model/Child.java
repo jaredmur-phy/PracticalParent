@@ -59,7 +59,7 @@ public class Child {
 
 
     public String toString() {
-        return "Name: " + firstName;
+        return "Child: " + firstName;
     }
 
 

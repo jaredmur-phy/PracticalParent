@@ -72,7 +72,7 @@ public class SaveTaskActivity extends AppCompatActivity {
                     Task task = new Task(childManager.getInstance(SaveTaskActivity.this).getList(), taskName, taskDescription);
 
                     taskManager.getInstance(SaveTaskActivity.this).addTask(task);
-                    return;
+
                 }
                 finish();
             }

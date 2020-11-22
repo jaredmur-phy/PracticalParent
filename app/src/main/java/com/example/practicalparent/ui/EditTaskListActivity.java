@@ -31,6 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.practicalparent.R;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 public class EditTaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
@@ -75,9 +76,31 @@ public class EditTaskListActivity extends AppCompatActivity {
                 String changeTaskName = ((EditText) changePopup.findViewById(R.id.id_update_task_name)).getText().toString();
                 String changeTaskDesc = ((EditText) changePopup.findViewById(R.id.id_update_task_desc)).getText().toString();
 
-                TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
-                TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
+                if (changeTaskName.trim().isEmpty() || changeTaskDesc.trim().isEmpty()) {
+                    StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_is_empty),
+                            R.style.errorToast).show();
 
+                } else if (taskManager.getInstance(EditTaskListActivity.this).checkTaskDesc(changeTaskDesc) &&
+                        taskManager.getInstance(EditTaskListActivity.this).checkTaskName(changeTaskName)) {
+                    // duplicate name
+                    StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.both_task_is_same),
+                            R.style.errorToast).show();
+
+                    return;
+                } else if (taskManager.getInstance(EditTaskListActivity.this).checkTaskName(changeTaskName)) {
+                    // duplicate name
+                    StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_is_same),
+                            R.style.errorToast).show();
+                    return;
+                } else if (taskManager.getInstance(EditTaskListActivity.this).checkTaskDesc(changeTaskDesc)) {
+                    // duplicate name
+                    StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_desc_is_same),
+                            R.style.errorToast).show();
+                    return;
+                } else {
+                    TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
+                    TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
+                }
                 adapter.notifyDataSetChanged();
 
 
@@ -157,18 +180,18 @@ public class EditTaskListActivity extends AppCompatActivity {
 
             checkBoxVisibility();
 
-                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                        if (taskManager.deselectTask(curTask)) {
-                            taskManager.unselectTask(curTask);
-                        } else {
-                            taskManager.selectTask(curTask);
-                        }
-                        actionMode.setTitle(taskManager.selectedTaskSize() + " tasks selected:");
+                    if (taskManager.deselectTask(curTask)) {
+                        taskManager.unselectTask(curTask);
+                    } else {
+                        taskManager.selectTask(curTask);
                     }
-                });
+                    actionMode.setTitle(taskManager.selectedTaskSize() + " tasks selected:");
+                }
+            });
 
             return itemView;
         }
