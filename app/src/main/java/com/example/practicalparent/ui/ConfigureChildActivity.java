@@ -26,6 +26,7 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 // add,edit and delete a list of names given to children
 public class ConfigureChildActivity extends AppCompatActivity {
@@ -130,7 +131,12 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.id_action_task_settings:
-                startActivity(TaskListActivity.makeLaunchIntent(this));
+                if(manager.size() != 0){
+                startActivity(TaskListActivity.makeLaunchIntent(this));}
+                else{
+                    StyleableToast.makeText(ConfigureChildActivity.this, getString(R.string.enter_child_name_to_use),
+                            R.style.errorToast).show();
+                }
                 return true;
             default:
                 finish();

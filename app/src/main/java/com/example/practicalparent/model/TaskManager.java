@@ -71,6 +71,7 @@ public class TaskManager implements Iterable<Task> {
         }
     }
 
+
     public boolean checkTaskName(String name) {
         for (int i = 0; i < getTaskSize(); i++) {
             if (getTask(i).getTaskName().equals(name)) {

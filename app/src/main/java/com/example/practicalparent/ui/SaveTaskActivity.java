@@ -34,10 +34,7 @@ public class SaveTaskActivity extends AppCompatActivity {
 
         setToolBar();
         setUpFAB();
-
-
     }
-
 
     private void setUpFAB() {
         findViewById(R.id.id_save_task_fab).setOnClickListener(new View.OnClickListener() {
@@ -56,9 +53,8 @@ public class SaveTaskActivity extends AppCompatActivity {
                     // duplicate name
                     StyleableToast.makeText(SaveTaskActivity.this, getString(R.string.both_task_is_same),
                             R.style.errorToast).show();
-
                     return;
-                }else if (taskManager.getInstance(SaveTaskActivity.this).checkTaskName(taskName)) {
+                } else if (taskManager.getInstance(SaveTaskActivity.this).checkTaskName(taskName)) {
                     // duplicate name
                     StyleableToast.makeText(SaveTaskActivity.this, getString(R.string.task_is_same),
                             R.style.errorToast).show();
@@ -68,11 +64,10 @@ public class SaveTaskActivity extends AppCompatActivity {
                     StyleableToast.makeText(SaveTaskActivity.this, getString(R.string.task_desc_is_same),
                             R.style.errorToast).show();
                     return;
-                }  else {
+                } else {
                     Task task = new Task(childManager.getInstance(SaveTaskActivity.this).getList(), taskName, taskDescription);
 
                     taskManager.getInstance(SaveTaskActivity.this).addTask(task);
-
                 }
                 finish();
             }

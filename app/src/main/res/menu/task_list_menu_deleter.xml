@@ -6,14 +6,14 @@
         android:id="@+id/action_trash_can"
         android:icon="@drawable/ic_baseline_delete"
         android:orderInCategory="100"
-        android:title="Delete"
+        android:title="@string/delete"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/id_action_checkbox"
         android:orderInCategory="100"
         android:icon="@drawable/ic_baseline_check_box_off"
         app:showAsAction="ifRoom"
-        android:title="checkbox"
+        android:title="@string/checkbox"
         android:checkable="true"
         app:actionViewClass="android.widget.CheckBox" />
 
