@@ -82,8 +82,7 @@ public class TaskManager implements Iterable<Task> {
     }
 
     public boolean checkTaskDesc(String name) {
-
-        for (int i = 0; i < taskQueue.size(); i++) {
+        for (int i = 0; i < getTaskSize(); i++) {
             if (getTask(i).getDesc().equals(name)) {
                 return true;
             }
