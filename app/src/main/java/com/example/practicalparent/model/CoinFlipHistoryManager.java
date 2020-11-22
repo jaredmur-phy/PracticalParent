@@ -27,11 +27,14 @@ public class CoinFlipHistoryManager {
 
     private CoinFlipHistoryManager(Context context) {
         serializationUtil = new SerializationUtil(context.getApplicationContext(), FILENAME);
-        historyList = serializationUtil.getObject(KEY_SET, new TypeToken<ArrayList<CoinFlipHistory>>(){}.getType(), new ArrayList<>());
+        historyList = serializationUtil.getObject(KEY_SET, new TypeToken<ArrayList<CoinFlipHistory>>() {
+        }.getType(), new ArrayList<>());
     }
 
     public void add(CoinFlipHistory history) {
-        if (history == null) return;
+        if (history == null) {
+            return;
+        }
         if (historyList.size() == LIMIT) {
             historyList.remove(0);
         }
@@ -45,7 +48,9 @@ public class CoinFlipHistoryManager {
 
     // return which child is picked last
     public Child getLastPickedChild() {
-        if (historyList.isEmpty()) return null;
+        if (historyList.isEmpty()) {
+            return null;
+        }
         return historyList.get(0).getChild();
     }
 

@@ -44,7 +44,6 @@ public class TaskManager implements Iterable<Task> {
 
     public List<Task> checkBoxTask(){
         return checked;
-
     }
 
 public void selectTask(Task selectedTask){

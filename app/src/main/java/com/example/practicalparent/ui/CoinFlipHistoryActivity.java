@@ -31,6 +31,7 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
 
     private CoinFlipHistoryManager coinFlipHistoryManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +97,9 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
 
     public ArrayList<String> parseList(List<CoinFlipHistory> historyList, String name) {
         ArrayList<String> list = new ArrayList<>();
-        if (name != null) name = name.toLowerCase();
+        if (name != null) {
+            name = name.toLowerCase();
+        }
         for (int i = historyList.size() - 1; i >= 0; i--) {
             CoinFlipHistory history = historyList.get(i);
             if (name != null && ("".equals(name) || name.isEmpty() ||
@@ -116,7 +119,9 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
     }
 
     private String parseBoolToHead(boolean isHead) {
-        if (isHead) return "Head";
+        if (isHead) {
+            return "Head";
+        }
         return "Tail";
     }
 

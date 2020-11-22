@@ -31,8 +31,9 @@ public class AlarmTimer {
      * @param duration ms
      */
     private AlarmTimer(long duration) {
-        if (duration < 0)
+        if (duration < 0) {
             throw new IllegalArgumentException("duration should not be negative");
+        }
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
@@ -64,7 +65,9 @@ public class AlarmTimer {
     }
 
     public boolean isTimeout() {
-        if (isPaused() || status == TimerStatus.SET_TIMER) return false;
+        if (isPaused() || status == TimerStatus.SET_TIMER) {
+            return false;
+        }
         return SystemClock.elapsedRealtime() >= endTime;
     }
 
@@ -135,11 +138,11 @@ public class AlarmTimer {
         status = TimerStatus.TIMEOUT;
     }
 
-    public void setSetTimerStatus(){
+    public void setSetTimerStatus() {
         status = TimerStatus.SET_TIMER;
     }
 
-    public void setPauseStatus(){
+    public void setPauseStatus() {
         status = TimerStatus.PAUSE;
     }
 

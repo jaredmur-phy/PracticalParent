@@ -246,6 +246,11 @@ public class EditTaskListActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        unselectAllItems();
+        super.onBackPressed();
+    }
 
     public static Intent getIntent(Context c) {
         return new Intent(c, EditTaskListActivity.class);
