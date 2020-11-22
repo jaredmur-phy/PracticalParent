@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/id_child_img"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
         android:layout_toEndOf="@+id/id_child_img"
         android:layout_toRightOf="@+id/id_child_img"
-        android:layout_marginLeft="8dp"
-        android:text="Name"
+        android:text="@string/childrenitem_name"
         android:textSize="18sp" />
 </RelativeLayout>

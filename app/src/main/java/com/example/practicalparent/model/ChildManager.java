@@ -18,7 +18,7 @@ import java.util.TreeSet;
  */
 public class ChildManager implements Iterable<Child> {
 
-    private static final String FILENAME = "CHILD_LIST_0";
+    private static final String FILE_NAME = "CHILD_LIST_0";
     private static final String CHILDREN_KEY = "child_list";
     private static final String ORDER_KEY = "order_list";
     private final SerializationUtil serializationUtil;
@@ -37,11 +37,13 @@ public class ChildManager implements Iterable<Child> {
     private static ChildManager instance;
 
     private ChildManager(Context c) {
-        serializationUtil = new SerializationUtil(c, FILENAME);
+        serializationUtil = new SerializationUtil(c, FILE_NAME);
         children = serializationUtil.getObject(CHILDREN_KEY,
-                new TypeToken<List<Child>>(){}.getType(), new ArrayList<>());
+                new TypeToken<List<Child>>(){}.getType(),
+                new ArrayList<>());
         order = serializationUtil.getObject(ORDER_KEY,
-                new TypeToken<List<Integer>>(){}.getType(), new ArrayList<>());
+                new TypeToken<List<Integer>>(){}.getType(),
+                new ArrayList<>());
     }
 
     private void write() {
@@ -66,13 +68,17 @@ public class ChildManager implements Iterable<Child> {
 
     // return a child, which is first in the order
     public Child peek(){
-        if(children.isEmpty()) return null;
+        if(children.isEmpty()) {
+            return null;
+        }
         return children.get(order.get(0));
     }
 
     // return a childIndex, which is first in the order
     public int peekOrder(){
-        if(order.isEmpty()) return -1;
+        if(order.isEmpty()) {
+            return -1;
+        }
         return order.get(0);
     }
 
@@ -116,7 +122,7 @@ public class ChildManager implements Iterable<Child> {
         // update order list
         for(int i = 0; i < order.size(); i++){
             int oldIndex = order.get(i);
-            if(oldIndex > childIndex){
+            if(oldIndex > childIndex) {
                 order.set(i, oldIndex-1);
             }
         }
