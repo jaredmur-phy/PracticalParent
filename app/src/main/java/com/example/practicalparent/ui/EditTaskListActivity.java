@@ -67,7 +67,7 @@ public class EditTaskListActivity extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        Button saveBtn = changePopup.findViewById(R.id.id_saveChangeName);
+        Button saveBtn = changePopup.findViewById(R.id.id_save_task_button);
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class EditTaskListActivity extends AppCompatActivity {
                 String changeTaskName = ((EditText) changePopup.findViewById(R.id.id_update_task_name)).getText().toString();
                 String changeTaskDesc = ((EditText) changePopup.findViewById(R.id.id_update_task_desc)).getText().toString();
 
-                if (changeTaskName.trim().isEmpty() || changeTaskDesc.trim().isEmpty()) {
+                if (changeTaskName.trim().isEmpty() && changeTaskDesc.trim().isEmpty()) {
                     StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_is_empty),
                             R.style.errorToast).show();
 
@@ -97,13 +97,28 @@ public class EditTaskListActivity extends AppCompatActivity {
                     StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_desc_is_same),
                             R.style.errorToast).show();
                     return;
-                } else {
+                } else if (!changeTaskName.trim().isEmpty()&& changeTaskDesc.trim().isEmpty()){
+                    TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
+                }   else if (changeTaskName.trim().isEmpty()&& !changeTaskDesc.trim().isEmpty()){
+                    TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
+                }
+
+                else {
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
                 }
                 adapter.notifyDataSetChanged();
 
 
+                dialog.dismiss();
+            }
+        });
+
+        Button cancelBtn = changePopup.findViewById(R.id.id_cancel_update_button);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });

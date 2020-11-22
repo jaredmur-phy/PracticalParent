@@ -114,4 +114,5 @@
     <string name="enter_a_description_e_g_first_bath">Enter a description: e.g. First bath</string>
     <string name="checkbox">checkbox</string>
     <string name="delete">Delete</string>
+    <string name="cancel">cancel</string>
 </resources>

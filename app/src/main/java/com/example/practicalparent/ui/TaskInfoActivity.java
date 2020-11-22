@@ -25,6 +25,7 @@ public class TaskInfoActivity extends AppCompatActivity {
     private ChildManager childManager;
     private final static String GET_INDEX = "GET_INDEX";
     private int editChildIndex = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class TaskInfoActivity extends AppCompatActivity {
 
     }
 
-    private void getChildIndex(){
+    private void getChildIndex() {
         editChildIndex = getIntent().getExtras().getInt(GET_INDEX);
     }
 
@@ -57,25 +58,22 @@ public class TaskInfoActivity extends AppCompatActivity {
 
     private void setChildPhoto() {
         ImageView childImgView = findViewById(R.id.id_get_child_img);
-
         childImgView.setImageDrawable(taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getDrawable(TaskInfoActivity.this));
-
     }
 
-private void setChildName(){
-    TextView editChildName = (TextView) findViewById(R.id.id_child_text);
-    editChildName.setText("Name: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getName());
-}
+    private void setChildName() {
+        TextView editChildName = (TextView) findViewById(R.id.id_child_text);
+        editChildName.setText("Name: " + taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).peekChild().getName());
+    }
 
-    private void setTaskName(){
+    private void setTaskName() {
         TextView editTaskName = (TextView) findViewById(R.id.id_task_title);
-        editTaskName.setText("Task: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getTaskName());
-
+        editTaskName.setText("Task: " + taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getTaskName());
     }
 
-    private void setTaskDesc(){
+    private void setTaskDesc() {
         TextView editTaskDesc = (TextView) findViewById(R.id.id_task_desc);
-        editTaskDesc.setText("Description: " +taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getDesc());
+        editTaskDesc.setText("Description: " + taskManager.getInstance(TaskInfoActivity.this).getTask(editChildIndex).getDesc());
     }
 
     private void cancel() {
@@ -110,7 +108,7 @@ private void setChildName(){
     }
 
     public static Intent makeLaunchIntent(Context c, int index) {
-        return getIntent(c,index);
+        return getIntent(c, index);
     }
 
 
