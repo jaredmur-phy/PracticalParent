@@ -141,12 +141,12 @@ public class SaveChildActivity extends AppCompatActivity {
 
                 if(childName.trim().isEmpty()){
                     StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_is_empty),
-                            R.style.resultToast).show();
+                            R.style.errorToast).show();
                     return;
                 } else if(childManager.checkChildName(childName, editChildIndex)){
                     // duplicate name
                     StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_already_exist),
-                            R.style.resultToast).show();
+                            R.style.errorToast).show();
                     return;
                 }
 

@@ -1,17 +1,13 @@
 package com.example.practicalparent.ui;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +20,6 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
@@ -52,7 +47,7 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void setupFAB() {
-        findViewById(R.id.id_add_child2).setOnClickListener(v -> launchSaveTask());
+        findViewById(R.id.id_add_task_fab).setOnClickListener(v -> launchSaveTask());
     }
 
     private void launchSaveTask()  {
