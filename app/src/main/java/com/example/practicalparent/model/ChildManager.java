@@ -166,14 +166,6 @@ public class ChildManager implements Iterable<Child> {
         write();
     }
 
-    //code taken from: https://www.programiz.com/java-programming/examples/string-empty-null
-    public boolean isNullOrEmpty(String str) {
-        if (str != null && !str.trim().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-
     public int size() {
         return children.size();
     }

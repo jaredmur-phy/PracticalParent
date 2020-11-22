@@ -37,18 +37,16 @@ public class Task {
         index = index % childList.size();
     }
 
-    public void nextChild(){
-    }
     public boolean isEmpty(){
         return childList.isEmpty();
     }
 
     public String getTaskName() {
-        return taskName;
+        return this.taskName;
     }
 
     public String getDesc() {
-        return desc;
+        return this.desc;
     }
 
     public void setTaskName(String name) {
