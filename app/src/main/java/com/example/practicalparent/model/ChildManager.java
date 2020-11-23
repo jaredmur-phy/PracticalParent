@@ -107,6 +107,10 @@ public class ChildManager implements Iterable<Child> {
         return children.get(i);
     }
 
+    public int getLastIndex(){
+        return children.size() - 1;
+    }
+
     public Child getByOrder(int orderIndex){
         return children.get(order.get(orderIndex));
     }

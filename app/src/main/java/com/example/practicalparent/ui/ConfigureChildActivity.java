@@ -131,7 +131,7 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.id_action_task_settings:
-                if(manager.size() != 0){
+                if(!manager.isEmpty()){
                 startActivity(TaskListActivity.makeLaunchIntent(this));}
                 else{
                     StyleableToast.makeText(ConfigureChildActivity.this, getString(R.string.enter_child_name_to_use),

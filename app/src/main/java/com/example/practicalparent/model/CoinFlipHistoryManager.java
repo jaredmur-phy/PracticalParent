@@ -58,6 +58,10 @@ public class CoinFlipHistoryManager {
         return historyList.get(index);
     }
 
+    public int getLastIndex(){
+        return historyList.size() - 1;
+    }
+
     private void write() {
         serializationUtil.putObject(KEY_SET, historyList);
     }
