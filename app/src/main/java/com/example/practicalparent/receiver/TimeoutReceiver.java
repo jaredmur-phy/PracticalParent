@@ -59,7 +59,6 @@ public class TimeoutReceiver extends BroadcastReceiver {
                 .setContentIntent(contentIntent)
                 .setAutoCancel(true)
                 .build();
-
         notificationManager.notify(1, notification);
     }
 
