@@ -49,11 +49,6 @@ public class TimeoutReceiver extends BroadcastReceiver {
         PendingIntent contentIntent = PendingIntent.getActivity(context,
                 0, activityIntent, 0);
 
-        Intent broadcastIntent = new Intent(context, NotificationReciever.class);
-        broadcastIntent.putExtra("toastMessage", "test");
-        PendingIntent actionIntent = PendingIntent.getBroadcast(context,
-                0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.ic_alarm)
                 .setContentTitle("Alarm Done")
@@ -63,7 +58,6 @@ public class TimeoutReceiver extends BroadcastReceiver {
                 .setColor(Color.RED)
                 .setContentIntent(contentIntent)
                 .setAutoCancel(true)
-                .addAction(R.mipmap.ic_launcher, "Tap to stop alarm", actionIntent)
                 .build();
 
         notificationManager.notify(1, notification);
