@@ -1,0 +1,3 @@
+See here for style guide:
+
+https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/course-info/styleguide
