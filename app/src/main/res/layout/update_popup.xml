@@ -19,7 +19,6 @@
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_save_task_tool_bar"
         app:srcCompat="@drawable/ic_baseline_add_task" />
 
     <EditText

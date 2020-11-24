@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A task object saves a task, and a list of child which doing the task
+ */
 public class Task {
     private List<Child> childList;
     private String taskName;

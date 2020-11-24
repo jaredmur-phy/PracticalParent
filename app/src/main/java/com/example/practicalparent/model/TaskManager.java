@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * manage the task list
+ */
 public class TaskManager implements Iterable<Task> {
 
     private static TaskManager taskManager;
