@@ -1,6 +1,8 @@
 package com.example.practicalparent.ui;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +44,7 @@ public class TimerActivity extends AppCompatActivity {
     private int[] timerOptions;
     private int countDownMinutes;
 
+    public static final String CHANNEL_1_ID = "channel1";
     // refresh clock
     private Handler refreshCallbackHandler;
     private Runnable refreshCallback;
@@ -58,6 +61,22 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
+
+        //setupNotificationChannel();
+    }
+
+    public void setupNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel1 = new NotificationChannel(
+                    CHANNEL_1_ID,
+                    "Channel 1",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            channel1.setDescription("Time Out Over");
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+        }
     }
 
     @Override

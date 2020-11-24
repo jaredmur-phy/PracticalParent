@@ -71,9 +71,6 @@
         </activity>
 
         <receiver android:name=".receiver.TimeoutReceiver">
-            <intent-filter>
-                <action android:name="TIMEOUT_ACTION" />
-            </intent-filter>
         </receiver>
     </application>
 
