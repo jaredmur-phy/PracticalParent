@@ -50,7 +50,7 @@ public class TaskListActivity extends AppCompatActivity {
         findViewById(R.id.id_add_task_fab).setOnClickListener(v -> launchSaveTask());
     }
 
-    private void launchSaveTask()  {
+    private void launchSaveTask() {
         startActivity(SaveTaskActivity.makeLaunchIntent(TaskListActivity.this));
     }
 
@@ -83,7 +83,7 @@ public class TaskListActivity extends AppCompatActivity {
         });
     }
 
-    private void launchTaskInfo(int position)  {
+    private void launchTaskInfo(int position) {
         Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this, position);
 
         startActivity(intent);

@@ -39,10 +39,12 @@ public class ChildManager implements Iterable<Child> {
     private ChildManager(Context c) {
         serializationUtil = new SerializationUtil(c, FILE_NAME);
         children = serializationUtil.getObject(CHILDREN_KEY,
-                new TypeToken<List<Child>>(){}.getType(),
+                new TypeToken<List<Child>>() {
+                }.getType(),
                 new ArrayList<>());
         order = serializationUtil.getObject(ORDER_KEY,
-                new TypeToken<List<Integer>>(){}.getType(),
+                new TypeToken<List<Integer>>() {
+                }.getType(),
                 new ArrayList<>());
     }
 
@@ -51,11 +53,11 @@ public class ChildManager implements Iterable<Child> {
         writeOrder();
     }
 
-    private void writeChildren(){
+    private void writeChildren() {
         serializationUtil.putObject(CHILDREN_KEY, children);
     }
 
-    private void writeOrder(){
+    private void writeOrder() {
         serializationUtil.putObject(ORDER_KEY, order);
     }
 
@@ -67,16 +69,16 @@ public class ChildManager implements Iterable<Child> {
     }
 
     // return a child, which is first in the order
-    public Child peek(){
-        if(children.isEmpty()) {
+    public Child peek() {
+        if (children.isEmpty()) {
             return null;
         }
         return children.get(order.get(0));
     }
 
     // return a childIndex, which is first in the order
-    public int peekOrder(){
-        if(order.isEmpty()) {
+    public int peekOrder() {
+        if (order.isEmpty()) {
             return -1;
         }
         return order.get(0);
@@ -92,30 +94,30 @@ public class ChildManager implements Iterable<Child> {
         return children;
     }
 
-    public List<Child> getOrderList(){
+    public List<Child> getOrderList() {
         ArrayList<Child> list = new ArrayList<>();
-        for(int i = 0; i < children.size(); i++){
+        for (int i = 0; i < children.size(); i++) {
             list.add(children.get(order.get(i)));
         }
         return list;
     }
 
     public Child get(int i) {
-        if(i < 0 || i >= children.size()){
+        if (i < 0 || i >= children.size()) {
             return new Child("");
         }
         return children.get(i);
     }
 
-    public int getLastIndex(){
+    public int getLastIndex() {
         return children.size() - 1;
     }
 
-    public Child getByOrder(int orderIndex){
+    public Child getByOrder(int orderIndex) {
         return children.get(order.get(orderIndex));
     }
 
-    public int getOrder(int orderIndex){
+    public int getOrder(int orderIndex) {
         return order.get(orderIndex);
     }
 
@@ -124,18 +126,18 @@ public class ChildManager implements Iterable<Child> {
         order.remove((Integer) childIndex);
 
         // update order list
-        for(int i = 0; i < order.size(); i++){
+        for (int i = 0; i < order.size(); i++) {
             int oldIndex = order.get(i);
-            if(oldIndex > childIndex) {
-                order.set(i, oldIndex-1);
+            if (oldIndex > childIndex) {
+                order.set(i, oldIndex - 1);
             }
         }
 
         write();
     }
 
-    public Child select(int childIndex){
-        if(childIndex < 0 || childIndex >= order.size()){
+    public Child select(int childIndex) {
+        if (childIndex < 0 || childIndex >= order.size()) {
             return new Child("");
         }
 
@@ -146,14 +148,14 @@ public class ChildManager implements Iterable<Child> {
         return children.get(childIndex);
     }
 
-    public boolean checkChildName(String name){
+    public boolean checkChildName(String name) {
         return checkChildName(name, -1);
     }
 
     // return true if children contains name in other index
     public boolean checkChildName(String name, int index) {
-        for(int i = 0; i < children.size(); i++){
-            if(children.get(i).getName().equals(name) && i != index){
+        for (int i = 0; i < children.size(); i++) {
+            if (children.get(i).getName().equals(name) && i != index) {
                 return true;
             }
         }
@@ -165,7 +167,7 @@ public class ChildManager implements Iterable<Child> {
         write();
     }
 
-    public void updateChild(int index, Child child){
+    public void updateChild(int index, Child child) {
         children.set(index, child);
         write();
     }

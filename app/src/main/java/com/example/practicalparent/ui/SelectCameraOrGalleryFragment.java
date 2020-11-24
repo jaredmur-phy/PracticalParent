@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class SelectCameraOrGalleryFragment extends AppCompatDialogFragment{
+public class SelectCameraOrGalleryFragment extends AppCompatDialogFragment {
 
     @NonNull
     @Override
@@ -18,11 +18,12 @@ public class SelectCameraOrGalleryFragment extends AppCompatDialogFragment{
         String[] test = {"Open Camera", "Open Gallery"};
         dialog.setItems(test, new DialogInterface.OnClickListener() {
             final SaveChildActivity activity = (SaveChildActivity) getActivity();
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which == 0){
+                if (which == 0) {
                     activity.openCamera();
-                }else{
+                } else {
                     activity.openGallery();
                 }
             }

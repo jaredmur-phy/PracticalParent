@@ -66,7 +66,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     public void setupNotificationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel1 = new NotificationChannel(
                     CHANNEL_1_ID,
                     "Channel 1",
@@ -83,7 +83,7 @@ public class TimerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         stopAlarming();
-        if(timer.isTimeout()){
+        if (timer.isTimeout()) {
             timer.setSetTimerStatus();
         }
     }
@@ -92,7 +92,7 @@ public class TimerActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         stopAlarming();
-        if(timer.isTimeout()){
+        if (timer.isTimeout()) {
             timer.setSetTimerStatus();
         }
     }

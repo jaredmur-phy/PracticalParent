@@ -97,13 +97,11 @@ public class EditTaskListActivity extends AppCompatActivity {
                     StyleableToast.makeText(EditTaskListActivity.this, getString(R.string.task_desc_is_same),
                             R.style.errorToast).show();
                     return;
-                } else if (!changeTaskName.trim().isEmpty()&& changeTaskDesc.trim().isEmpty()){
+                } else if (!changeTaskName.trim().isEmpty() && changeTaskDesc.trim().isEmpty()) {
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
-                }   else if (changeTaskName.trim().isEmpty()&& !changeTaskDesc.trim().isEmpty()){
+                } else if (changeTaskName.trim().isEmpty() && !changeTaskDesc.trim().isEmpty()) {
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
-                }
-
-                else {
+                } else {
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskName(i, changeTaskName);
                     TaskManager.getInstance(EditTaskListActivity.this).changeTaskDesc(i, changeTaskDesc);
                 }

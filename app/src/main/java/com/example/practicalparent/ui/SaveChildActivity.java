@@ -94,7 +94,7 @@ public class SaveChildActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getChildIndex(){
+    private void getChildIndex() {
         editChildIndex = getIntent().getExtras().getInt(GET_INDEX);
     }
 
@@ -114,24 +114,24 @@ public class SaveChildActivity extends AppCompatActivity {
         }
     }
 
-    private void getChildManager(){
+    private void getChildManager() {
         childManager = ChildManager.getInstance(this);
     }
 
-    private void setupImgBtn(){
+    private void setupImgBtn() {
         ImageView imgBtn = findViewById(R.id.id_child_img);
         imgBtn.setOnClickListener(v -> {
             showDialog();
         });
     }
 
-    private void showDialog(){
+    private void showDialog() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         SelectCameraOrGalleryFragment dialog = new SelectCameraOrGalleryFragment();
         dialog.show(fragmentManager, "choose img");
     }
 
-    private void setupSaveBtn(){
+    private void setupSaveBtn() {
         findViewById(R.id.id_save_child).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,11 +139,11 @@ public class SaveChildActivity extends AppCompatActivity {
                 String childName = editText.getText().toString();
                 ImageView imageView = findViewById(R.id.id_child_img);
 
-                if(childName.trim().isEmpty()){
+                if (childName.trim().isEmpty()) {
                     StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_is_empty),
                             R.style.errorToast).show();
                     return;
-                } else if(childManager.checkChildName(childName, editChildIndex)){
+                } else if (childManager.checkChildName(childName, editChildIndex)) {
                     // duplicate name
                     StyleableToast.makeText(SaveChildActivity.this, getString(R.string.name_already_exist),
                             R.style.errorToast).show();
@@ -167,14 +167,14 @@ public class SaveChildActivity extends AppCompatActivity {
 
     // if exit too fast, then list will be show before the data write into disk
     // therefore add a delay.
-    private void exit(){
+    private void exit() {
         Handler h = new Handler();
-        h.postDelayed(() -> finish(), TimeInMills.HALF_SECOND.getValue()/2);
+        h.postDelayed(() -> finish(), TimeInMills.HALF_SECOND.getValue() / 2);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != RESULT_OK || data == null){
+        if (resultCode != RESULT_OK || data == null) {
             return;
         }
         ImageView imageView = findViewById(R.id.id_child_img);
@@ -182,7 +182,7 @@ public class SaveChildActivity extends AppCompatActivity {
             // select an image from gallery
             Uri uri = data.getData();
             imageView.setImageURI(uri);
-        }else if(requestCode == OPEN_CAMERA_REQUEST_CODE){
+        } else if (requestCode == OPEN_CAMERA_REQUEST_CODE) {
             Bundle extras = data.getExtras();
             Bitmap bitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(bitmap);
@@ -190,7 +190,7 @@ public class SaveChildActivity extends AppCompatActivity {
     }
 
     // open gallery to select image
-    public void openGallery(){
+    public void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, OPEN_GALLERY_REQUEST_CODE);
     }
@@ -213,7 +213,7 @@ public class SaveChildActivity extends AppCompatActivity {
         }
     }
 
-    public static Intent getIntent(Context c, int index){
+    public static Intent getIntent(Context c, int index) {
         Intent i = new Intent(c, SaveChildActivity.class);
         i.putExtra(GET_INDEX, index);
         return i;

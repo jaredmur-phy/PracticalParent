@@ -5,5 +5,4 @@
     android:textSize="20sp"
     android:layout_marginBottom="10sp"
     android:textAlignment="center"
-    android:gravity="center_horizontal">
-</TextView>
+    android:gravity="center_horizontal"></TextView>

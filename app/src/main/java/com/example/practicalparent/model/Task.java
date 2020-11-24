@@ -28,19 +28,19 @@ public class Task {
     }
 
     // return the current Child in the list
-    public Child peekChild(){
-        if(isEmpty()) return null;
+    public Child peekChild() {
+        if (isEmpty()) return null;
         return childList.get(index);
     }
 
     // move to the next child
     public void moveNext() {
-        if(isEmpty()) return;
-        index ++;
+        if (isEmpty()) return;
+        index++;
         index = index % childList.size();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return childList.isEmpty();
     }
 
@@ -61,8 +61,8 @@ public class Task {
     }
 
 
-    private void validateTaskName(String taskName){
-        if(taskName == null || taskName.trim().isEmpty()){
+    private void validateTaskName(String taskName) {
+        if (taskName == null || taskName.trim().isEmpty()) {
             throw new IllegalArgumentException("Task name should not be empty");
         }
     }

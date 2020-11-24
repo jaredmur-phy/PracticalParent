@@ -58,7 +58,7 @@ public class CoinFlipHistoryManager {
         return historyList.get(index);
     }
 
-    public int getLastIndex(){
+    public int getLastIndex() {
         return historyList.size() - 1;
     }
 

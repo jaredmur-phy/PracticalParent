@@ -22,24 +22,24 @@ public class Child {
         this(name, null);
     }
 
-    public Child(String name, Drawable d){
+    public Child(String name, Drawable d) {
         if (name == null) {
             throw new IllegalArgumentException("Null child name");
         }
         this.firstName = name;
-        if(d == null){
+        if (d == null) {
             imgInByte = null;
-        }else {
+        } else {
             setDrawable(d);
         }
     }
 
-    public boolean hasDrawable(){
+    public boolean hasDrawable() {
         return imgInByte != null;
     }
 
     public void setDrawable(Drawable d) {
-        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) d).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         this.imgInByte = stream.toByteArray();

@@ -70,8 +70,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".receiver.TimeoutReceiver">
-        </receiver>
+        <receiver android:name=".receiver.TimeoutReceiver"></receiver>
     </application>
 
 </manifest>

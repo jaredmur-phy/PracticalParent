@@ -127,7 +127,8 @@ public class FlipResultsActivity extends AppCompatActivity {
                 } else if (index == 100) {       // animation ends
 
                     // update history
-                    Child child = childManager.select(childIndex);;
+                    Child child = childManager.select(childIndex);
+                    ;
                     historyManager.add(new CoinFlipHistory(child,
                             picked, isHead));
 

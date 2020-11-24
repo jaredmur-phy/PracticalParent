@@ -16,7 +16,7 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark" />
 
 
     <CheckBox
@@ -24,7 +24,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/id_check_box"
-    />
+        android:id="@+id/id_check_box" />
 
 </RelativeLayout>

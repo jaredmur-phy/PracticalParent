@@ -73,12 +73,13 @@ public class ConfigureChildActivity extends AppCompatActivity {
     }
 
 
-    private class ChildListAdapter extends ArrayAdapter<Child>{
-        public ChildListAdapter(){
+    private class ChildListAdapter extends ArrayAdapter<Child> {
+        public ChildListAdapter() {
             super(ConfigureChildActivity.this,
                     R.layout.childrenitems,
                     manager.getList());
         }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // Make sure we have a view to work with (may have been given null)
@@ -105,7 +106,7 @@ public class ConfigureChildActivity extends AppCompatActivity {
         findViewById(R.id.id_add_child).setOnClickListener(v -> launchSaveChild());
     }
 
-    private void launchSaveChild()  {
+    private void launchSaveChild() {
         startActivity(SaveChildActivity.makeLaunchIntent(ConfigureChildActivity.this));
     }
 
@@ -131,9 +132,9 @@ public class ConfigureChildActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.id_action_task_settings:
-                if(!manager.isEmpty()){
-                startActivity(TaskListActivity.makeLaunchIntent(this));}
-                else{
+                if (!manager.isEmpty()) {
+                    startActivity(TaskListActivity.makeLaunchIntent(this));
+                } else {
                     StyleableToast.makeText(ConfigureChildActivity.this, getString(R.string.enter_child_name_to_use),
                             R.style.errorToast).show();
                 }

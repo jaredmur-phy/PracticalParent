@@ -18,7 +18,7 @@ public class SerializationUtil {
     private final String filename;
     private final Context context;
 
-    public SerializationUtil(Context c, String filename){
+    public SerializationUtil(Context c, String filename) {
         this.context = c;
         this.filename = filename;
     }
@@ -44,13 +44,13 @@ public class SerializationUtil {
         putString(key, json);
     }
 
-    public void putString(String key, String value){
+    public void putString(String key, String value) {
         SharedPreferences sharedPreferences = context.getApplicationContext()
                 .getSharedPreferences(filename, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(key, value).apply();
     }
 
-    public String getString(String key, String defaultVal){
+    public String getString(String key, String defaultVal) {
         SharedPreferences sharedPreferences = context.getApplicationContext()
                 .getSharedPreferences(filename, Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, defaultVal);

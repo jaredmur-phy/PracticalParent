@@ -49,7 +49,7 @@ public class SelectChildActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(false);
     }
 
-    private void hideBtn(){
+    private void hideBtn() {
         findViewById(R.id.id_add_child).setVisibility(View.INVISIBLE);
     }
 
@@ -67,8 +67,8 @@ public class SelectChildActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
-    private class ChildListAdapter extends ArrayAdapter<Child>{
-        public ChildListAdapter(){
+    private class ChildListAdapter extends ArrayAdapter<Child> {
+        public ChildListAdapter() {
             super(SelectChildActivity.this,
                     R.layout.childrenitems,
                     manager.getOrderList());
@@ -106,7 +106,7 @@ public class SelectChildActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.id_select_nobody:
                 startActivity(FlipResultsActivity.getIntent(SelectChildActivity.this,
-                        PickedConstant.NOT_PICKED,-1));
+                        PickedConstant.NOT_PICKED, -1));
                 finish();
         }
 

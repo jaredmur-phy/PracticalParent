@@ -46,22 +46,22 @@ public class ChooseCoinActivity extends AppCompatActivity {
         setChildInfo(childIndex);
     }
 
-    private void getIndex(){
+    private void getIndex() {
         childIndex = getIntent().getIntExtra(KEY_INDEX, -1);
-        if(childIndex == -1){
+        if (childIndex == -1) {
             childIndex = selector.peekOrder();
         }
     }
 
-    private void setChildInfo(int index){
-        if(index == -1) return;
+    private void setChildInfo(int index) {
+        if (index == -1) return;
         ImageView imageView = findViewById(R.id.id_next_child_img);
         TextView textView = findViewById(R.id.id_next_child_name);
         imageView.setImageDrawable(selector.get(index).getDrawable(this));
         textView.setText(selector.get(index).getName());
     }
 
-    private void setChildOnClickListener(){
+    private void setChildOnClickListener() {
         ImageView imageView = findViewById(R.id.id_next_child_img);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +108,7 @@ public class ChooseCoinActivity extends AppCompatActivity {
         return getIntent(c, -1);
     }
 
-    public static Intent getIntent(Context c, int index){
+    public static Intent getIntent(Context c, int index) {
         Intent i = new Intent(c, ChooseCoinActivity.class);
         i.putExtra(KEY_INDEX, index);
         return i;
@@ -117,6 +117,7 @@ public class ChooseCoinActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return getIntent(c);
     }
+
     public static Intent makeLaunchIntent(Context c, int index) {
         return getIntent(c, index);
     }
