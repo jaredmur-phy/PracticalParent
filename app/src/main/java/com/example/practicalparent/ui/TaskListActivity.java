@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -17,10 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
 
+// Shows task list and opens up task info
 public class TaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
     private ArrayAdapter<Task> adapter;
@@ -54,15 +59,44 @@ public class TaskListActivity extends AppCompatActivity {
         startActivity(SaveTaskActivity.makeLaunchIntent(TaskListActivity.this));
     }
 
+    private void registerClickCallBack() {
+        ListView list = findViewById(R.id.id_task_list_view);
+        list.setOnItemClickListener((parent, view, position, id) -> launchTaskInfo(position));
+    }
+
+private class TaskListAdapter extends ArrayAdapter<Task> {
+        public TaskListAdapter() {
+            super(TaskListActivity.this,
+                    R.layout.taskitems,
+                    taskManager.getList());
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Make sure we have a view to work with (may have been given null)
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.taskitems, parent, false);
+            }
+
+            Task curTask = taskManager.getTask(position);
+
+
+            // Fill the view
+            ImageView childImgView = itemView.findViewById(R.id.id_task_child_img);
+            childImgView.setImageDrawable(curTask.peekChild().getDrawable(TaskListActivity.this));
+            TextView taskNameView = itemView.findViewById(R.id.id_task);
+            taskNameView.setText(curTask.toString());
+
+            return itemView;
+        }
+    }
 
     private void populateListView() {
-
-        adapter = new ArrayAdapter<>(
-                TaskListActivity.this,
-                R.layout.taskitems,
-                taskManager.getList());
+        ArrayAdapter<Task> adapter = new TaskListAdapter();
         ListView list = findViewById(R.id.id_task_list_view);
         list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void setToolBar() {
@@ -72,23 +106,10 @@ public class TaskListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void registerClickCallBack() {
-        ListView list = findViewById(R.id.id_task_list_view);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                launchTaskInfo(position);
-            }
-        });
-    }
-
     private void launchTaskInfo(int position) {
         Intent intent = TaskInfoActivity.makeLaunchIntent(TaskListActivity.this, position);
-
         startActivity(intent);
     }
-
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TaskListActivity.class);
