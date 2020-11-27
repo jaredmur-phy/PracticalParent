@@ -30,6 +30,10 @@ import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Timer page, can set, reset, pause, resume a timer
@@ -61,8 +65,17 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
+        setUpPieChart();
 
         //setupNotificationChannel();
+    }
+
+    private void setUpPieChart() {
+// populating list
+
+        List<PieEntry> pieEntries = new ArrayList<>();
+
+
     }
 
     public void setupNotificationChannel() {
