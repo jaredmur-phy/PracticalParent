@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -78,13 +79,21 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView item = (TextView) super.getView(position, convertView, parent);
+
+
                 String text = item.getText().toString();
                 int index = coinFlipHistoryManager.getLastIndex() - position;
+
+
+
+
                 if (coinFlipHistoryManager.get(index).isPicked()) {
                     if (coinFlipHistoryManager.get(index).isWon()) {
                         item.setText(Html.fromHtml(text + getString(R.string.won_text)));
+
                     } else {
                         item.setText(Html.fromHtml(text + getString(R.string.lost_text)));
+
                     }
                 } else {
                     item.setText(Html.fromHtml(text));
