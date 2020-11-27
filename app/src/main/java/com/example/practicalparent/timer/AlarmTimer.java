@@ -51,6 +51,12 @@ public class AlarmTimer {
         }
     }
 
+    // return a value in [0, 1]
+    // means there are 60% time left
+    public double getRemainingPercentage(){
+        return 0.6;
+    }
+
     // return after how many second times out
     public long getRemainingTime() {
         if (isPaused()) {
