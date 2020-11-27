@@ -71,8 +71,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void setUpPieChart() {
-// populating list
-
+        // populating list
         List<PieEntry> pieEntries = new ArrayList<>();
 
 
