@@ -1,5 +1,7 @@
 package com.example.practicalparent.model;
 
+import androidx.annotation.NonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -58,5 +60,27 @@ public class CoinFlipHistory {
 
     public boolean isWon() {
         return (picked == PickedConstant.PICKED_HEAD) == gotHead;
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        String sb = this.getDate() + " <br>";
+        if (this.isPicked()) {
+            sb += "<b>" +
+                    this.getChild().getName() +
+                    "</b> picked <b>" + parseBoolToHead(this.isPickedHead()) +
+                    "</b>";
+        }
+        sb += " got <i>" + parseBoolToHead(this.isGotHead()) + "</i>";
+        return sb;
+    }
+
+    private String parseBoolToHead(boolean isHead) {
+        if (isHead) {
+            return "Head";
+        }
+        return "Tail";
     }
 }

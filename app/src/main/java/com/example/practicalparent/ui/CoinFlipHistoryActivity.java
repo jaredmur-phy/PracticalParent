@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
 import com.example.practicalparent.listener.TextChangedListener;
+import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.CoinFlipHistory;
 import com.example.practicalparent.model.CoinFlipHistoryManager;
 
@@ -72,40 +73,50 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
     }
 
     private void showListView(String name) {
-        ListView listView = findViewById(R.id.id_history_list);
-        List<CoinFlipHistory> historyList = coinFlipHistoryManager.getHistoryList();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.items_list,
-                parseList(historyList, name.trim())) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                TextView item = (TextView) super.getView(position, convertView, parent);
-
-
-                String text = item.getText().toString();
-                int index = coinFlipHistoryManager.getLastIndex() - position;
-
-
-
-
-                if (coinFlipHistoryManager.get(index).isPicked()) {
-                    if (coinFlipHistoryManager.get(index).isWon()) {
-                        item.setText(Html.fromHtml(text + getString(R.string.won_text)));
-
-                    } else {
-                        item.setText(Html.fromHtml(text + getString(R.string.lost_text)));
-
-                    }
-                } else {
-                    item.setText(Html.fromHtml(text));
-                }
-                return item;
-            }
-        };
-        listView.setAdapter(adapter);
+        ArrayAdapter<CoinFlipHistory> adapter = new HistoryListAdapter(parseList(
+                coinFlipHistoryManager.getHistoryList(), name));
+        ListView list = findViewById(R.id.id_history_list);
+        list.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
-    public ArrayList<String> parseList(List<CoinFlipHistory> historyList, String name) {
-        ArrayList<String> list = new ArrayList<>();
+    private class HistoryListAdapter extends ArrayAdapter<CoinFlipHistory> {
+
+        List<CoinFlipHistory> historyList;
+
+        public HistoryListAdapter(List<CoinFlipHistory> historyList) {
+            super(CoinFlipHistoryActivity.this,
+                    R.layout.childrenitems, historyList);
+            this.historyList = historyList;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Make sure we have a view to work with (may have been given null)
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.childrenitems, parent, false);
+            }
+            CoinFlipHistory history = historyList.get(position);
+            Child curChild = history.getChild();
+
+            // Fill the view
+            if(curChild.hasDrawable()) {
+                ImageView childImgView = itemView.findViewById(R.id.id_child_img);
+                childImgView.setImageDrawable(curChild.getDrawable(CoinFlipHistoryActivity.this));
+            }
+            TextView textView = itemView.findViewById(R.id.id_child_name);
+            if(history.isWon()) {
+                textView.setText(Html.fromHtml(history.toString() + getString(R.string.won_text)));
+            }else{
+                textView.setText(Html.fromHtml(history.toString() + getString(R.string.lost_text)));
+            }
+            return itemView;
+        }
+    }
+
+    public ArrayList<CoinFlipHistory> parseList(List<CoinFlipHistory> historyList, String name) {
+        ArrayList<CoinFlipHistory> list = new ArrayList<>();
         if (name != null) {
             name = name.toLowerCase();
         }
@@ -113,26 +124,12 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
             CoinFlipHistory history = historyList.get(i);
             if (name != null && ("".equals(name) || name.isEmpty() ||
                     history.getChild().getName().toLowerCase().contains(name))) {
-                String sb = history.getDate() + " <br>";
-                if (history.isPicked()) {
-                    sb += "<b>" +
-                            history.getChild().getName() +
-                            "</b> picked <b>" + parseBoolToHead(history.isPickedHead()) +
-                            "</b>";
-                }
-                sb += " got <i>" + parseBoolToHead(history.isGotHead()) + "</i>";
-                list.add(sb);
+                list.add(history);
             }
         }
         return list;
     }
 
-    private String parseBoolToHead(boolean isHead) {
-        if (isHead) {
-            return "Head";
-        }
-        return "Tail";
-    }
 
     public static Intent makeLaunchIntent(Context c) {
         return new Intent(c, CoinFlipHistoryActivity.class);
