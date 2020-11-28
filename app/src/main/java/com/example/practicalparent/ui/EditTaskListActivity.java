@@ -27,12 +27,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.practicalparent.R;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
+// Can edit tasks; delete or update
 public class EditTaskListActivity extends AppCompatActivity {
     private TaskManager taskManager;
     private ArrayAdapter<Task> adapter;
@@ -57,6 +59,7 @@ public class EditTaskListActivity extends AppCompatActivity {
 
         setToolBar();
         populateListView();
+        registerClickCallBack();
 
     }
 
@@ -152,15 +155,22 @@ public class EditTaskListActivity extends AppCompatActivity {
     }
 
     private void populateListView() {
-        adapter = new TaskListAdapter();
+        adapter = new EditTaskListAdapter();
         list = findViewById(R.id.id_edit_task_list);
         list.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         list.setMultiChoiceModeListener(modeListener);
         list.setAdapter(adapter);
     }
 
-    private class TaskListAdapter extends ArrayAdapter<Task> {
-        public TaskListAdapter() {
+
+    private void registerClickCallBack() {
+        ListView list = findViewById(R.id.id_edit_task_list);
+        list.setOnItemClickListener((parent, view, position, id) -> showID(position));
+    }
+
+
+    private class EditTaskListAdapter extends ArrayAdapter<Task> {
+        public EditTaskListAdapter() {
             super(EditTaskListActivity.this,
                     R.layout.edit_task_items,
                     taskManager.getList());
@@ -178,15 +188,11 @@ public class EditTaskListActivity extends AppCompatActivity {
 
 
             // Fill the view
+            ImageView childImgView = itemView.findViewById(R.id.id_edit_task_child_img);
+            childImgView.setImageDrawable(curTask.peekChild().getDrawable(EditTaskListActivity.this));
+
             TextView taskNameView = itemView.findViewById(R.id.id_task);
             taskNameView.setText(curTask.toString());
-            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> av, View v, int pos, long id) {
-                    showID(pos);
-                    adapter.notifyDataSetChanged();
-                }
-            });
 
             checkBox = itemView.findViewById(R.id.id_check_box);
             checkBox.setTag(position);

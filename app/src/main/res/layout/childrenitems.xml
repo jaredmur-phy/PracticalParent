@@ -16,11 +16,20 @@
         android:id="@+id/id_child_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/happy_school"
+        android:gravity="center_vertical"
         android:layout_alignBottom="@+id/id_child_img"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"
         android:layout_toEndOf="@+id/id_child_img"
         android:layout_toRightOf="@+id/id_child_img"
         android:text="@string/childrenitem_name"
-        android:textSize="18sp" />
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"/>
 </RelativeLayout>

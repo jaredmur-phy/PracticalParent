@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class CoinFlipHistoryManager {
 
-    private static final String FILENAME = "History_file";
+    private static final String FILENAME = "History_File";
     private static final String KEY_SET = "KEY_SET";
 
     private static final int LIMIT = 100; // only save 100 histories
