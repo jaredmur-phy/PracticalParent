@@ -224,8 +224,7 @@ public class TimerActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setTimer(int minutes) {
-        long triggerTime = SystemClock.elapsedRealtime() + minutes * TimeInMills.MINUTE.getValue();
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, timeoutCallback);
+        startBroadcast();
         timer.reset(minutes * TimeInMills.MINUTE.getValue());
     }
 
@@ -253,7 +252,7 @@ public class TimerActivity extends AppCompatActivity {
             return;
         }
         timer.resume();
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        startBroadcast();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -262,8 +261,16 @@ public class TimerActivity extends AppCompatActivity {
         pauseTimer();
         timer.reset(countDownMinutes * TimeInMills.MINUTE.getValue());
         timer.setPauseStatus();
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, timer.getEndTime(), timeoutCallback);
+        startBroadcast();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void startBroadcast(){
+        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + TimeInMills.SECOND.getValue()
+                , timeoutCallback);
+    }
+
 
     private String getShowTime() {
         long times = timer.getRemainingTime();

@@ -74,12 +74,12 @@
     <string name="team_mango"><a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">Team Mango</a></string>
 
 
-    <string name="won_text"><![CDATA[<br><font color=\'#00ff00\'> WON!!</font>]]></string>
-    <string name="loose_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>
+    <string name="won_text"><![CDATA[<font color=\'#00ff00\'> WON!!</font>]]></string>
+    <string name="loose_text"><![CDATA[<font color=\'#ff0000\'> LOST!!</font>]]></string>
     <string name="enter_child_name">Enter Name to Filter:</string>
     <string name="history_page_title">Coin Flip History</string>
     <string name="set_timer_page_title">Set Timer</string>
-    <string name="lost_text"><![CDATA[<br><font color=\'#ff0000\'> LOST!!</font>]]></string>
+    <string name="lost_text"><![CDATA[<font color=\'#ff0000\'> LOST!!</font>]]></string>
     <string name="history">History</string>
     <string name="search_child_flipping_history">search child flipping history</string>
     <string name="would_you_like_to_pick_a_coin_again_for_yourself_or_any_other_kid">Would you like to pick a coin again for yourself or any other kid?</string>
