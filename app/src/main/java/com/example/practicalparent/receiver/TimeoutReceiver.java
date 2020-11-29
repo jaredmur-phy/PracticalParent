@@ -1,6 +1,7 @@
 package com.example.practicalparent.receiver;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,11 +12,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.PowerManager;
+import android.os.SystemClock;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
 import com.example.practicalparent.ui.TimerActivity;
@@ -27,19 +31,34 @@ public class TimeoutReceiver extends BroadcastReceiver {
     public static final String CHANNEL_1_ID = "channel1";
     private static final String TIMEOUT_ACTION = "TIMEOUT_ACTION";
     private static final int screenWakingUpTimeout = 5; // 5 min
+    private static final int sleepTime = 5;            // 10 second
 
     private NotificationManagerCompat notificationManager;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (TIMEOUT_ACTION.equals(action)) {
-            wakeupScreen(context);
-            notificationManager = NotificationManagerCompat.from(context);
-            setupNotificationChannel(context);
-            sendNotification(context);
-            Alarmer.getInstance(context).alarm();
+            AlarmTimer timer = AlarmTimer.getInstance();
+            if(timer.isTimeout()) {
+                wakeupScreen(context);
+                notificationManager = NotificationManagerCompat.from(context);
+                setupNotificationChannel(context);
+                sendNotification(context);
+                Alarmer.getInstance(context).alarm();
+            } else if(timer.isPaused() || timer.getStatus() == AlarmTimer.TimerStatus.SET_TIMER){
+                // do nothing
+            } else {
+                // set timer
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                PendingIntent timeoutCallback = PendingIntent.getBroadcast(context, TimeoutReceiver.class.hashCode(),
+                        TimeoutReceiver.getIntent(context), 0);
+                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + sleepTime * TimeInMills.SECOND.getValue()
+                        , timeoutCallback);
+            }
         }
     }
 

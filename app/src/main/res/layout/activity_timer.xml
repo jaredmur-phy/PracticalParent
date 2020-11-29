@@ -28,22 +28,23 @@
         android:text="@string/set_timer"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/id_guideline1"
+        app:layout_constraintBottom_toTopOf="@+id/id_pie_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/id_timer_tool_bar" />
 
     <TextView
         android:id="@+id/id_reset_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="@string/reset_timer"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/id_guidline2"
+        app:layout_constraintBottom_toBottomOf="@+id/id_customize_plain_text"
+        app:layout_constraintEnd_toStartOf="@+id/id_customize_plain_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_guideline1" />
+        app:layout_constraintTop_toTopOf="@+id/id_customize_plain_text" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/id_guideline1"
@@ -63,10 +64,9 @@
         android:id="@+id/id_timer_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/id_guidline2"
-        app:layout_constraintTop_toTopOf="@+id/id_guideline1" />
+        app:layout_constraintBottom_toTopOf="@+id/id_reset_btn"
+        app:layout_constraintStart_toStartOf="@+id/id_reset_btn"
+        app:layout_constraintTop_toBottomOf="@+id/id_pie_chart" />
 
     <TextView
         android:id="@+id/id_customize_timer"
@@ -79,6 +79,7 @@
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/id_customize_plain_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_customize_plain_text"
         app:layout_constraintTop_toTopOf="@+id/id_customize_plain_text"
         app:layout_constraintVertical_bias="1.0" />
@@ -89,8 +90,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:visibility="invisible"
         android:maxLength="2"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/id_guideline4"
         app:layout_constraintHorizontal_bias="0.0"
@@ -110,5 +111,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.66" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id='@+id/id_pie_chart'
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/id_timer_tool_bar" />
+
+    <TextView
+        android:id="@+id/id_speed_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_100"
+        android:textColor="#C8FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

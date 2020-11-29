@@ -115,4 +115,13 @@
     <string name="checkbox">checkbox</string>
     <string name="delete">Delete</string>
     <string name="cancel">cancel</string>
+    <string name="speed_25">speed 25%</string>
+    <string name="speed_50">speed 50%</string>
+    <string name="speed_75">speed 75%</string>
+    <string name="speed_100">speed 100%</string>
+    <string name="speed_200">speed 200%</string>
+    <string name="speed_300">speed 300%</string>
+    <string name="speed_400">speed 400%</string>
+    <string name="time_100">current speed 100%</string>
+    <string name="speed_prefix">current&#160;</string>
 </resources>
