@@ -31,7 +31,7 @@ public class TimeoutReceiver extends BroadcastReceiver {
     public static final String CHANNEL_1_ID = "channel1";
     private static final String TIMEOUT_ACTION = "TIMEOUT_ACTION";
     private static final int screenWakingUpTimeout = 5; // 5 min
-    private static final int sleepTime = 10;            // 10 second
+    private static final int sleepTime = 5;            // 10 second
 
     private NotificationManagerCompat notificationManager;
 

@@ -22,6 +22,9 @@ public class AlarmTimer {
     private long endTime;
     private long duration;
 
+    private long spedEndTime;
+    private double speed;
+
     // it stores after how many seconds timeout
     // for example if startTime = 1000, endTime = 9000, pausedPoint = 2000
     // that means after 2s (2000 Mills), we will reach the endTime, so we are in 7000 right now
@@ -37,7 +40,13 @@ public class AlarmTimer {
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
+        spedEndTime = endTime;
+        speed = 1;
         pausedPoint = -1;
+    }
+
+    public String getSpeedText(){
+        return "speed " + (int) (this.speed * 100) + "%";
     }
 
     public void pause() {
@@ -47,14 +56,25 @@ public class AlarmTimer {
     public void resume() {
         if (isPaused()) {
             endTime = SystemClock.elapsedRealtime() + pausedPoint;
+            spedEndTime = (long) (SystemClock.elapsedRealtime() + pausedPoint / speed);
             pausedPoint = -1;
         }
     }
 
+    public void setSpeed(double speed){
+        pause();    // use current speed calculate paused point
+        this.speed = speed; // change speed
+        resume();   // use new speed calculate end point
+    }
+
     // return a value in [0, 1]
-    // means there are 60% time left
-    public double getRemainingPercentage(){
-        return 0.6;
+    // return 0.6 means there are 60% time left
+    public float getRemainingPercentage(){
+        float percentage =  (float) getRemainingTime() / this.duration;
+        if(Float.isNaN(percentage)){
+            percentage = 1;
+        }
+        return Math.min(Math.max(0, percentage), 1);
     }
 
     // return after how many second times out
@@ -62,7 +82,7 @@ public class AlarmTimer {
         if (isPaused()) {
             return pausedPoint;
         }
-        long res = endTime - SystemClock.elapsedRealtime();
+        long res = (long) ((spedEndTime - SystemClock.elapsedRealtime()) * speed);
         return res > 0 ? res : 0;
     }
 
@@ -74,13 +94,14 @@ public class AlarmTimer {
         if (isPaused() || status == TimerStatus.SET_TIMER) {
             return false;
         }
-        return SystemClock.elapsedRealtime() >= endTime;
+        return SystemClock.elapsedRealtime() >= spedEndTime;
     }
 
     public void reset(long duration) {
         this.duration = duration;
         startTime = SystemClock.elapsedRealtime();
         endTime = startTime + duration;
+        spedEndTime = (long) (startTime + duration / speed);
         pausedPoint = -1;
     }
 

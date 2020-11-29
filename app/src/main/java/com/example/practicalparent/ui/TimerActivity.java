@@ -6,11 +6,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +32,12 @@ import com.example.practicalparent.receiver.TimeoutReceiver;
 import com.example.practicalparent.timer.AlarmTimer;
 import com.example.practicalparent.timer.Alarmer;
 import com.example.practicalparent.timer.TimeInMills;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +60,11 @@ public class TimerActivity extends AppCompatActivity {
     private Handler refreshCallbackHandler;
     private Runnable refreshCallback;
 
+    private int[] colors = new int[]{
+            Color.rgb(50, 255, 100),   // passed
+            Color.rgb(193, 37, 82)      // remaining
+    };
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +77,31 @@ public class TimerActivity extends AppCompatActivity {
         setToolBar();
         setupBtnOnClickListener();
         setupPeriodRefresh();
-        setUpPieChart();
-
-        //setupNotificationChannel();
+        setSpeedText();
+//        setupNotificationChannel();
     }
 
-    private void setUpPieChart() {
-        // populating list
+    private void setSpeedText() {
+        TextView desc = findViewById(R.id.id_speed_desc);
+        desc.setText(getString(R.string.speed_prefix) + timer.getSpeedText());
+    }
+
+    private void showPeiGraph(){
         List<PieEntry> pieEntries = new ArrayList<>();
+        float remainingPercentage = timer.getRemainingPercentage();
+        pieEntries.add(new PieEntry(1 - remainingPercentage, "passed"));
+        pieEntries.add(new PieEntry(remainingPercentage, "remain"));
+        PieDataSet dataSet = new PieDataSet(pieEntries, "timer");
 
+        dataSet.setColors(colors);
 
+        PieData data = new PieData(dataSet);
+        PieChart pieChart = findViewById(R.id.id_pie_chart);
+        pieChart.setData(data);
+
+        pieChart.invalidate();
     }
+
 
     public void setupNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -116,12 +142,6 @@ public class TimerActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
-    }
-
     private void initAttributes() {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         timeoutCallback = PendingIntent.getBroadcast(this, TimeoutReceiver.class.hashCode(),
@@ -138,6 +158,7 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 showRemainingTimes();
+                showPeiGraph();
                 refreshCallbackHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
             }
         };
@@ -196,6 +217,7 @@ public class TimerActivity extends AppCompatActivity {
             switch (timer.getStatus()) {
                 case SET_TIMER:
                     setTimer(countDownMinutes);
+                    setSpeed(1, getString(R.string.speed_100));
                     break;
                 case PAUSE:
                     pauseTimer();
@@ -292,4 +314,48 @@ public class TimerActivity extends AppCompatActivity {
         refreshCallbackHandler.removeCallbacks(refreshCallback);
         super.onDestroy();
     }
+
+    private void setSpeed(double speed, String speedText){
+        timer.setSpeed(speed);
+        TextView desc = findViewById(R.id.id_speed_desc);
+        desc.setText(getString(R.string.speed_prefix) + speedText);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.timer_speed_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.speed_25:
+                setSpeed(0.25, getString(R.string.speed_25));
+                break;
+            case R.id.speed_50:
+                setSpeed(0.5, getString(R.string.speed_50));
+                break;
+            case R.id.speed_75:
+                setSpeed(0.75, getString(R.string.speed_75));
+                break;
+            case R.id.speed_100:
+                setSpeed(1, getString(R.string.speed_100));
+                break;
+            case R.id.speed_200:
+                setSpeed(2, getString(R.string.speed_200));
+                break;
+            case R.id.speed_300:
+                setSpeed(3, getString(R.string.speed_300));
+                break;
+            case R.id.speed_400:
+                setSpeed(4, getString(R.string.speed_400));
+                break;
+            default:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
