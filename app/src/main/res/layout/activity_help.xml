@@ -9,6 +9,20 @@
 
 
     <TextView
+        android:id="@+id/id_author_text"
+        android:layout_width="381dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:text="@string/by_sabri_isik_jared_murphy_jiatang_zhou_denys_dymnich"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/id_team_name"
         android:layout_width="269dp"
         android:layout_height="58dp"
