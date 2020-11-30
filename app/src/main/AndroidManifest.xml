@@ -18,10 +18,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText">
         <activity
+            android:name=".ui.TakeBreathActivity"
+            android:label="@string/title_activity_take_breath"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ui.SaveTaskActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_save_task"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.EditTaskListActivity"
@@ -70,7 +74,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".receiver.TimeoutReceiver"></receiver>
+        <receiver android:name=".receiver.TimeoutReceiver" />
     </application>
 
 </manifest>
