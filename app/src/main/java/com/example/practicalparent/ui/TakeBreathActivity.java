@@ -77,12 +77,34 @@ public class TakeBreathActivity extends AppCompatActivity {
                         switch (arg1.getAction()) {
                             case MotionEvent.ACTION_DOWN:
                                 buttonBreath.setText(getString(R.string.in));
+                                // start inhale animation and music
                                 //change sound
                                 final MediaPlayer soundEffect = MediaPlayer.create(TakeBreathActivity.this, R.raw.coinflipsound);
                                 StyleableToast.makeText(TakeBreathActivity.this, getString(R.string.breath_in),
                                         R.style.inhaleToast).show();
 
                                 handler.postDelayed(forThreeSeconds, THREE_SECONDS);
+
+                                /*if(){
+
+                                // 7 more seconds stop exhale animation and music
+                                buttonBreath.setText(getString(R.string.in));
+                                //update remaining breaths
+                                // allow button to be pressed
+                                buttonBreath.setClickable(true);
+
+
+                                } else{
+
+                                 // 7 more seconds stop exhale animation and music
+                                //update remaining breaths to 0
+                                buttonBreath.setText("Good job");
+                                //lock button
+                                buttonBreath.setClickable(false);
+                                }
+                                 */
+
+
                                 handler.postDelayed(forTenSeconds, TEN_SECONDS);
                                 break;
 
@@ -96,6 +118,17 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             }
 
+    Runnable forThreeSeconds = new Runnable() {
+
+        @Override
+        public void run() {
+            // stop inhale animation and music
+            // start exhale animation and music?
+            buttonBreath.setText(getString(R.string.out));
+
+        }
+    };
+
     Runnable forTenSeconds = new Runnable() {
 
         @Override
@@ -103,20 +136,11 @@ public class TakeBreathActivity extends AppCompatActivity {
 // Turn off the music and animation
             // Delete this text
             buttonBreath.setText("stop");
-        }
-    };
-
-    Runnable forThreeSeconds = new Runnable() {
-
-        @Override
-        public void run() {
-            // Turn off the music and animation
-            buttonBreath.setText(getString(R.string.out));
             StyleableToast.makeText(TakeBreathActivity.this, getString(R.string.breath_out),
                     R.style.exhaleToast).show();
+
         }
     };
-
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TakeBreathActivity.class);
