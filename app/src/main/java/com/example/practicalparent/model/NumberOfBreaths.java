@@ -18,9 +18,7 @@ public class NumberOfBreaths {
     }
 
     public int getBreaths() {
-
-   return breaths;
-
+        return breaths;
     }
 
 

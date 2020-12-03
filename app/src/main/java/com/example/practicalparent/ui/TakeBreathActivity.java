@@ -73,7 +73,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         inHalingPlayer.setLooping(true);
         exHalingPlayer = MediaPlayer.create(this, R.raw.ring);
         exHalingPlayer.setLooping(true);
-
     }
 
 
@@ -444,7 +443,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateWaitToInhale);
             chooseBreath.setText(getString(R.string.breath_in));
             button.setText(getString(R.string.in));
-            chooseBreath.setClickable(false);
+            chooseBreath.setEnabled(false);
         }
     }
 
@@ -454,7 +453,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateInhaling);
             Toast.makeText(TakeBreathActivity.this, "start animation", Toast.LENGTH_SHORT).show();
             startInHalingAnimation();
-            chooseBreath.setClickable(false);
             //setNumberOfBreaths();
 
         }
@@ -467,14 +465,12 @@ public class TakeBreathActivity extends AppCompatActivity {
             chooseBreath.setText(getString(R.string.breath_in));
             button.setText(getString(R.string.in));
             stopInHalingAnimation();
-            chooseBreath.setClickable(false);
         }
 
         @Override
         void onButtonHeld3s() {
             setStates(stateOut);
             button.setText(getString(R.string.out));
-            chooseBreath.setClickable(false);
         }
     }
 
@@ -484,7 +480,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateDoneInhaling);
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
             stopInHalingAnimation();
-            chooseBreath.setClickable(false);
         }
 
         @Override
@@ -493,7 +488,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
             chooseBreath.setText(getString(R.string.breath_out));
             stopInHalingAnimation();
-            chooseBreath.setClickable(false);
         }
     }
 
@@ -506,7 +500,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             Toast.makeText(TakeBreathActivity.this, "start exhale animation", Toast.LENGTH_SHORT).show();
             startExHalingAnimation();
             chooseBreath.setText(getString(R.string.breath_out));
-            chooseBreath.setClickable(false);
         }
     }
 
@@ -518,7 +511,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             }else{
                 button.setText(getString(R.string.in));
             }
-            chooseBreath.setClickable(false);
             setStates(stateExhaling);
         }
     }
@@ -553,7 +545,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             breath.setBreaths(decrementBreath);
             if(breath.getBreaths() > 0){
                 setStates(stateWaitToInhale);
-                //chooseBreath.setClickable(true);
             } else {
                 setStates(stateFinish);
                 finish();
@@ -566,9 +557,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         @Override
         void onClick() {
             setStates(stateWaitToInhale);
-            //
-            chooseBreath.setClickable(false);
-
         }
 
         /*@Override
