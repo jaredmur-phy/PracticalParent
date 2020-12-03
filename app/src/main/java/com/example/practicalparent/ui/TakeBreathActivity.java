@@ -34,6 +34,20 @@ public class TakeBreathActivity extends AppCompatActivity {
     private final static int TEN_SECONDS = 13000;
     private TextView chooseBreath;
 
+    private final State stateReady = new StateReady();
+    private final State stateWaitToInhale = new StateWaitToInhale();
+    private final State stateInhaling = new StateInhaling();
+    private final State stateOut = new StateOut();
+    private final State stateDoneInhaling = new StateDoneInhaling();
+    private final State stateReadyToExhale = new StateReadyToExhale();
+    private final State stateExhaling = new StateExhaling();
+    private final State stateFinish = new StateFinish();
+
+    private State currentState = stateReady;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -222,6 +236,111 @@ public class TakeBreathActivity extends AppCompatActivity {
         finish();
         return super.onOptionsItemSelected(item);
     }
+
+    private void setStates(State state){
+        currentState = state;
+    }
+
+
+
+    private abstract class State{
+        void onClick(){}
+        void onButtonRelease(){}
+        void onButtonHeld(){}
+        void onButtonHeld3s(){}
+        void onButtonHeld7s(){}
+        void onButtonHeld10s(){}
+        void onButtonNotPressed(){}
+        void onButtonNotPressed3s(){}
+        void onButtonNotPressed7s(){}
+
+        void onMoreBreathNeeded(){ }
+        void noMoreBreathNeeded(){ }
+
+    }
+
+    // TODO: add implementation for those functions.
+
+    private class StateReady extends State{
+        @Override
+        void onClick() {
+            setStates(stateWaitToInhale);
+        }
+    }
+
+    private class StateWaitToInhale extends State{
+        @Override
+        void onButtonHeld() {
+            setStates(stateInhaling);
+        }
+    }
+
+    private class StateInhaling extends State{
+        @Override
+        void onButtonRelease() {
+            setStates(stateWaitToInhale);
+        }
+
+        @Override
+        void onButtonHeld3s() {
+            setStates(stateOut);
+        }
+    }
+
+    private class StateOut extends State{
+        @Override
+        void onButtonRelease() {
+            setStates(stateDoneInhaling);
+        }
+
+        @Override
+        void onButtonHeld10s() {
+            setStates(stateDoneInhaling);
+        }
+    }
+
+    private class StateDoneInhaling extends State{
+        @Override
+        void onButtonNotPressed() {
+            setStates(stateReadyToExhale);
+        }
+    }
+
+    private class StateReadyToExhale extends State{
+        @Override
+        void onButtonNotPressed3s() {
+            setStates(stateExhaling);
+        }
+    }
+
+    private class StateExhaling extends State{
+        @Override
+        void onClick() {
+            setStates(stateFinish);
+        }
+
+        @Override
+        void onButtonNotPressed7s() {
+            setStates(stateFinish);
+        }
+    }
+
+
+    private class StateFinish extends State{
+        @Override
+        void onMoreBreathNeeded() {
+            setStates(stateWaitToInhale);
+        }
+
+        @Override
+        void noMoreBreathNeeded() {
+            // TODO
+        }
+    }
+
+
+
+
 
 
 }
