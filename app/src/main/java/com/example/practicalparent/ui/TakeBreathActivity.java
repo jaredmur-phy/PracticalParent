@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,7 +25,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
 import com.example.practicalparent.model.NumberOfBreaths;
-import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.example.practicalparent.timer.TimeInMills;
 
 public class TakeBreathActivity extends AppCompatActivity {
@@ -487,6 +484,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateDoneInhaling);
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
             stopInHalingAnimation();
+            chooseBreath.setClickable(false);
         }
 
         @Override
@@ -495,6 +493,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
             chooseBreath.setText(getString(R.string.breath_out));
             stopInHalingAnimation();
+            chooseBreath.setClickable(false);
         }
     }
 
@@ -519,6 +518,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             }else{
                 button.setText(getString(R.string.in));
             }
+            chooseBreath.setClickable(false);
             setStates(stateExhaling);
         }
     }
@@ -553,7 +553,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             breath.setBreaths(decrementBreath);
             if(breath.getBreaths() > 0){
                 setStates(stateWaitToInhale);
-                chooseBreath.setClickable(true);
+                //chooseBreath.setClickable(true);
             } else {
                 setStates(stateFinish);
                 finish();
@@ -567,6 +567,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onClick() {
             setStates(stateWaitToInhale);
             //
+            chooseBreath.setClickable(false);
 
         }
 
