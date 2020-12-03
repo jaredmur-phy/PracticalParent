@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,7 +51,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     NumberOfBreaths breath = NumberOfBreaths.getInstance();
 
-    private int storeID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,23 +71,20 @@ public class TakeBreathActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.choose_breath_menu, menu);
 
-        if(breath.getID() == 0 ){
-            MenuItem menuItem = menu.getItem(2);
 
-            menuItem.setChecked(true);
 
-        }
 
-        else {
-            for (int i = 0; i < menu.size(); ++i) {
-                MenuItem menuItem = menu.getItem(i);
+       int index= getSavedSelected(this);
 
-                if (menuItem.getItemId() == breath.getID()) {
+
+
+                MenuItem menuItem = menu.getItem(index);
+
+        breath.setBreaths(++index);
+        setNumberOfBreaths();
                     menuItem.setChecked(true);
-                }
 
-            }
-        }
+
     }
 
 
@@ -99,7 +97,6 @@ public class TakeBreathActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
-        RadioButton radio;
         switch(item.getItemId()){
 
             case R.id.id_one:
@@ -108,10 +105,10 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-                breath.setID(R.id.id_one);
+                //breath.setID(R.id.id_one);
 
 
-                //storeID = R.id.id_one;
+                saveSelected(0);
 
                 item.setChecked(true);
 
@@ -123,8 +120,9 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-                breath.setID(R.id.id_two);
-                //storeID = R.id.id_two;
+                //breath.setID(R.id.id_two);
+
+                saveSelected(1);
 
 
                 item.setChecked(true);
@@ -138,8 +136,9 @@ public class TakeBreathActivity extends AppCompatActivity {
                 setNumberOfBreaths();
 
 
-                breath.setID(R.id.id_three);
-                //storeID = R.id.id_three;
+                //breath.setID(R.id.id_three);
+
+                saveSelected(2);
 
                 item.setChecked(true);
                 return true;
@@ -149,9 +148,10 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-                //storeID = R.id.id_four;
-                breath.setID(R.id.id_four);
 
+                //breath.setID(R.id.id_four);
+
+                saveSelected(3);
 
                 item.setChecked(true);
                 return true;
@@ -162,8 +162,9 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-                breath.setID(R.id.id_five);
-                //storeID = R.id.id_five;
+               // breath.setID(R.id.id_five);
+
+                saveSelected(4);
 
                 item.setChecked(true);
                 return true;
@@ -177,11 +178,14 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-                breath.setID(R.id.id_six);
-                //storeID = R.id.id_six;
+               // breath.setID(R.id.id_six);
+
+
+                saveSelected(5);
 
 
                 return true;
+
             case R.id.id_seven:
 
 
@@ -191,10 +195,13 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-                breath.setID(R.id.id_seven);
-                //storeID = R.id.id_seven;
+               // breath.setID(R.id.id_seven);
+
+
+                saveSelected(6);
 
                 return true;
+
             case R.id.id_eight:
 
                 breath.setBreaths(8);
@@ -203,8 +210,9 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-                breath.setID(R.id.id_eight);
-                //storeID = R.id.id_eight;
+               // breath.setID(R.id.id_eight);
+
+                saveSelected(7);
 
                 return true;
 
@@ -217,8 +225,9 @@ public class TakeBreathActivity extends AppCompatActivity {
                 item.setChecked(true);
 
 
-                breath.setID(R.id.id_nine);
-                //storeID = R.id.id_nine;
+               // breath.setID(R.id.id_nine);
+
+                saveSelected(8);
 
 
                 return true;
@@ -231,8 +240,10 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-                breath.setID(R.id.id_ten);
-                //storeID = R.id.id_ten;
+              //  breath.setID(R.id.id_ten);
+
+
+                saveSelected(9);
 
 
                 return true;
@@ -258,13 +269,13 @@ public class TakeBreathActivity extends AppCompatActivity {
     }
 
      // Save to sharedpreferences
-    /*private void saveSelected() {
-        int spinner1Position = Menu.
+    private void saveSelected(int index) {
+
 
         SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putInt("Spinner2 values", spinner2Position);
+        editor.putInt("Extract the selected", index);
         editor.apply();
     }
 
@@ -272,8 +283,8 @@ public class TakeBreathActivity extends AppCompatActivity {
     // Load from sharedpreferences
     static public int getSavedSelected(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
-        return prefs.getInt("Spinner1 values", 0);
-    }*/
+        return prefs.getInt("Extract the selected", 2);
+    }
 
 
     private void setToolBar() {
