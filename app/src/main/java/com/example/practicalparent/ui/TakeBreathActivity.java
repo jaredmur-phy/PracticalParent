@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.model.NumberOfBreaths;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 public class TakeBreathActivity extends AppCompatActivity {
@@ -46,7 +48,9 @@ public class TakeBreathActivity extends AppCompatActivity {
     private State currentState = stateReady;
 
 
+    NumberOfBreaths breath = NumberOfBreaths.getInstance();
 
+    private int storeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,67 +68,181 @@ public class TakeBreathActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.choose_breath_menu,menu);
+        menuInflater.inflate(R.menu.choose_breath_menu, menu);
+
+        if(breath.getID() == 0 ){
+            MenuItem menuItem = menu.getItem(2);
+
+            menuItem.setChecked(true);
+
+        }
+
+        else {
+            for (int i = 0; i < menu.size(); ++i) {
+                MenuItem menuItem = menu.getItem(i);
+
+                if (menuItem.getItemId() == breath.getID()) {
+                    menuItem.setChecked(true);
+                }
+
+            }
+        }
+    }
+
+
+    private void setNumberOfBreaths(){
+
+        chooseBreath.setText("Let's take " + breath.getBreaths() + " breaths together");
 
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
+        RadioButton radio;
         switch(item.getItemId()){
 
             case R.id.id_one:
 
-                chooseBreath.setText("Let's take 1 breaths together");
-                item.setIcon(R.drawable.ic_baseline_radio_button_checked_);
+                breath.setBreaths(1);
+
+                setNumberOfBreaths();
+
+                breath.setID(R.id.id_one);
+
+
+                //storeID = R.id.id_one;
+
                 item.setChecked(true);
 
-
                 return true;
+
             case R.id.id_two:
 
+                breath.setBreaths(2);
+
+                setNumberOfBreaths();
+
+                breath.setID(R.id.id_two);
+                //storeID = R.id.id_two;
+
+
                 item.setChecked(true);
+
                 return true;
+
             case R.id.id_three:
+
+                breath.setBreaths(3);
+
+                setNumberOfBreaths();
+
+
+                breath.setID(R.id.id_three);
+                //storeID = R.id.id_three;
 
                 item.setChecked(true);
                 return true;
             case R.id.id_four:
+
+                breath.setBreaths(4);
+
+                setNumberOfBreaths();
+
+                //storeID = R.id.id_four;
+                breath.setID(R.id.id_four);
+
 
                 item.setChecked(true);
                 return true;
 
             case R.id.id_five:
 
+                breath.setBreaths(5);
+
+                setNumberOfBreaths();
+
+                breath.setID(R.id.id_five);
+                //storeID = R.id.id_five;
+
                 item.setChecked(true);
                 return true;
 
             case R.id.id_six:
 
+
+                breath.setBreaths(6);
+
+                setNumberOfBreaths();
+
                 item.setChecked(true);
+
+                breath.setID(R.id.id_six);
+                //storeID = R.id.id_six;
+
+
                 return true;
             case R.id.id_seven:
 
+
+                breath.setBreaths(7);
+
+                setNumberOfBreaths();
+
                 item.setChecked(true);
+
+                breath.setID(R.id.id_seven);
+                //storeID = R.id.id_seven;
+
                 return true;
             case R.id.id_eight:
 
+                breath.setBreaths(8);
+
+                setNumberOfBreaths();
+
                 item.setChecked(true);
+
+                breath.setID(R.id.id_eight);
+                //storeID = R.id.id_eight;
+
                 return true;
 
             case R.id.id_nine:
 
+                breath.setBreaths(9);
+
+                setNumberOfBreaths();
+
                 item.setChecked(true);
+
+
+                breath.setID(R.id.id_nine);
+                //storeID = R.id.id_nine;
+
+
                 return true;
 
             case R.id.id_ten:
 
+                breath.setBreaths(10);
+
+                setNumberOfBreaths();
+
                 item.setChecked(true);
+
+                breath.setID(R.id.id_ten);
+                //storeID = R.id.id_ten;
+
+
                 return true;
+
+            default:
+
+                return super.onContextItemSelected(item);
 
         }
 
-        return super.onContextItemSelected(item);
     }
 
     private void setChooseBreath() {
@@ -138,6 +256,25 @@ public class TakeBreathActivity extends AppCompatActivity {
             }
         });
     }
+
+     // Save to sharedpreferences
+    /*private void saveSelected() {
+        int spinner1Position = Menu.
+
+        SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("Spinner2 values", spinner2Position);
+        editor.apply();
+    }
+
+
+    // Load from sharedpreferences
+    static public int getSavedSelected(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
+        return prefs.getInt("Spinner1 values", 0);
+    }*/
+
 
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_take_breath_tool_bar);
