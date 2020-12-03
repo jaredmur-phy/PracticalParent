@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +32,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private final static int THREE_SECONDS = 3000;
     private final static int TEN_SECONDS = 13000;
+    private TextView chooseBreath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +41,86 @@ public class TakeBreathActivity extends AppCompatActivity {
         setToolBar();
         setBeginBreath();
         setChooseBreath();
+    }
+
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.choose_breath_menu,menu);
 
     }
 
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.id_one:
+
+                chooseBreath.setText("Let's take 1 breaths together");
+                item.setIcon(R.drawable.ic_baseline_radio_button_checked_);
+                item.setChecked(true);
+
+
+                return true;
+            case R.id.id_two:
+
+                item.setChecked(true);
+                return true;
+            case R.id.id_three:
+
+                item.setChecked(true);
+                return true;
+            case R.id.id_four:
+
+                item.setChecked(true);
+                return true;
+
+            case R.id.id_five:
+
+                item.setChecked(true);
+                return true;
+
+            case R.id.id_six:
+
+                item.setChecked(true);
+                return true;
+            case R.id.id_seven:
+
+                item.setChecked(true);
+                return true;
+            case R.id.id_eight:
+
+                item.setChecked(true);
+                return true;
+
+            case R.id.id_nine:
+
+                item.setChecked(true);
+                return true;
+
+            case R.id.id_ten:
+
+                item.setChecked(true);
+                return true;
+
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
     private void setChooseBreath() {
-        TextView chooseBreath = (TextView) findViewById(R.id.id_take_N_Breaths);
+        chooseBreath = (TextView) findViewById(R.id.id_take_N_Breaths);
 
         chooseBreath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
- /*dialogBuilder = new AlertDialog.Builder(TakeBreathActivity.this);
-                final View changePopup = getLayoutInflater().inflate(R.layout.radio_popup, null);
-                dialogBuilder.setView(changePopup);
-                dialog = dialogBuilder.create();
-                dialog.show();
-                chooseBreath.setClickable(false);
-                chooseBreath.setText();*/
+                registerForContextMenu(v);
+                openContextMenu(v);
             }
         });
     }
