@@ -453,8 +453,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateInhaling);
             Toast.makeText(TakeBreathActivity.this, "start animation", Toast.LENGTH_SHORT).show();
             startInHalingAnimation();
-            //setNumberOfBreaths();
-
         }
     }
 
@@ -506,13 +504,20 @@ public class TakeBreathActivity extends AppCompatActivity {
     private class StateReadyToExhale extends State{
         @Override
         void onButtonNotPressed3s() {
+            int decrementBreath = breath.getBreaths();
+
+            breath.setBreaths(--decrementBreath);
+
             if(breath.getBreaths() == 0){     // if this is the last one
                 button.setText(getString(R.string.good_job));
+                saveSelected(2);
             }else{
                 button.setText(getString(R.string.in));
             }
             setStates(stateExhaling);
+            setNumberOfBreaths();
         }
+
     }
 
     private class StateExhaling extends State{
@@ -520,15 +525,9 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onClick() {
             stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
-            int decrementBreath = breath.getBreaths();
 
-            breath.setBreaths(--decrementBreath);
             if(breath.getBreaths() > 0){
-                //waittoinhale
                 setStates(stateReady);
-                saveSelected(--decrementBreath);
-                setNumberOfBreaths();
-                //
             } else {
                 setStates(stateFinish);
                 finish();
@@ -542,7 +541,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
            int decrementBreath = breath.getBreaths();
 
-            breath.setBreaths(decrementBreath);
+            breath.setBreaths(--decrementBreath);
             if(breath.getBreaths() > 0){
                 setStates(stateWaitToInhale);
             } else {
@@ -558,16 +557,5 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onClick() {
             setStates(stateWaitToInhale);
         }
-
-        /*@Override
-        void noMoreBreathNeeded() {
-            // TODO
-        }*/
     }
-
-
-
-
-
-
 }
