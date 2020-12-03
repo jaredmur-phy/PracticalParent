@@ -128,9 +128,10 @@
     <string name="title_activity_take_breath">TakeBreathActivity</string>
     <string name="begin">Begin</string>
     <string name="let_s_take_n_breaths_together">Let\'s take N breaths together</string>
-    <string name="breath_in">Please breath in  and press and hold the big button</string>
+    <string name="breath_in">Please hold button and breath in</string>
     <string name="breath_out">Release button and breath out</string>
     <string name="in">In</string>
     <string name="out">Out</string>
+    <string name="good_job">Good job</string>
     <string name="_1">1</string>
 </resources>

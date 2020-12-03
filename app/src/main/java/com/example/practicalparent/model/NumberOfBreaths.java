@@ -5,8 +5,6 @@ public class NumberOfBreaths {
 
     private int breaths;
 
-    private int ID;
-
     private static NumberOfBreaths instance;
 
     private NumberOfBreaths() {
@@ -32,16 +30,5 @@ public class NumberOfBreaths {
 
 
 
-
-    public int getID() {
-
-        return ID;
-
-    }
-
-
-    public void setID(int id){
-        this.ID = id;
-    }
 
 }
