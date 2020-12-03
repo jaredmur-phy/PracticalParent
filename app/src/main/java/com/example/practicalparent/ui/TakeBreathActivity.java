@@ -3,6 +3,7 @@ package com.example.practicalparent.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -46,6 +47,8 @@ public class TakeBreathActivity extends AppCompatActivity {
     private int N = 3;
     private long tenSecond = 10 * TimeInMills.SECOND.getValue();
     private long threeSecond = 3 * TimeInMills.SECOND.getValue();
+    private MediaPlayer inHalingPlayer;
+    private MediaPlayer exHalingPlayer;
 
 
     private final Runnable holdCallback = new Runnable() {
@@ -82,19 +85,31 @@ public class TakeBreathActivity extends AppCompatActivity {
     };
 
 
-    private void stopAnimation(){
+    private void stopInHalingAnimation(){
         button.clearAnimation();
+        if(inHalingPlayer.isPlaying()) {
+            inHalingPlayer.pause();
+        }
+    }
+
+    private void stopExHalingAnimation(){
+        button.clearAnimation();
+        if(exHalingPlayer.isPlaying()) {
+            exHalingPlayer.pause();
+        }
     }
 
     private void startExHalingAnimation(){
         Animation exHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.ex_haling_animation);
         button.startAnimation(exHalingAnimation);
+        exHalingPlayer.start();
     }
 
     private void startInHalingAnimation(){
         Animation inHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.in_haling_animation);
         inHalingAnimation.setFillAfter(true);
         button.startAnimation(inHalingAnimation);
+        inHalingPlayer.start();
     }
 
 
@@ -106,6 +121,10 @@ public class TakeBreathActivity extends AppCompatActivity {
         getViews();
         setupButton();
         notPressHandler.post(notPressCallback);
+        inHalingPlayer = MediaPlayer.create(this, R.raw.ring);
+        inHalingPlayer.setLooping(true);
+        exHalingPlayer = MediaPlayer.create(this, R.raw.ring);
+        exHalingPlayer.setLooping(true);
     }
 
     private void getViews(){
@@ -192,8 +211,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         @Override
         void onButtonHeld() {
             setStates(stateInhaling);
-            // TODO: start animation
-            // TODO: start sound
             Toast.makeText(TakeBreathActivity.this, "start animation", Toast.LENGTH_SHORT).show();
             startInHalingAnimation();
         }
@@ -205,12 +222,13 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateWaitToInhale);
             helpText.setText("Hold button and breath in.");
             button.setText("In");
-            stopAnimation();
+            stopInHalingAnimation();
         }
 
         @Override
         void onButtonHeld3s() {
             setStates(stateOut);
+            button.setText("Out");
         }
     }
 
@@ -218,19 +236,16 @@ public class TakeBreathActivity extends AppCompatActivity {
         @Override
         void onButtonRelease() {
             setStates(stateDoneInhaling);
-            // TODO: stop animation
-            // TODO: stop sound
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
-            stopAnimation();
+            stopInHalingAnimation();
         }
 
         @Override
         void onButtonHeld10s() {
             setStates(stateDoneInhaling);
-            // TODO: stop animation
-            // TODO: stop sound
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
-            stopAnimation();
+            helpText.setText("Release button and breath out");
+            stopInHalingAnimation();
         }
     }
 
@@ -242,43 +257,46 @@ public class TakeBreathActivity extends AppCompatActivity {
             // TODO: start exhale animation and sound
             Toast.makeText(TakeBreathActivity.this, "start exhale animation", Toast.LENGTH_SHORT).show();
             startExHalingAnimation();
+            helpText.setText("start breath out");
         }
     }
 
     private class StateReadyToExhale extends State{
         @Override
         void onButtonNotPressed3s() {
-            setStates(stateExhaling);
-            if(N == 1){
+            if(N == 1){     // if this is the last one
                 button.setText("good job");
             }else{
                 button.setText("In");
             }
+            setStates(stateExhaling);
         }
     }
 
     private class StateExhaling extends State{
         @Override
         void onClick() {
-            setStates(stateFinish);
-            // TODO: stop animation and sound
-            stopAnimation();
+            stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
             N --;
             if(N > 0){
                 setStates(stateWaitToInhale);
+            } else {
+                setStates(stateFinish);
+                finish();
             }
         }
 
         @Override
         void onButtonNotPressed10s() {
-            setStates(stateFinish);
-            // TODO: stop animation and sound
-            stopAnimation();
+            stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
             N --;
             if(N > 0){
                 setStates(stateWaitToInhale);
+            } else {
+                setStates(stateFinish);
+                finish();
             }
         }
     }
