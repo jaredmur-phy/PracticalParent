@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.practicalparent.R;
+import com.example.practicalparent.timer.TimeInMills;
 
 public class TakeBreathActivity extends AppCompatActivity {
 
@@ -41,6 +44,8 @@ public class TakeBreathActivity extends AppCompatActivity {
     private final Handler holdHandler = new Handler();
     private final Handler notPressHandler = new Handler();
     private int N = 3;
+    private long tenSecond = 10 * TimeInMills.SECOND.getValue();
+    private long threeSecond = 3 * TimeInMills.SECOND.getValue();
 
 
     private final Runnable holdCallback = new Runnable() {
@@ -48,13 +53,13 @@ public class TakeBreathActivity extends AppCompatActivity {
         public void run() {
             long currentTime = System.currentTimeMillis();
             long dTime = currentTime - startTime;
-            if (dTime > 10000) {
+            if (dTime > tenSecond) {
                 currentState.onButtonHeld10s();
             } else {
-                if (dTime > 3000) {
+                if (dTime > threeSecond) {
                     currentState.onButtonHeld3s();
                 }
-                holdHandler.postDelayed(this, 500);
+                holdHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
             }
         }
     };
@@ -66,16 +71,31 @@ public class TakeBreathActivity extends AppCompatActivity {
                 currentState.onButtonNotPressed();
                 long currentTime = System.currentTimeMillis();
                 long dTime = currentTime - endTime;
-                if (dTime > 10000) {
+                if (dTime > tenSecond) {
                     currentState.onButtonNotPressed10s();
-                } else if (dTime > 3000) {
+                } else if (dTime > threeSecond) {
                     currentState.onButtonNotPressed3s();
                 }
-                notPressHandler.postDelayed(this, 2000);
+                notPressHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());
             }
         }
     };
 
+
+    private void stopAnimation(){
+        button.clearAnimation();
+    }
+
+    private void startExHalingAnimation(){
+        Animation exHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.ex_haling_animation);
+        button.startAnimation(exHalingAnimation);
+    }
+
+    private void startInHalingAnimation(){
+        Animation inHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.in_haling_animation);
+        inHalingAnimation.setFillAfter(true);
+        button.startAnimation(inHalingAnimation);
+    }
 
 
     @Override
@@ -106,17 +126,17 @@ public class TakeBreathActivity extends AppCompatActivity {
         button.setOnClickListener(v -> currentState.onClick());
         button.setOnTouchListener((v, event) -> {
             int eventAction = event.getAction();
-            if (eventAction == MotionEvent.ACTION_UP) {
+            if(eventAction == MotionEvent.ACTION_DOWN){
+                isTapping = true;
+                currentState.onButtonHeld();
+                startTime = System.currentTimeMillis();
+                holdHandler.post(holdCallback);
+            }else if (eventAction == MotionEvent.ACTION_UP) {
                 isTapping = false;
                 currentState.onButtonRelease();
                 endTime = System.currentTimeMillis();
                 holdHandler.removeCallbacks(holdCallback);
                 notPressHandler.post(notPressCallback);
-            }else if(eventAction == MotionEvent.ACTION_DOWN){
-                isTapping = true;
-                currentState.onButtonHeld();
-                startTime = System.currentTimeMillis();
-                holdHandler.post(holdCallback);
             }
             return false;
         });
@@ -159,8 +179,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onButtonNotPressed10s(){}
     }
 
-    // TODO: add implementation for those functions.
-
     private class StateReady extends State{
         @Override
         void onClick() {
@@ -177,6 +195,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             // TODO: start animation
             // TODO: start sound
             Toast.makeText(TakeBreathActivity.this, "start animation", Toast.LENGTH_SHORT).show();
+            startInHalingAnimation();
         }
     }
 
@@ -186,6 +205,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateWaitToInhale);
             helpText.setText("Hold button and breath in.");
             button.setText("In");
+            stopAnimation();
         }
 
         @Override
@@ -201,6 +221,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             // TODO: stop animation
             // TODO: stop sound
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
+            stopAnimation();
         }
 
         @Override
@@ -209,6 +230,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             // TODO: stop animation
             // TODO: stop sound
             Toast.makeText(TakeBreathActivity.this, "stop inhale animation", Toast.LENGTH_SHORT).show();
+            stopAnimation();
         }
     }
 
@@ -219,6 +241,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             button.setText("Out");
             // TODO: start exhale animation and sound
             Toast.makeText(TakeBreathActivity.this, "start exhale animation", Toast.LENGTH_SHORT).show();
+            startExHalingAnimation();
         }
     }
 
@@ -239,6 +262,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onClick() {
             setStates(stateFinish);
             // TODO: stop animation and sound
+            stopAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
             N --;
             if(N > 0){
@@ -250,6 +274,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onButtonNotPressed10s() {
             setStates(stateFinish);
             // TODO: stop animation and sound
+            stopAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
             N --;
             if(N > 0){
@@ -265,10 +290,5 @@ public class TakeBreathActivity extends AppCompatActivity {
             setStates(stateWaitToInhale);
         }
     }
-
-
-
-
-
 
 }
