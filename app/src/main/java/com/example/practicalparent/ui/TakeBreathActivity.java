@@ -157,9 +157,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onButtonNotPressed(){}
         void onButtonNotPressed3s(){}
         void onButtonNotPressed10s(){}
-
-        void onMoreBreathNeeded(){ }
-
     }
 
     // TODO: add implementation for those functions.
@@ -264,7 +261,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     private class StateFinish extends State{
         @Override
-        void onMoreBreathNeeded() {
+        void onClick() {
             setStates(stateWaitToInhale);
         }
     }
