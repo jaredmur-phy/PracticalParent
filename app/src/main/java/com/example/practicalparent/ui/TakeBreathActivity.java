@@ -43,7 +43,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     private State currentState = stateReady;
 
     private Button button;
-    private TextView helpText;
+
 
     private long startTime = 0;
     private long endTime = 0;
@@ -68,7 +68,20 @@ public class TakeBreathActivity extends AppCompatActivity {
         setChooseBreath();
         getViews();
         setupButton();
+        setHeading();
+        playMusic();
 
+    }
+
+    private void setHeading() {
+
+        int index= getSavedSelected(this);
+
+        breath.setBreaths(++index);
+        setNumberOfBreaths();
+    }
+
+    private void playMusic() {
         notPressHandler.post(notPressCallback);
         inHalingPlayer = MediaPlayer.create(this, R.raw.relax);
         inHalingPlayer.setLooping(true);
@@ -344,7 +357,8 @@ public class TakeBreathActivity extends AppCompatActivity {
 
      // Save to sharedpreferences
     private void saveSelected(int index) {
-        
+
+
         SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -508,9 +522,13 @@ public class TakeBreathActivity extends AppCompatActivity {
         void onButtonNotPressed3s() {
             int decrementBreath = breath.getBreaths();
 
-            breath.setBreaths(--decrementBreath);
+            int index = --decrementBreath;
 
-            if(breath.getBreaths() == 0){     // if this is the last one
+            breath.setBreaths(index);
+
+            saveSelected(--index);
+
+            if(breath.getBreaths() == 0) {     // if this is the last one
                 button.setText(getString(R.string.good_job));
                 saveSelected(2);
                 setNumberOfBreaths();
