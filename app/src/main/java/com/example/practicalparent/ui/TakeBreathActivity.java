@@ -53,7 +53,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     private boolean isTapping = false;
     private final Handler holdHandler = new Handler();
     private final Handler notPressHandler = new Handler();
-   // private int N = 3;
+
     private long tenSecond = 10 * TimeInMills.SECOND.getValue();
     private long threeSecond = 3 * TimeInMills.SECOND.getValue();
     private MediaPlayer inHalingPlayer;
@@ -68,10 +68,11 @@ public class TakeBreathActivity extends AppCompatActivity {
         setChooseBreath();
         getViews();
         setupButton();
+
         notPressHandler.post(notPressCallback);
-        inHalingPlayer = MediaPlayer.create(this, R.raw.ring);
+        inHalingPlayer = MediaPlayer.create(this, R.raw.relax);
         inHalingPlayer.setLooping(true);
-        exHalingPlayer = MediaPlayer.create(this, R.raw.ring);
+        exHalingPlayer = MediaPlayer.create(this, R.raw.relax);
         exHalingPlayer.setLooping(true);
     }
 
@@ -358,7 +359,6 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     private void getViews(){
         button = findViewById(R.id.id_begin_button);
-        //helpText = findViewById(R.id.id_take_N_Breaths);
     }
 
 
@@ -511,6 +511,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             if(breath.getBreaths() == 0){     // if this is the last one
                 button.setText(getString(R.string.good_job));
                 saveSelected(2);
+                setNumberOfBreaths();
             }else{
                 button.setText(getString(R.string.in));
             }
