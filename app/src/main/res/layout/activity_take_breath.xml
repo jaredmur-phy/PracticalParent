@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sunset"
-    tools:context=".ui.TakeBreathActivity" >
+    tools:context=".ui.TakeBreathActivity">
 
     <TextView
         android:id="@+id/id_take_N_Breaths"

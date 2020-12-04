@@ -42,13 +42,13 @@ public class TimeoutReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (TIMEOUT_ACTION.equals(action)) {
             AlarmTimer timer = AlarmTimer.getInstance();
-            if(timer.isTimeout()) {
+            if (timer.isTimeout()) {
                 wakeupScreen(context);
                 notificationManager = NotificationManagerCompat.from(context);
                 setupNotificationChannel(context);
                 sendNotification(context);
                 Alarmer.getInstance(context).alarm();
-            } else if(timer.isPaused() || timer.getStatus() == AlarmTimer.TimerStatus.SET_TIMER){
+            } else if (timer.isPaused() || timer.getStatus() == AlarmTimer.TimerStatus.SET_TIMER) {
                 // do nothing
             } else {
                 // set timer

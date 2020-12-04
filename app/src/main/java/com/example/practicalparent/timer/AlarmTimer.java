@@ -45,7 +45,7 @@ public class AlarmTimer {
         pausedPoint = -1;
     }
 
-    public String getSpeedText(){
+    public String getSpeedText() {
         return "speed " + (int) (this.speed * 100) + "%";
     }
 
@@ -61,7 +61,7 @@ public class AlarmTimer {
         }
     }
 
-    public void setSpeed(double speed){
+    public void setSpeed(double speed) {
         pause();    // use current speed calculate paused point
         this.speed = speed; // change speed
         resume();   // use new speed calculate end point
@@ -69,9 +69,9 @@ public class AlarmTimer {
 
     // return a value in [0, 1]
     // return 0.6 means there are 60% time left
-    public float getRemainingPercentage(){
-        float percentage =  (float) getRemainingTime() / this.duration;
-        if(Float.isNaN(percentage)){
+    public float getRemainingPercentage() {
+        float percentage = (float) getRemainingTime() / this.duration;
+        if (Float.isNaN(percentage)) {
             percentage = 1;
         }
         return Math.min(Math.max(0, percentage), 1);

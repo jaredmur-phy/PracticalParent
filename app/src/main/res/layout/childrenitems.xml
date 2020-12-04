@@ -31,5 +31,5 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark" />
 </RelativeLayout>

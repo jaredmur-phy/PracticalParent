@@ -63,7 +63,6 @@ public class HelpActivity extends AppCompatActivity {
         t14.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-
     }
 
     public static Intent getIntent(Context c) {

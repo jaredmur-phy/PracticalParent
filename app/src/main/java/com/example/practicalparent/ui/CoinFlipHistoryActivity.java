@@ -101,14 +101,14 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
             Child curChild = history.getChild();
 
             // Fill the view
-            if(curChild.hasDrawable()) {
+            if (curChild.hasDrawable()) {
                 ImageView childImgView = itemView.findViewById(R.id.id_child_img);
                 childImgView.setImageDrawable(curChild.getDrawable(CoinFlipHistoryActivity.this));
             }
             TextView textView = itemView.findViewById(R.id.id_child_name);
-            if(history.isWon()) {
+            if (history.isWon()) {
                 textView.setText(Html.fromHtml(history.toString() + getString(R.string.won_text)));
-            }else{
+            } else {
                 textView.setText(Html.fromHtml(history.toString() + getString(R.string.lost_text)));
             }
             return itemView;

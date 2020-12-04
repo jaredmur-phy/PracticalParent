@@ -23,7 +23,6 @@
         android:layout_toRightOf="@+id/id_task_child_img"
 
 
-
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"

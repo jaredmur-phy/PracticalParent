@@ -39,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
         buttonTakeBreath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             launchTakeBreath();
+                launchTakeBreath();
             }
         });
     }
-
 
 
     private void setCoinFlip() {

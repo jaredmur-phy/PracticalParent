@@ -64,7 +64,7 @@ public class TaskListActivity extends AppCompatActivity {
         list.setOnItemClickListener((parent, view, position, id) -> launchTaskInfo(position));
     }
 
-private class TaskListAdapter extends ArrayAdapter<Task> {
+    private class TaskListAdapter extends ArrayAdapter<Task> {
         public TaskListAdapter() {
             super(TaskListActivity.this,
                     R.layout.taskitems,

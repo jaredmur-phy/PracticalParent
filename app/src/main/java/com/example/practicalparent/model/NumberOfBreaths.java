@@ -22,11 +22,9 @@ public class NumberOfBreaths {
     }
 
 
-    public void setBreaths(int breaths){
+    public void setBreaths(int breaths) {
         this.breaths = breaths;
     }
-
-
 
 
 }

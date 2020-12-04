@@ -84,13 +84,15 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     }
 
+
     private void setHeading() {
 
-        int index= getSavedSelected(this);
+        int index = getSavedSelected(this);
 
         breath.setBreaths(++index);
         setNumberOfBreaths();
     }
+
 
     private void playMusic() {
         notPressHandler.post(notPressCallback);
@@ -100,8 +102,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         exHalingPlayer.setLooping(true);
     }
 
-
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -109,8 +109,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.choose_breath_menu, menu);
 
-        int index= getSavedSelected(this);
-
+        int index = getSavedSelected(this);
 
 
         MenuItem menuItem = menu.getItem(index);
@@ -118,7 +117,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         breath.setBreaths(++index);
         setNumberOfBreaths();
         menuItem.setChecked(true);
-
 
     }
 
@@ -141,7 +139,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     private final Runnable notPressCallback = new Runnable() {
         @Override
         public void run() {
-            if(!isTapping){
+            if (!isTapping) {
                 currentState.onButtonNotPressed();
                 long currentTime = System.currentTimeMillis();
                 long dTime = currentTime - lastClickEndTime;
@@ -156,27 +154,27 @@ public class TakeBreathActivity extends AppCompatActivity {
     };
 
 
-    private void stopInHalingAnimation(){
+    private void stopInHalingAnimation() {
         button.clearAnimation();
-        if(inHalingPlayer.isPlaying()) {
+        if (inHalingPlayer.isPlaying()) {
             inHalingPlayer.pause();
         }
     }
 
-    private void stopExHalingAnimation(){
+    private void stopExHalingAnimation() {
         button.clearAnimation();
-        if(exHalingPlayer.isPlaying()) {
+        if (exHalingPlayer.isPlaying()) {
             exHalingPlayer.pause();
         }
     }
 
-    private void startExHalingAnimation(){
+    private void startExHalingAnimation() {
         Animation exHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.ex_haling_animation);
         button.startAnimation(exHalingAnimation);
         exHalingPlayer.start();
     }
 
-    private void startInHalingAnimation(){
+    private void startInHalingAnimation() {
         Animation inHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.in_haling_animation);
         inHalingAnimation.setFillAfter(true);
         button.startAnimation(inHalingAnimation);
@@ -184,28 +182,22 @@ public class TakeBreathActivity extends AppCompatActivity {
     }
 
 
+    private void setNumberOfBreaths() {
 
-
-
-    private void setNumberOfBreaths(){
-
-        chooseBreath.setText(getString(R.string.lets) + " " +breath.getBreaths() + " " +getString(R.string.take));
+        chooseBreath.setText(getString(R.string.lets) + " " + breath.getBreaths() + " " + getString(R.string.take));
 
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.id_one:
 
                 breath.setBreaths(ONE);
 
                 setNumberOfBreaths();
-
-
-
 
                 saveSelected(ZERO);
 
@@ -219,10 +211,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-
-
                 saveSelected(ONE);
-
 
                 item.setChecked(true);
 
@@ -234,25 +223,22 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-
-
-
                 saveSelected(TWO);
 
                 item.setChecked(true);
+
                 return true;
+
             case R.id.id_four:
 
                 breath.setBreaths(FOUR);
 
                 setNumberOfBreaths();
 
-
-
-
                 saveSelected(THREE);
 
                 item.setChecked(true);
+
                 return true;
 
             case R.id.id_five:
@@ -261,8 +247,6 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 setNumberOfBreaths();
 
-
-
                 saveSelected(FOUR);
 
                 item.setChecked(true);
@@ -270,31 +254,23 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             case R.id.id_six:
 
-
                 breath.setBreaths(SIX);
 
                 setNumberOfBreaths();
 
                 item.setChecked(true);
 
-
-
                 saveSelected(FIVE);
-
 
                 return true;
 
             case R.id.id_seven:
-
 
                 breath.setBreaths(SEVEN);
 
                 setNumberOfBreaths();
 
                 item.setChecked(true);
-
-
-
 
                 saveSelected(SIX);
 
@@ -308,8 +284,6 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-
-
                 saveSelected(SEVEN);
 
                 return true;
@@ -322,11 +296,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-
-
-
                 saveSelected(EIGHT);
-
 
                 return true;
 
@@ -338,18 +308,13 @@ public class TakeBreathActivity extends AppCompatActivity {
 
                 item.setChecked(true);
 
-
-
-
                 saveSelected(NINE);
-
 
                 return true;
 
             default:
 
                 return super.onContextItemSelected(item);
-
         }
 
     }
@@ -366,7 +331,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         });
     }
 
-     // Save to sharedpreferences
+    // Save to sharedpreferences
     private void saveSelected(int index) {
 
 
@@ -378,7 +343,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     }
 
-    private void getViews(){
+    private void getViews() {
         button = findViewById(R.id.id_begin_button);
     }
 
@@ -399,16 +364,16 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
     @SuppressLint("ClickableViewAccessibility")
-    public void setupButton(){
+    public void setupButton() {
         button.setOnClickListener(v -> currentState.onClick());
         button.setOnTouchListener((v, event) -> {
             int eventAction = event.getAction();
-            if(eventAction == MotionEvent.ACTION_DOWN){
+            if (eventAction == MotionEvent.ACTION_DOWN) {
                 isTapping = true;
                 currentState.onButtonHeld();
                 lastClickStartTime = System.currentTimeMillis();
                 holdHandler.post(holdCallback);
-            }else if (eventAction == MotionEvent.ACTION_UP) {
+            } else if (eventAction == MotionEvent.ACTION_UP) {
                 isTapping = false;
                 currentState.onButtonRelease();
                 lastClickEndTime = System.currentTimeMillis();
@@ -434,7 +399,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setStates(State state){
+    private void setStates(State state) {
         currentState = state;
     }
 
@@ -442,27 +407,41 @@ public class TakeBreathActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         notPressHandler.removeCallbacks(notPressCallback);
-        if(exHalingPlayer.isPlaying()) {
+        if (exHalingPlayer.isPlaying()) {
             exHalingPlayer.pause();
         }
-        if(inHalingPlayer.isPlaying()) {
+        if (inHalingPlayer.isPlaying()) {
             inHalingPlayer.pause();
         }
         super.onDestroy();
     }
 
-    private abstract class State{
-        void onClick(){}
-        void onButtonRelease(){}
-        void onButtonHeld(){}
-        void onButtonHeld3s(){}
-        void onButtonHeld10s(){}
-        void onButtonNotPressed(){}
-        void onButtonNotPressed3s(){}
-        void onButtonNotPressed10s(){}
+    private abstract class State {
+        void onClick() {
+        }
+
+        void onButtonRelease() {
+        }
+
+        void onButtonHeld() {
+        }
+
+        void onButtonHeld3s() {
+        }
+
+        void onButtonHeld10s() {
+        }
+
+        void onButtonNotPressed() {
+        }
+
+        void onButtonNotPressed3s() {
+        }
+
+        void onButtonNotPressed10s() {
+        }
     }
 
-    // TODO: add implementation for those functions.
 
     private class StateReady extends State {
         @Override
@@ -499,7 +478,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         }
     }
 
-    private class StateOut extends State{
+    private class StateOut extends State {
         @Override
         void onButtonRelease() {
             setStates(stateDoneInhaling);
@@ -516,19 +495,18 @@ public class TakeBreathActivity extends AppCompatActivity {
         }
     }
 
-    private class StateDoneInhaling extends State{
+    private class StateDoneInhaling extends State {
         @Override
         void onButtonNotPressed() {
             setStates(stateReadyToExhale);
             button.setText(getString(R.string.out));
-            // TODO: start exhale animation and sound
             Toast.makeText(TakeBreathActivity.this, "start exhale animation", Toast.LENGTH_SHORT).show();
             startExHalingAnimation();
             chooseBreath.setText(getString(R.string.breath_out));
         }
     }
 
-    private class StateReadyToExhale extends State{
+    private class StateReadyToExhale extends State {
         @Override
         void onButtonNotPressed3s() {
             int decrementBreath = breath.getBreaths();
@@ -539,11 +517,11 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             saveSelected(--index);
 
-            if(breath.getBreaths() == ZERO) {     // if this is the last one
+            if (breath.getBreaths() == ZERO) {     // if this is the last one
                 button.setText(getString(R.string.good_job));
                 saveSelected(TWO);
                 setNumberOfBreaths();
-            }else{
+            } else {
                 button.setText(getString(R.string.in));
             }
             setStates(stateExhaling);
@@ -552,14 +530,14 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     }
 
-    private class StateExhaling extends State{
+    private class StateExhaling extends State {
         @Override
         void onClick() {
             stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
 
-            if(breath.getBreaths() > ZERO){
-                setStates(stateReady);
+            if (breath.getBreaths() > ZERO) {
+                setStates(stateWaitToInhale);
             } else {
                 setStates(stateFinish);
                 finish();
@@ -571,10 +549,10 @@ public class TakeBreathActivity extends AppCompatActivity {
             stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
 
-           int decrementBreath = breath.getBreaths();
+            int decrementBreath = breath.getBreaths();
 
             breath.setBreaths(--decrementBreath);
-            if(breath.getBreaths() > ZERO){
+            if (breath.getBreaths() > ZERO) {
                 setStates(stateWaitToInhale);
             } else {
                 setStates(stateFinish);
@@ -584,7 +562,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     }
 
 
-    private class StateFinish extends State{
+    private class StateFinish extends State {
         @Override
         void onClick() {
             setStates(stateWaitToInhale);
