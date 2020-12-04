@@ -85,9 +85,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.choose_breath_menu, menu);
 
-
-
-
         int index= getSavedSelected(this);
 
 
