@@ -189,7 +189,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     private void setNumberOfBreaths(){
 
-        chooseBreath.setText("Let's take " + breath.getBreaths() + " breaths together");
+        chooseBreath.setText(getString(R.string.lets) + " " +breath.getBreaths() + " " +getString(R.string.take));
 
     }
 
