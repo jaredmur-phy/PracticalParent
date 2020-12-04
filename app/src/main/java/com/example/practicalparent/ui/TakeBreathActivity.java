@@ -40,12 +40,24 @@ public class TakeBreathActivity extends AppCompatActivity {
     private final State stateExhaling = new StateExhaling();
     private final State stateFinish = new StateFinish();
 
+    private final static int ZERO = 0;
+    private final static int ONE = 1;
+    private final static int TWO = 2;
+    private final static int THREE = 3;
+    private final static int FOUR = 4;
+    private final static int FIVE = 5;
+    private final static int SIX = 6;
+    private final static int SEVEN = 7;
+    private final static int EIGHT = 8;
+    private final static int NINE = 9;
+    private final static int TEN = 10;
+
     private State currentState = stateReady;
 
     private Button button;
 
-    private long startTime = 0;
-    private long endTime = 0;
+    private long lastClickStartTime = 0;
+    private long lastClickEndTime = 0;
 
     NumberOfBreaths breath = NumberOfBreaths.getInstance();
 
@@ -114,7 +126,7 @@ public class TakeBreathActivity extends AppCompatActivity {
         @Override
         public void run() {
             long currentTime = System.currentTimeMillis();
-            long dTime = currentTime - startTime;
+            long dTime = currentTime - lastClickStartTime;
             if (dTime > tenSecond) {
                 currentState.onButtonHeld10s();
             } else {
@@ -132,7 +144,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             if(!isTapping){
                 currentState.onButtonNotPressed();
                 long currentTime = System.currentTimeMillis();
-                long dTime = currentTime - endTime;
+                long dTime = currentTime - lastClickEndTime;
                 if (dTime > tenSecond) {
                     currentState.onButtonNotPressed10s();
                 } else if (dTime > threeSecond) {
@@ -188,14 +200,14 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             case R.id.id_one:
 
-                breath.setBreaths(1);
+                breath.setBreaths(ONE);
 
                 setNumberOfBreaths();
 
 
 
 
-                saveSelected(0);
+                saveSelected(ZERO);
 
                 item.setChecked(true);
 
@@ -203,13 +215,13 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             case R.id.id_two:
 
-                breath.setBreaths(2);
+                breath.setBreaths(TWO);
 
                 setNumberOfBreaths();
 
 
 
-                saveSelected(1);
+                saveSelected(ONE);
 
 
                 item.setChecked(true);
@@ -218,40 +230,40 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             case R.id.id_three:
 
-                breath.setBreaths(3);
+                breath.setBreaths(THREE);
 
                 setNumberOfBreaths();
 
 
 
 
-                saveSelected(2);
+                saveSelected(TWO);
 
                 item.setChecked(true);
                 return true;
             case R.id.id_four:
 
-                breath.setBreaths(4);
+                breath.setBreaths(FOUR);
 
                 setNumberOfBreaths();
 
 
 
 
-                saveSelected(3);
+                saveSelected(THREE);
 
                 item.setChecked(true);
                 return true;
 
             case R.id.id_five:
 
-                breath.setBreaths(5);
+                breath.setBreaths(FIVE);
 
                 setNumberOfBreaths();
 
 
 
-                saveSelected(4);
+                saveSelected(FOUR);
 
                 item.setChecked(true);
                 return true;
@@ -259,7 +271,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             case R.id.id_six:
 
 
-                breath.setBreaths(6);
+                breath.setBreaths(SIX);
 
                 setNumberOfBreaths();
 
@@ -267,7 +279,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
 
-                saveSelected(5);
+                saveSelected(FIVE);
 
 
                 return true;
@@ -275,7 +287,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             case R.id.id_seven:
 
 
-                breath.setBreaths(7);
+                breath.setBreaths(SEVEN);
 
                 setNumberOfBreaths();
 
@@ -284,13 +296,13 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
 
-                saveSelected(6);
+                saveSelected(SIX);
 
                 return true;
 
             case R.id.id_eight:
 
-                breath.setBreaths(8);
+                breath.setBreaths(EIGHT);
 
                 setNumberOfBreaths();
 
@@ -298,13 +310,13 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
 
-                saveSelected(7);
+                saveSelected(SEVEN);
 
                 return true;
 
             case R.id.id_nine:
 
-                breath.setBreaths(9);
+                breath.setBreaths(NINE);
 
                 setNumberOfBreaths();
 
@@ -313,14 +325,14 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
 
-                saveSelected(8);
+                saveSelected(EIGHT);
 
 
                 return true;
 
             case R.id.id_ten:
 
-                breath.setBreaths(10);
+                breath.setBreaths(TEN);
 
                 setNumberOfBreaths();
 
@@ -329,7 +341,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
 
 
-                saveSelected(9);
+                saveSelected(NINE);
 
 
                 return true;
@@ -374,7 +386,7 @@ public class TakeBreathActivity extends AppCompatActivity {
     // Load from sharedpreferences
     static public int getSavedSelected(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
-        return prefs.getInt("Extract the selected", 2);
+        return prefs.getInt("Extract the selected", TWO);
     }
 
 
@@ -394,12 +406,12 @@ public class TakeBreathActivity extends AppCompatActivity {
             if(eventAction == MotionEvent.ACTION_DOWN){
                 isTapping = true;
                 currentState.onButtonHeld();
-                startTime = System.currentTimeMillis();
+                lastClickStartTime = System.currentTimeMillis();
                 holdHandler.post(holdCallback);
             }else if (eventAction == MotionEvent.ACTION_UP) {
                 isTapping = false;
                 currentState.onButtonRelease();
-                endTime = System.currentTimeMillis();
+                lastClickEndTime = System.currentTimeMillis();
                 holdHandler.removeCallbacks(holdCallback);
                 notPressHandler.post(notPressCallback);
             }
@@ -527,9 +539,9 @@ public class TakeBreathActivity extends AppCompatActivity {
 
             saveSelected(--index);
 
-            if(breath.getBreaths() == 0) {     // if this is the last one
+            if(breath.getBreaths() == ZERO) {     // if this is the last one
                 button.setText(getString(R.string.good_job));
-                saveSelected(2);
+                saveSelected(TWO);
                 setNumberOfBreaths();
             }else{
                 button.setText(getString(R.string.in));
@@ -546,7 +558,7 @@ public class TakeBreathActivity extends AppCompatActivity {
             stopExHalingAnimation();
             Toast.makeText(TakeBreathActivity.this, "stop exhale animation", Toast.LENGTH_SHORT).show();
 
-            if(breath.getBreaths() > 0){
+            if(breath.getBreaths() > ZERO){
                 setStates(stateReady);
             } else {
                 setStates(stateFinish);
@@ -562,7 +574,7 @@ public class TakeBreathActivity extends AppCompatActivity {
            int decrementBreath = breath.getBreaths();
 
             breath.setBreaths(--decrementBreath);
-            if(breath.getBreaths() > 0){
+            if(breath.getBreaths() > ZERO){
                 setStates(stateWaitToInhale);
             } else {
                 setStates(stateFinish);
