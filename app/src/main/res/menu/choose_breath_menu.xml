@@ -5,51 +5,51 @@
 
     <item
         android:id="@+id/id_one"
-        android:title="@string/_1"></item>
+        android:title="@string/_1" />
 
     <item android:id="@+id/id_two"
-        android:title="2">
+        android:title="@string/_2">
     </item>
 
 
     <item android:id="@+id/id_three"
-        android:title="3"
+        android:title="@string/_3"
         >
     </item>
 
 
     <item android:id="@+id/id_four"
-        android:title="4">
+        android:title="@string/_4">
     </item>
 
 
     <item android:id="@+id/id_five"
-        android:title="5">
+        android:title="@string/_5">
     </item>
 
 
     <item android:id="@+id/id_six"
-        android:title="6">
+        android:title="@string/_6">
     </item>
 
 
     <item android:id="@+id/id_seven"
-        android:title="7">
+        android:title="@string/_7">
     </item>
 
 
     <item android:id="@+id/id_eight"
-        android:title="8">
+        android:title="@string/_8">
     </item>
 
 
     <item android:id="@+id/id_nine"
-        android:title="9">
+        android:title="@string/_9">
     </item>
 
 
     <item android:id="@+id/id_ten"
-        android:title="10">
+        android:title="@string/_10">
     </item>
 
 </group>

@@ -72,7 +72,8 @@
     <string name="happy_school_ttf"><a href="https://www.fontspace.com/category/education">happy_school.ttf</a></string>
     <string name="team_mango"><a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">Team Mango</a></string>
     <string name="yoga.png"><a href="https://pngio.com/PNG/a86247-meditation-icon-png.html">yoga.png</a></string>
-
+    <string name="relax.weba"><a href="https://www.youtube.com/watch?v=9tOJZQhO_Uw&amp;t=33s">relax.weba</a></string>
+    <string name="take_breath_button"><a href="https://android--code.blogspot.com/2015/01/android-round-button.html">take_breath_button.xml</a></string>
 
     <string name="won_text"><![CDATA[<font color=\'#00ff00\'> WON!!</font>]]></string>
     <string name="loose_text"><![CDATA[<font color=\'#ff0000\'> LOST!!</font>]]></string>
@@ -136,4 +137,13 @@
     <string name="_1">1</string>
     <string name="lets">Let\'s take </string>
     <string name="take"> breaths together</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_10">10</string>
 </resources>
