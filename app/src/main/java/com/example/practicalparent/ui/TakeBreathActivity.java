@@ -346,8 +346,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
      // Save to sharedpreferences
     private void saveSelected(int index) {
-
-
+        
         SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -421,6 +420,12 @@ public class TakeBreathActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         notPressHandler.removeCallbacks(notPressCallback);
+        if(exHalingPlayer.isPlaying()) {
+            exHalingPlayer.pause();
+        }
+        if(inHalingPlayer.isPlaying()) {
+            inHalingPlayer.pause();
+        }
         super.onDestroy();
     }
 
