@@ -44,7 +44,6 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     private Button button;
 
-
     private long startTime = 0;
     private long endTime = 0;
 
