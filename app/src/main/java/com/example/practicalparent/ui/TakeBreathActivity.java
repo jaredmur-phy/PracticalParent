@@ -65,8 +65,8 @@ public class TakeBreathActivity extends AppCompatActivity {
     private final Handler holdHandler = new Handler();
     private final Handler notPressHandler = new Handler();
 
-    private long tenSecond = 10 * TimeInMills.SECOND.getValue();
-    private long threeSecond = 3 * TimeInMills.SECOND.getValue();
+    private final long tenSecond = 10 * TimeInMills.SECOND.getValue();
+    private final long threeSecond = 3 * TimeInMills.SECOND.getValue();
     private MediaPlayer inHalingPlayer;
     private MediaPlayer exHalingPlayer;
 
@@ -75,18 +75,17 @@ public class TakeBreathActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_breath);
+
         setToolBar();
         setChooseBreath();
         getViews();
         setupButton();
         setHeading();
         playMusic();
-
     }
 
 
     private void setHeading() {
-
         int index = getSavedSelected(this);
 
         breath.setBreaths(++index);
@@ -117,7 +116,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         breath.setBreaths(++index);
         setNumberOfBreaths();
         menuItem.setChecked(true);
-
     }
 
     private final Runnable holdCallback = new Runnable() {
@@ -334,19 +332,16 @@ public class TakeBreathActivity extends AppCompatActivity {
     // Save to sharedpreferences
     private void saveSelected(int index) {
 
-
         SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putInt("Extract the selected", index);
         editor.apply();
-
     }
 
     private void getViews() {
         button = findViewById(R.id.id_begin_button);
     }
-
 
     // Load from sharedpreferences
     static public int getSavedSelected(Context context) {
@@ -354,14 +349,12 @@ public class TakeBreathActivity extends AppCompatActivity {
         return prefs.getInt("Extract the selected", TWO);
     }
 
-
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.id_take_breath_tool_bar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     public void setupButton() {
@@ -383,7 +376,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             return false;
         });
     }
-
 
     public static Intent getIntent(Context c) {
         return new Intent(c, TakeBreathActivity.class);
