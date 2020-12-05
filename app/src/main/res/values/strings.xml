@@ -91,7 +91,6 @@
     <string name="task_is_same">Sorry, please enter another task name</string>
 
     <string name="task_desc_is_same">Sorry, please enter another task description</string>
-
     <string name="both_task_is_same">Sorry, please enter another task name and description</string>
     <string name="enter_child_name_to_use">Sorry, please add a child to use the task list</string>
 
