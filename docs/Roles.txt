@@ -1,5 +1,7 @@
-Roles for Iteration 2:
-Product Owner: Jiatang Zhou
-Scrum Master: Denys Dymnich
-Repo Manager: Jared Murphy
-Team Member: Sabri Isik
+Roles for Iteration 3:
+Scrum Master: Sabri Isik
+Product Owner: Jared Murphy
+Team Member: Jiatang Zhou
+Repo Manager: Denys Dymnich
+
+
