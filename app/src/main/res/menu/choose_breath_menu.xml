@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/id_one"
+            android:title="@string/_1" />
+
+        <item
+            android:id="@+id/id_two"
+            android:title="@string/_2"></item>
+
+
+        <item
+            android:id="@+id/id_three"
+            android:title="@string/_3"></item>
+
+
+        <item
+            android:id="@+id/id_four"
+            android:title="@string/_4"></item>
+
+
+        <item
+            android:id="@+id/id_five"
+            android:title="@string/_5"></item>
+
+
+        <item
+            android:id="@+id/id_six"
+            android:title="@string/_6"></item>
+
+
+        <item
+            android:id="@+id/id_seven"
+            android:title="@string/_7"></item>
+
+
+        <item
+            android:id="@+id/id_eight"
+            android:title="@string/_8"></item>
+
+
+        <item
+            android:id="@+id/id_nine"
+            android:title="@string/_9"></item>
+
+
+        <item
+            android:id="@+id/id_ten"
+            android:title="@string/_10"></item>
+
+    </group>
+
+</menu>

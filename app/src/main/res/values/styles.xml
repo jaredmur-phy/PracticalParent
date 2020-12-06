@@ -17,6 +17,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
     <style name="resultToast">
         <item name="colorBackground">#94ffab</item>
         <item name="textColor">#000</item>
@@ -31,6 +32,27 @@
         <item name="colorBackground">#CC1C30</item>
         <item name="textColor">#000</item>
         <item name="iconLeft">@drawable/help</item>
+        <item name="strokeColor">#000</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="length">SHORT</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
+
+
+    <style name="inhaleToast">
+        <item name="colorBackground">#94ffab</item>
+        <item name="textColor">#000</item>
+        <item name="iconLeft">@drawable/yoga</item>
+        <item name="strokeColor">#000</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="length">SHORT</item>
+        <item name="cornerRadius">3dp</item>
+    </style>
+
+    <style name="exhaleToast">
+        <item name="colorBackground">#CC1C30</item>
+        <item name="textColor">#000</item>
+        <item name="iconLeft">@drawable/yoga</item>
         <item name="strokeColor">#000</item>
         <item name="strokeWidth">3dp</item>
         <item name="length">SHORT</item>

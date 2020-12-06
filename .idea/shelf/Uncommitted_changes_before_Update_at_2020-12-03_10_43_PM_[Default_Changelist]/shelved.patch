@@ -1,0 +1,188 @@
+Index: app/src/main/java/com/example/practicalparent/ui/TakeBreathActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.practicalparent.ui;\r\n\r\nimport android.annotation.SuppressLint;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.media.MediaPlayer;\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\nimport android.view.ContextMenu;\r\nimport android.view.MenuInflater;\r\nimport android.view.MenuItem;\r\nimport android.view.MotionEvent;\r\nimport android.view.View;\r\nimport android.view.animation.Animation;\r\nimport android.view.animation.AnimationUtils;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.widget.Toolbar;\r\n\r\nimport com.example.practicalparent.R;\r\nimport com.example.practicalparent.model.NumberOfBreaths;\r\nimport com.example.practicalparent.timer.TimeInMills;\r\n\r\npublic class TakeBreathActivity extends AppCompatActivity {\r\n\r\n    private TextView chooseBreath;\r\n\r\n    private final State stateReady = new StateReady();\r\n    private final State stateWaitToInhale = new StateWaitToInhale();\r\n    private final State stateInhaling = new StateInhaling();\r\n    private final State stateOut = new StateOut();\r\n    private final State stateDoneInhaling = new StateDoneInhaling();\r\n    private final State stateReadyToExhale = new StateReadyToExhale();\r\n    private final State stateExhaling = new StateExhaling();\r\n    private final State stateFinish = new StateFinish();\r\n\r\n    private State currentState = stateReady;\r\n\r\n    private Button button;\r\n    private TextView helpText;\r\n\r\n    private long startTime = 0;\r\n    private long endTime = 0;\r\n\r\n    NumberOfBreaths breath = NumberOfBreaths.getInstance();\r\n\r\n    private boolean isTapping = false;\r\n    private final Handler holdHandler = new Handler();\r\n    private final Handler notPressHandler = new Handler();\r\n\r\n    private long tenSecond = 10 * TimeInMills.SECOND.getValue();\r\n    private long threeSecond = 3 * TimeInMills.SECOND.getValue();\r\n    private MediaPlayer inHalingPlayer;\r\n    private MediaPlayer exHalingPlayer;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_take_breath);\r\n        setToolBar();\r\n        setChooseBreath();\r\n        getViews();\r\n        setupButton();\r\n\r\n        notPressHandler.post(notPressCallback);\r\n        inHalingPlayer = MediaPlayer.create(this, R.raw.relax);\r\n        inHalingPlayer.setLooping(true);\r\n        exHalingPlayer = MediaPlayer.create(this, R.raw.relax);\r\n        exHalingPlayer.setLooping(true);\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {\r\n        super.onCreateContextMenu(menu, v, menuInfo);\r\n\r\n        MenuInflater menuInflater = getMenuInflater();\r\n        menuInflater.inflate(R.menu.choose_breath_menu, menu);\r\n\r\n        int index= getSavedSelected(this);\r\n\r\n\r\n\r\n        MenuItem menuItem = menu.getItem(index);\r\n\r\n        breath.setBreaths(++index);\r\n        setNumberOfBreaths();\r\n        menuItem.setChecked(true);\r\n\r\n\r\n    }\r\n\r\n    private final Runnable holdCallback = new Runnable() {\r\n        @Override\r\n        public void run() {\r\n            long currentTime = System.currentTimeMillis();\r\n            long dTime = currentTime - startTime;\r\n            if (dTime > tenSecond) {\r\n                currentState.onButtonHeld10s();\r\n            } else {\r\n                if (dTime > threeSecond) {\r\n                    currentState.onButtonHeld3s();\r\n                }\r\n                holdHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());\r\n            }\r\n        }\r\n    };\r\n\r\n    private final Runnable notPressCallback = new Runnable() {\r\n        @Override\r\n        public void run() {\r\n            if(!isTapping){\r\n                currentState.onButtonNotPressed();\r\n                long currentTime = System.currentTimeMillis();\r\n                long dTime = currentTime - endTime;\r\n                if (dTime > tenSecond) {\r\n                    currentState.onButtonNotPressed10s();\r\n                } else if (dTime > threeSecond) {\r\n                    currentState.onButtonNotPressed3s();\r\n                }\r\n                notPressHandler.postDelayed(this, TimeInMills.HALF_SECOND.getValue());\r\n            }\r\n        }\r\n    };\r\n\r\n\r\n    private void stopInHalingAnimation(){\r\n        button.clearAnimation();\r\n        if(inHalingPlayer.isPlaying()) {\r\n            inHalingPlayer.pause();\r\n        }\r\n    }\r\n\r\n    private void stopExHalingAnimation(){\r\n        button.clearAnimation();\r\n        if(exHalingPlayer.isPlaying()) {\r\n            exHalingPlayer.pause();\r\n        }\r\n    }\r\n\r\n    private void startExHalingAnimation(){\r\n        Animation exHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.ex_haling_animation);\r\n        button.startAnimation(exHalingAnimation);\r\n        exHalingPlayer.start();\r\n    }\r\n\r\n    private void startInHalingAnimation(){\r\n        Animation inHalingAnimation = AnimationUtils.loadAnimation(this, R.anim.in_haling_animation);\r\n        inHalingAnimation.setFillAfter(true);\r\n        button.startAnimation(inHalingAnimation);\r\n        inHalingPlayer.start();\r\n    }\r\n\r\n\r\n\r\n\r\n\r\n    private void setNumberOfBreaths(){\r\n\r\n        chooseBreath.setText(\"Let's take \" + breath.getBreaths() + \" breaths together\");\r\n\r\n    }\r\n\r\n    @Override\r\n    public boolean onContextItemSelected(@NonNull MenuItem item) {\r\n\r\n        switch(item.getItemId()){\r\n\r\n            case R.id.id_one:\r\n\r\n                breath.setBreaths(1);\r\n\r\n                setNumberOfBreaths();\r\n\r\n\r\n\r\n\r\n                saveSelected(0);\r\n\r\n                item.setChecked(true);\r\n\r\n                return true;\r\n\r\n            case R.id.id_two:\r\n\r\n                breath.setBreaths(2);\r\n\r\n                setNumberOfBreaths();\r\n\r\n\r\n\r\n                saveSelected(1);\r\n\r\n\r\n                item.setChecked(true);\r\n\r\n                return true;\r\n\r\n            case R.id.id_three:\r\n\r\n                breath.setBreaths(3);\r\n\r\n                setNumberOfBreaths();\r\n\r\n\r\n\r\n\r\n                saveSelected(2);\r\n\r\n                item.setChecked(true);\r\n                return true;\r\n            case R.id.id_four:\r\n\r\n                breath.setBreaths(4);\r\n\r\n                setNumberOfBreaths();\r\n\r\n\r\n\r\n\r\n                saveSelected(3);\r\n\r\n                item.setChecked(true);\r\n                return true;\r\n\r\n            case R.id.id_five:\r\n\r\n                breath.setBreaths(5);\r\n\r\n                setNumberOfBreaths();\r\n\r\n\r\n\r\n                saveSelected(4);\r\n\r\n                item.setChecked(true);\r\n                return true;\r\n\r\n            case R.id.id_six:\r\n\r\n\r\n                breath.setBreaths(6);\r\n\r\n                setNumberOfBreaths();\r\n\r\n                item.setChecked(true);\r\n\r\n\r\n\r\n                saveSelected(5);\r\n\r\n\r\n                return true;\r\n\r\n            case R.id.id_seven:\r\n\r\n\r\n                breath.setBreaths(7);\r\n\r\n                setNumberOfBreaths();\r\n\r\n                item.setChecked(true);\r\n\r\n\r\n\r\n\r\n                saveSelected(6);\r\n\r\n                return true;\r\n\r\n            case R.id.id_eight:\r\n\r\n                breath.setBreaths(8);\r\n\r\n                setNumberOfBreaths();\r\n\r\n                item.setChecked(true);\r\n\r\n\r\n\r\n                saveSelected(7);\r\n\r\n                return true;\r\n\r\n            case R.id.id_nine:\r\n\r\n                breath.setBreaths(9);\r\n\r\n                setNumberOfBreaths();\r\n\r\n                item.setChecked(true);\r\n\r\n\r\n\r\n\r\n                saveSelected(8);\r\n\r\n\r\n                return true;\r\n\r\n            case R.id.id_ten:\r\n\r\n                breath.setBreaths(10);\r\n\r\n                setNumberOfBreaths();\r\n\r\n                item.setChecked(true);\r\n\r\n\r\n\r\n\r\n                saveSelected(9);\r\n\r\n\r\n                return true;\r\n\r\n            default:\r\n\r\n                return super.onContextItemSelected(item);\r\n\r\n        }\r\n\r\n    }\r\n\r\n    private void setChooseBreath() {\r\n        chooseBreath = (TextView) findViewById(R.id.id_take_N_Breaths);\r\n\r\n        chooseBreath.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                registerForContextMenu(v);\r\n                openContextMenu(v);\r\n            }\r\n        });\r\n    }\r\n\r\n     // Save to sharedpreferences\r\n    private void saveSelected(int index) {\r\n\r\n\r\n        SharedPreferences prefs = this.getSharedPreferences(\"OptionPreferences\", MODE_PRIVATE);\r\n        SharedPreferences.Editor editor = prefs.edit();\r\n\r\n        editor.putInt(\"Extract the selected\", index);\r\n        editor.apply();\r\n\r\n    }\r\n\r\n    private void getViews(){\r\n        button = findViewById(R.id.id_begin_button);\r\n    }\r\n\r\n\r\n    // Load from sharedpreferences\r\n    static public int getSavedSelected(Context context) {\r\n        SharedPreferences prefs = context.getSharedPreferences(\"OptionPreferences\", MODE_PRIVATE);\r\n        return prefs.getInt(\"Extract the selected\", 2);\r\n    }\r\n\r\n\r\n    private void setToolBar() {\r\n        Toolbar toolbar = findViewById(R.id.id_take_breath_tool_bar);\r\n        setSupportActionBar(toolbar);\r\n        ActionBar ab = getSupportActionBar();\r\n        ab.setDisplayHomeAsUpEnabled(true);\r\n    }\r\n\r\n\r\n    @SuppressLint(\"ClickableViewAccessibility\")\r\n    public void setupButton(){\r\n        button.setOnClickListener(v -> currentState.onClick());\r\n        button.setOnTouchListener((v, event) -> {\r\n            int eventAction = event.getAction();\r\n            if(eventAction == MotionEvent.ACTION_DOWN){\r\n                isTapping = true;\r\n                currentState.onButtonHeld();\r\n                startTime = System.currentTimeMillis();\r\n                holdHandler.post(holdCallback);\r\n            }else if (eventAction == MotionEvent.ACTION_UP) {\r\n                isTapping = false;\r\n                currentState.onButtonRelease();\r\n                endTime = System.currentTimeMillis();\r\n                holdHandler.removeCallbacks(holdCallback);\r\n                notPressHandler.post(notPressCallback);\r\n            }\r\n            return false;\r\n        });\r\n    }\r\n\r\n\r\n    public static Intent getIntent(Context c) {\r\n        return new Intent(c, TakeBreathActivity.class);\r\n    }\r\n\r\n    public static Intent makeLaunchIntent(Context c) {\r\n        return getIntent(c);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        finish();\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n\r\n    private void setStates(State state){\r\n        currentState = state;\r\n    }\r\n\r\n\r\n    @Override\r\n    protected void onDestroy() {\r\n        notPressHandler.removeCallbacks(notPressCallback);\r\n        super.onDestroy();\r\n    }\r\n\r\n    private abstract class State{\r\n        void onClick(){}\r\n        void onButtonRelease(){}\r\n        void onButtonHeld(){}\r\n        void onButtonHeld3s(){}\r\n        void onButtonHeld10s(){}\r\n        void onButtonNotPressed(){}\r\n        void onButtonNotPressed3s(){}\r\n        void onButtonNotPressed10s(){}\r\n    }\r\n\r\n    // TODO: add implementation for those functions.\r\n\r\n    private class StateReady extends State {\r\n        @Override\r\n        void onClick() {\r\n            setStates(stateWaitToInhale);\r\n            chooseBreath.setText(getString(R.string.breath_in));\r\n            button.setText(getString(R.string.in));\r\n            chooseBreath.setEnabled(false);\r\n        }\r\n    }\r\n\r\n    private class StateWaitToInhale extends State {\r\n        @Override\r\n        void onButtonHeld() {\r\n            setStates(stateInhaling);\r\n            Toast.makeText(TakeBreathActivity.this, \"start animation\", Toast.LENGTH_SHORT).show();\r\n            startInHalingAnimation();\r\n        }\r\n    }\r\n\r\n    private class StateInhaling extends State {\r\n        @Override\r\n        void onButtonRelease() {\r\n            setStates(stateWaitToInhale);\r\n            chooseBreath.setText(getString(R.string.breath_in));\r\n            button.setText(getString(R.string.in));\r\n            stopInHalingAnimation();\r\n        }\r\n\r\n        @Override\r\n        void onButtonHeld3s() {\r\n            setStates(stateOut);\r\n            button.setText(getString(R.string.out));\r\n        }\r\n    }\r\n\r\n    private class StateOut extends State{\r\n        @Override\r\n        void onButtonRelease() {\r\n            setStates(stateDoneInhaling);\r\n            Toast.makeText(TakeBreathActivity.this, \"stop inhale animation\", Toast.LENGTH_SHORT).show();\r\n            stopInHalingAnimation();\r\n        }\r\n\r\n        @Override\r\n        void onButtonHeld10s() {\r\n            setStates(stateDoneInhaling);\r\n            Toast.makeText(TakeBreathActivity.this, \"stop inhale animation\", Toast.LENGTH_SHORT).show();\r\n            chooseBreath.setText(getString(R.string.breath_out));\r\n            stopInHalingAnimation();\r\n        }\r\n    }\r\n\r\n    private class StateDoneInhaling extends State{\r\n        @Override\r\n        void onButtonNotPressed() {\r\n            setStates(stateReadyToExhale);\r\n            button.setText(getString(R.string.out));\r\n            // TODO: start exhale animation and sound\r\n            Toast.makeText(TakeBreathActivity.this, \"start exhale animation\", Toast.LENGTH_SHORT).show();\r\n            startExHalingAnimation();\r\n            chooseBreath.setText(getString(R.string.breath_out));\r\n        }\r\n    }\r\n\r\n    private class StateReadyToExhale extends State{\r\n        @Override\r\n        void onButtonNotPressed3s() {\r\n            int decrementBreath = breath.getBreaths();\r\n\r\n            breath.setBreaths(--decrementBreath);\r\n\r\n            if(breath.getBreaths() == 0){     // if this is the last one\r\n                button.setText(getString(R.string.good_job));\r\n                saveSelected(2);\r\n                setNumberOfBreaths();\r\n            }else{\r\n                button.setText(getString(R.string.in));\r\n            }\r\n            setStates(stateExhaling);\r\n            setNumberOfBreaths();\r\n        }\r\n\r\n    }\r\n\r\n    private class StateExhaling extends State{\r\n        @Override\r\n        void onClick() {\r\n            stopExHalingAnimation();\r\n            Toast.makeText(TakeBreathActivity.this, \"stop exhale animation\", Toast.LENGTH_SHORT).show();\r\n\r\n            if(breath.getBreaths() > 0){\r\n                setStates(stateReady);\r\n            } else {\r\n                setStates(stateFinish);\r\n                finish();\r\n            }\r\n        }\r\n\r\n        @Override\r\n        void onButtonNotPressed10s() {\r\n            stopExHalingAnimation();\r\n            Toast.makeText(TakeBreathActivity.this, \"stop exhale animation\", Toast.LENGTH_SHORT).show();\r\n\r\n           int decrementBreath = breath.getBreaths();\r\n\r\n            breath.setBreaths(--decrementBreath);\r\n            if(breath.getBreaths() > 0){\r\n                setStates(stateWaitToInhale);\r\n            } else {\r\n                setStates(stateFinish);\r\n                finish();\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    private class StateFinish extends State{\r\n        @Override\r\n        void onClick() {\r\n            setStates(stateWaitToInhale);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/practicalparent/ui/TakeBreathActivity.java	(revision d4fe14423253ce791452a23291cef49710a31fd8)
++++ app/src/main/java/com/example/practicalparent/ui/TakeBreathActivity.java	(date 1607064114622)
+@@ -43,7 +43,7 @@
+     private State currentState = stateReady;
+ 
+     private Button button;
+-    private TextView helpText;
++
+ 
+     private long startTime = 0;
+     private long endTime = 0;
+@@ -68,7 +68,20 @@
+         setChooseBreath();
+         getViews();
+         setupButton();
++        setHeading();
++        playMusic();
++
++    }
++
++    private void setHeading() {
++
++        int index= getSavedSelected(this);
+ 
++        breath.setBreaths(++index);
++        setNumberOfBreaths();
++    }
++
++    private void playMusic() {
+         notPressHandler.post(notPressCallback);
+         inHalingPlayer = MediaPlayer.create(this, R.raw.relax);
+         inHalingPlayer.setLooping(true);
+@@ -77,7 +90,6 @@
+     }
+ 
+ 
+-
+     @Override
+     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+         super.onCreateContextMenu(menu, v, menuInfo);
+@@ -87,8 +99,6 @@
+ 
+         int index= getSavedSelected(this);
+ 
+-
+-
+         MenuItem menuItem = menu.getItem(index);
+ 
+         breath.setBreaths(++index);
+@@ -161,8 +171,6 @@
+ 
+ 
+ 
+-
+-
+     private void setNumberOfBreaths(){
+ 
+         chooseBreath.setText("Let's take " + breath.getBreaths() + " breaths together");
+@@ -180,9 +188,6 @@
+ 
+                 setNumberOfBreaths();
+ 
+-
+-
+-
+                 saveSelected(0);
+ 
+                 item.setChecked(true);
+@@ -195,11 +200,8 @@
+ 
+                 setNumberOfBreaths();
+ 
+-
+-
+                 saveSelected(1);
+ 
+-
+                 item.setChecked(true);
+ 
+                 return true;
+@@ -210,9 +212,6 @@
+ 
+                 setNumberOfBreaths();
+ 
+-
+-
+-
+                 saveSelected(2);
+ 
+                 item.setChecked(true);
+@@ -223,9 +222,6 @@
+ 
+                 setNumberOfBreaths();
+ 
+-
+-
+-
+                 saveSelected(3);
+ 
+                 item.setChecked(true);
+@@ -237,8 +233,6 @@
+ 
+                 setNumberOfBreaths();
+ 
+-
+-
+                 saveSelected(4);
+ 
+                 item.setChecked(true);
+@@ -253,8 +247,6 @@
+ 
+                 item.setChecked(true);
+ 
+-
+-
+                 saveSelected(5);
+ 
+ 
+@@ -269,9 +261,6 @@
+ 
+                 item.setChecked(true);
+ 
+-
+-
+-
+                 saveSelected(6);
+ 
+                 return true;
+@@ -284,8 +273,6 @@
+ 
+                 item.setChecked(true);
+ 
+-
+-
+                 saveSelected(7);
+ 
+                 return true;
+@@ -298,9 +285,6 @@
+ 
+                 item.setChecked(true);
+ 
+-
+-
+-
+                 saveSelected(8);
+ 
+ 
+@@ -314,9 +298,6 @@
+ 
+                 item.setChecked(true);
+ 
+-
+-
+-
+                 saveSelected(9);
+ 
+ 
+@@ -345,7 +326,6 @@
+      // Save to sharedpreferences
+     private void saveSelected(int index) {
+ 
+-
+         SharedPreferences prefs = this.getSharedPreferences("OptionPreferences", MODE_PRIVATE);
+         SharedPreferences.Editor editor = prefs.edit();
+ 
+@@ -503,9 +483,13 @@
+         void onButtonNotPressed3s() {
+             int decrementBreath = breath.getBreaths();
+ 
+-            breath.setBreaths(--decrementBreath);
++            int index = --decrementBreath;
++
++            breath.setBreaths(index);
++
++            saveSelected(--index);
+ 
+-            if(breath.getBreaths() == 0){     // if this is the last one
++            if(breath.getBreaths() == 0) {     // if this is the last one
+                 button.setText(getString(R.string.good_job));
+                 saveSelected(2);
+                 setNumberOfBreaths();

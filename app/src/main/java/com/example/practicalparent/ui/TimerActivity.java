@@ -86,7 +86,7 @@ public class TimerActivity extends AppCompatActivity {
         desc.setText(getString(R.string.speed_prefix) + timer.getSpeedText());
     }
 
-    private void showPeiGraph(){
+    private void showPeiGraph() {
         List<PieEntry> pieEntries = new ArrayList<>();
         float remainingPercentage = timer.getRemainingPercentage();
         pieEntries.add(new PieEntry(1 - remainingPercentage, "passed"));
@@ -287,7 +287,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void startBroadcast(){
+    private void startBroadcast() {
         alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime() + TimeInMills.SECOND.getValue()
                 , timeoutCallback);
@@ -315,7 +315,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void setSpeed(double speed, String speedText){
+    private void setSpeed(double speed, String speedText) {
         timer.setSpeed(speed);
         TextView desc = findViewById(R.id.id_speed_desc);
         desc.setText(getString(R.string.speed_prefix) + speedText);

@@ -126,7 +126,7 @@ public class FlipResultsActivity extends AppCompatActivity {
                     turnOffBack = true;
                 } else if (index == 100) {       // animation ends
 
-                    if(childManager.isValidIndex(childIndex)) {
+                    if (childManager.isValidIndex(childIndex)) {
                         // update history
                         Child child = childManager.select(childIndex);
                         historyManager.add(new CoinFlipHistory(child,

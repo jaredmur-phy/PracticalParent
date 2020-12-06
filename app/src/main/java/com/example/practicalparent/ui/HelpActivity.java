@@ -55,6 +55,14 @@ public class HelpActivity extends AppCompatActivity {
         t10.setMovementMethod(LinkMovementMethod.getInstance());
         TextView t11 = (TextView) findViewById(R.id.id_team_name);
         t11.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t12 = (TextView) findViewById(R.id.yogaSource);
+        t12.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t13 = (TextView) findViewById(R.id.relaxSoundSource);
+        t13.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t14 = (TextView) findViewById(R.id.takeBreathSource);
+        t14.setMovementMethod(LinkMovementMethod.getInstance());
+
+
     }
 
     public static Intent getIntent(Context c) {

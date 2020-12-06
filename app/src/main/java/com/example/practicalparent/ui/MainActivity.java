@@ -29,8 +29,21 @@ public class MainActivity extends AppCompatActivity {
         setConfigurations();
         setTimeOut();
         setHelp();
+        setTakeBreath();
         requestIgnoreBatteryOptimizations();
     }
+
+    private void setTakeBreath() {
+        Button buttonTakeBreath = (Button) findViewById(R.id.id_take_breath_button);
+
+        buttonTakeBreath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchTakeBreath();
+            }
+        });
+    }
+
 
     private void setCoinFlip() {
         Button buttonCoinFlip = (Button) findViewById(R.id.id_flip_button);
@@ -57,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 launchConfigurations();
             }
         });
-
     }
 
     private void setTimeOut() {
@@ -107,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void launchTakeBreath() {
+        Intent intent = TakeBreathActivity.makeLaunchIntent(MainActivity.this);
+        startActivity(intent);
+    }
 
     public static Intent getIntent(Context c) {
         Intent intent = new Intent(c, MainActivity.class);

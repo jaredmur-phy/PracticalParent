@@ -68,7 +68,7 @@ public class ChildManager implements Iterable<Child> {
         return instance;
     }
 
-    public boolean isValidIndex(int i){
+    public boolean isValidIndex(int i) {
         return i >= 0 && i < children.size();
     }
 
