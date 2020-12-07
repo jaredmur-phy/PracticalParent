@@ -44,7 +44,7 @@ import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.timer.TimeInMills;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
-
+// add child
 public class SaveChildActivity extends AppCompatActivity {
 
     private final static String GET_INDEX = "GET_INDEX";

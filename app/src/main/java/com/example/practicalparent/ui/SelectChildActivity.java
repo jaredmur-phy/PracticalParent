@@ -24,6 +24,7 @@ import com.example.practicalparent.model.Child;
 import com.example.practicalparent.model.ChildManager;
 import com.example.practicalparent.model.PickedConstant;
 
+// select child
 public class SelectChildActivity extends AppCompatActivity {
 
     private ChildManager manager;
