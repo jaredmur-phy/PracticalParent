@@ -84,7 +84,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         playMusic();
     }
 
-
     private void setHeading() {
         int index = getSavedSelected(this);
         breath.setBreaths(++index);
