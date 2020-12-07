@@ -65,7 +65,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
     @Override
     protected void onRestart() {
         super.onRestart();
