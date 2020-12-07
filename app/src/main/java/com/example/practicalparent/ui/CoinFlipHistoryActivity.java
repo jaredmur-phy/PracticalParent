@@ -132,5 +132,4 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
     public static Intent makeLaunchIntent(Context c) {
         return new Intent(c, CoinFlipHistoryActivity.class);
     }
-
 }
