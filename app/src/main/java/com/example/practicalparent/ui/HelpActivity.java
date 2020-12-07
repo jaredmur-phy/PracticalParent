@@ -62,7 +62,6 @@ public class HelpActivity extends AppCompatActivity {
         TextView t14 = (TextView) findViewById(R.id.takeBreathSource);
         t14.setMovementMethod(LinkMovementMethod.getInstance());
 
-
     }
 
     public static Intent getIntent(Context c) {
