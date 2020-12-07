@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+// select camera or select gallery
 public class SelectCameraOrGalleryFragment extends AppCompatDialogFragment {
 
     @NonNull

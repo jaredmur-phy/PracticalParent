@@ -27,6 +27,7 @@ import com.example.practicalparent.R;
 import com.example.practicalparent.model.NumberOfBreaths;
 import com.example.practicalparent.timer.TimeInMills;
 
+// take breath class
 public class TakeBreathActivity extends AppCompatActivity {
 
     private TextView chooseBreath;

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.practicalparent.R;
 
+// show task info
 public class TaskInfoActivity extends AppCompatActivity {
     private TaskManager taskManager;
     private ChildManager childManager;

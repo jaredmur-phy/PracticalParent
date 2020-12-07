@@ -19,6 +19,7 @@ import com.example.practicalparent.model.Task;
 import com.example.practicalparent.model.TaskManager;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
+// save the task
 public class SaveTaskActivity extends AppCompatActivity {
     private TaskManager taskManager;
     private ChildManager childManager;
