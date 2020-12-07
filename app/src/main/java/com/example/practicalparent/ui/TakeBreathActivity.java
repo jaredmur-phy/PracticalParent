@@ -131,7 +131,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         }
     };
 
-
     private void stopInHalingAnimation() {
         button.clearAnimation();
         if (inHalingPlayer.isPlaying()) {
