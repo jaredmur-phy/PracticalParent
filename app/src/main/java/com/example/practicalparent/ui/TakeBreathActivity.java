@@ -98,7 +98,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         exHalingPlayer.setLooping(true);
     }
 
-
     private final Runnable holdCallback = new Runnable() {
         @Override
         public void run() {
