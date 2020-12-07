@@ -77,5 +77,4 @@ public class HelpActivity extends AppCompatActivity {
         finish();
         return super.onOptionsItemSelected(item);
     }
-
 }
