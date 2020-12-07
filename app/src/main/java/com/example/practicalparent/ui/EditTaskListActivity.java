@@ -182,7 +182,6 @@ public class EditTaskListActivity extends AppCompatActivity {
 
             Task curTask = taskManager.getTask(position);
 
-
             // Fill the view
             ImageView childImgView = itemView.findViewById(R.id.id_edit_task_child_img);
             childImgView.setImageDrawable(curTask.peekChild().getDrawable(EditTaskListActivity.this));
