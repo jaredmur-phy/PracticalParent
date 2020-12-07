@@ -164,7 +164,6 @@ public class EditTaskListActivity extends AppCompatActivity {
         list.setOnItemClickListener((parent, view, position, id) -> showID(position));
     }
 
-
     private class EditTaskListAdapter extends ArrayAdapter<Task> {
         public EditTaskListAdapter() {
             super(EditTaskListActivity.this,
