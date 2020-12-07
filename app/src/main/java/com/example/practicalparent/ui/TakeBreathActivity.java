@@ -90,7 +90,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         setNumberOfBreaths();
     }
 
-
     private void playMusic() {
         notPressHandler.post(notPressCallback);
         inHalingPlayer = MediaPlayer.create(this, R.raw.relax);
