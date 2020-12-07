@@ -33,7 +33,6 @@ public class CoinFlipHistoryActivity extends AppCompatActivity {
 
     private CoinFlipHistoryManager coinFlipHistoryManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
