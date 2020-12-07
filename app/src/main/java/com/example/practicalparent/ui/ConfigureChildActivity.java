@@ -72,7 +72,6 @@ public class ConfigureChildActivity extends AppCompatActivity {
         populateListView();
     }
 
-
     private class ChildListAdapter extends ArrayAdapter<Child> {
         public ChildListAdapter() {
             super(ConfigureChildActivity.this,
