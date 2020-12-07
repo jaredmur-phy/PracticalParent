@@ -47,7 +47,6 @@ public class EditTaskListActivity extends AppCompatActivity {
     private ActionMode actionMode = null;
     private ListView list;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
