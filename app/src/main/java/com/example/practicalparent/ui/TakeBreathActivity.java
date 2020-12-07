@@ -71,7 +71,6 @@ public class TakeBreathActivity extends AppCompatActivity {
     private MediaPlayer inHalingPlayer;
     private MediaPlayer exHalingPlayer;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,13 +84,11 @@ public class TakeBreathActivity extends AppCompatActivity {
         playMusic();
     }
 
-
     private void setHeading() {
         int index = getSavedSelected(this);
         breath.setBreaths(++index);
         setNumberOfBreaths();
     }
-
 
     private void playMusic() {
         notPressHandler.post(notPressCallback);
@@ -100,7 +97,6 @@ public class TakeBreathActivity extends AppCompatActivity {
         exHalingPlayer = MediaPlayer.create(this, R.raw.relax);
         exHalingPlayer.setLooping(true);
     }
-
 
     private final Runnable holdCallback = new Runnable() {
         @Override
@@ -134,7 +130,6 @@ public class TakeBreathActivity extends AppCompatActivity {
             }
         }
     };
-
 
     private void stopInHalingAnimation() {
         button.clearAnimation();
