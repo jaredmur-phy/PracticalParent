@@ -51,6 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Take Breath"
+        app:title="@string/take_breath"
         app:titleTextColor="#FFFFFF" />
 </androidx.constraintlayout.widget.ConstraintLayout>
