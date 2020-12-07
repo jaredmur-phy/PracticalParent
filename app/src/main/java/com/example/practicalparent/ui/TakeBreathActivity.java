@@ -68,6 +68,7 @@ public class TakeBreathActivity extends AppCompatActivity {
 
     private final long tenSecond = 10 * TimeInMills.SECOND.getValue();
     private final long threeSecond = 3 * TimeInMills.SECOND.getValue();
+
     private MediaPlayer inHalingPlayer;
     private MediaPlayer exHalingPlayer;
 
