@@ -159,7 +159,6 @@ public class EditTaskListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
-
     private void registerClickCallBack() {
         ListView list = findViewById(R.id.id_edit_task_list);
         list.setOnItemClickListener((parent, view, position, id) -> showID(position));
