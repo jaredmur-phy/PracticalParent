@@ -52,7 +52,6 @@ public class EditTaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task_list);
 
-
         taskManager = TaskManager.getInstance(this);
         childManager = ChildManager.getInstance(this);
 
