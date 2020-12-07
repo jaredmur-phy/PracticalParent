@@ -70,7 +70,6 @@ public class TakeBreathActivity extends AppCompatActivity {
     private MediaPlayer inHalingPlayer;
     private MediaPlayer exHalingPlayer;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
