@@ -142,5 +142,4 @@ public class ConfigureChildActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
