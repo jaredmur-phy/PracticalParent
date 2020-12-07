@@ -70,7 +70,6 @@ public class EditTaskListActivity extends AppCompatActivity {
 
         Button saveBtn = changePopup.findViewById(R.id.id_save_task_button);
 
-
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
